@@ -6,7 +6,11 @@ export default {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        "hero-grid": "400px auto"
+      }
+    },
   },
   plugins: [],
 }
