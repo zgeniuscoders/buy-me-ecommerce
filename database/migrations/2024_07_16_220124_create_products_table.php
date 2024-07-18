@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string("images");
             $table->text("description");
             $table->integer("price");
+            $table->integer("discount");
+            $table->integer("status");
+            $table->integer("qty");
             $table->timestamps();
         });
     }
