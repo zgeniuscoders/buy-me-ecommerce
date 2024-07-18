@@ -44,4 +44,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function store(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Store::class);
+    }
 }

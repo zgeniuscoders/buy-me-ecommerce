@@ -17,7 +17,7 @@
 
                 @csrf
                 <x-input-component name="email" placeholder="zgeniuscoders@exmeple.com" title="Email" type="email" value="{{ old('email') }}"/>
-                <x-input-component name="username" placeholder="zgeniuscoders" title="Username" type="text" value="{{ old('password') }}"/>
+                <x-input-component name="name" placeholder="zgeniuscoders" title="Username" type="text" value="{{ old('password') }}"/>
                 <x-input-component name="password" placeholder="Enter Your password" title="Password" type="password" value="{{ old('password') }}"/>
                 <x-input-component name="password_confirmation" type="password" placeholder="zgeniuscoders"
                                    title="Confirm password" value="{{ old('password_confirmation') }}" />
