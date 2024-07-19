@@ -9,7 +9,8 @@ export default {
         extend: {
             gridTemplateColumns: {
                 "hero-grid": "400px auto",
-                "product": "auto 400px"
+                "product": "auto 400px",
+                "product-details": "100px auto 400px",
             }
         },
     },

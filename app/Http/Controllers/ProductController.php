@@ -1,45 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\admin\store;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRequest;
-use App\Models\Store;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Inertia\Inertia;
 
-class StoreController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): \Inertia\Response
+    public function index()
     {
-
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): \Inertia\Response
+    public function create()
     {
-        return Inertia::render("admin/store/stores/create");
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
+    public function store(Request $request)
     {
-        Store::create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name),
-            'image' => null,
-            'cover_image' => null,
-            'description' => $request->description,
-            'user_id' => auth()->id()
-        ]);
+        //
     }
 
     /**
@@ -47,7 +36,8 @@ class StoreController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view("products.show",compact("product"));
     }
 
     /**

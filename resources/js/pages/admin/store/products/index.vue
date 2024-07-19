@@ -103,7 +103,7 @@
                 <product-search-box/>
             </div>
 
-            <product-table/>
+            <product-table :products="$page.props.products.data"/>
         </section>
 
     </Layout>
@@ -111,7 +111,7 @@
 
 <script setup>
 
-import Layout from "../layouts/layout.vue";
+import Layout from "../../layouts/layout.vue";
 import {useForm} from "@inertiajs/vue3";
 import {ref} from "vue";
 import ProductTable from "./components/product-table.vue";

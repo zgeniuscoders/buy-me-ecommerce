@@ -7,7 +7,8 @@ const props = defineProps({
     placeholder: "",
     value: "",
     modelValue: [String, Number],
-    options: Object
+    options: Object,
+    error: null
 });
 </script>
 
@@ -21,9 +22,13 @@ const props = defineProps({
            class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
             autofocus required>
         <template v-for="option in props.options" :key="option">
-            <option>{{ option?.name }}</option>
+            <option :value="option.id">{{ option?.name }}</option>
         </template>
+
+
     </select>
+    <div class="text-red-500 my-2" v-if="props.error">{{ props.error }}</div>
+
 </template>
 
 <style scoped>

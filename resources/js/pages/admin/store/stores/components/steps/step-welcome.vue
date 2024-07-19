@@ -37,7 +37,7 @@
 <script setup>
 import {ref} from "vue";
 import emitter from "tiny-emitter/instance"
-import InputComponent from "../../../../components/input-component.vue";
+import InputComponent from "../../../../../../components/input-component.vue";
 import {router, useForm} from "@inertiajs/vue3";
 
 const form = useForm({
