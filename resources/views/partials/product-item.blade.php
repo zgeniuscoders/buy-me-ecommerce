@@ -1,83 +1,42 @@
 <article>
 
-    <div
-        class="bg-gray-100 flex items-center justify-center h-[340px] rounded-md relative group overflow-hidden">
-
-
+    <div class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm relative">
         @if($product->discount)
             <div
                 class="absolute top-0 bg-red-600 left-4 mt-4 h-[30px] px-2 rounded-md text-white text-center flex items-center justify-center">
                 <span class="text-sm">-{{$product->discount}}%</span>
             </div>
         @endif
-
-        {{--                        favorite icon --}}
-
-        <div class="absolute right-4 p-2 rounded-full top-0 mt-4 flex flex-col gap-2">
-            <button class="bg-white rounded-full h-12 w-12 flex items-center justify-center">
-                <a href="">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                         class="w-[24px] h-[24px]"
-                         fill="#5f6368">
-                        <path
-                            d="m480-190-22-20q-97-89-160.5-152t-100-110.5Q161-520 146.5-558T132-634q0-71 48.5-119.5T300-802q53 0 99 28.5t81 83.5q35-55 81-83.5t99-28.5q71 0 119.5 48.5T828-634q0 38-14.5 76t-51 85.5Q726-425 663-362T502-210l-22 20Zm0-38q96-87 158-149t98-107.5q36-45.5 50-80.5t14-69q0-60-40-100t-100-40q-48 0-88.5 27.5T494-660h-28q-38-60-78-87t-88-27q-59 0-99.5 40T160-634q0 34 14 69t50 80.5q36 45.5 98 107T480-228Zm0-273Z"/>
-                    </svg>
-                </a>
-
-            </button>
-            <button class="bg-white rounded-full h-12 w-12 flex items-center justify-center">
-                <a href="{{route('products.show',["products" => $product->id])}}">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                         class="w-[24px] h-[24px]"
-                         fill="#5f6368">
-                        <path
-                            d="m480-190-22-20q-97-89-160.5-152t-100-110.5Q161-520 146.5-558T132-634q0-71 48.5-119.5T300-802q53 0 99 28.5t81 83.5q35-55 81-83.5t99-28.5q71 0 119.5 48.5T828-634q0 38-14.5 76t-51 85.5Q726-425 663-362T502-210l-22 20Zm0-38q96-87 158-149t98-107.5q36-45.5 50-80.5t14-69q0-60-40-100t-100-40q-48 0-88.5 27.5T494-660h-28q-38-60-78-87t-88-27q-59 0-99.5 40T160-634q0 34 14 69t50 80.5q36 45.5 98 107T480-228Zm0-273Z"/>
-                    </svg>
-                </a>
-
-            </button>
+        <a href="#" class="overflow-hidden rounded">
+            <img class="mx-auto h-44 w-44 dark:hidden object-cover" src="/storage/{{$product->image}}" alt="imac image" />
+            <img class="mx-auto hidden h-44 w-44 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="imac image" />
+        </a>
+        <div>
+            <a href="#" class="text-lg font-semibold leading-tight text-gray-900 hover:underline">{{$product->name}}</a>
+            <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">{{$product->description}}</p>
         </div>
-
-
-        <img src="{{asset("pr1.png")}}" alt="">
-        <button
-            class="absolute bottom-0 bg-slate-900 w-full text-white p-2 hidden group-hover:block cursor-pointer transition-all hover:bg-slate-950">
-            Add to Cart
-        </button>
-    </div>
-
-    <div class="mt-4">
-        <h3>{{$product->name}}</h3>
-        <div class="mt-2">
-            <span class="text-red-600">${{$product->price}}</span>
-            <span class="px-3 text-gray-400 mt-3 line-through">$120</span>
-            <div class="flex  items-center mt-2">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                     class="fill-orange-400">
-                    <path
-                        d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143Zm-43 59 45-192-149-129 196-17 77-181 77 181 196 17-149 129 45 192-169-102-169 102Zm169-242Z"/>
+        <div>
+            <p class="text-lg font-bold text-gray-900">
+                <span class="line-through"> ${{$product->price}} </span>
+            </p>
+            <p class="text-lg font-bold leading-tight text-red-600">${{$product->price}}</p>
+        </div>
+        <div class="mt-6 flex items-center gap-2.5">
+            <button data-tooltip-target="favourites-tooltip-1" type="button" class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white p-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-orange-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100">
+                <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"></path>
                 </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                     class="fill-orange-400">
-                    <path
-                        d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143Zm-43 59 45-192-149-129 196-17 77-181 77 181 196 17-149 129 45 192-169-102-169 102Zm169-242Z"/>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                     class="fill-orange-400">
-                    <path
-                        d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143Zm-43 59 45-192-149-129 196-17 77-181 77 181 196 17-149 129 45 192-169-102-169 102Zm169-242Z"/>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                     class="fill-orange-400">
-                    <path
-                        d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143Zm-43 59 45-192-149-129 196-17 77-181 77 181 196 17-149 129 45 192-169-102-169 102Zm169-242Z"/>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                     class="fill-orange-400">
-                    <path
-                        d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143Zm-43 59 45-192-149-129 196-17 77-181 77 181 196 17-149 129 45 192-169-102-169 102Zm169-242Z"/>
-                </svg>
+            </button>
+            <div id="favourites-tooltip-1" role="tooltip" class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300">
+                Add to favourites
+                <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
+            <button type="button" class="inline-flex w-full items-center justify-center rounded-lg bg-orange-500 px-5 py-2.5 text-sm font-medium  text-white hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-orange-300">
+                <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7h-1M8 7h-.688M13 5v4m-2-2h4" />
+                </svg>
+                Add to cart
+            </button>
         </div>
     </div>
 

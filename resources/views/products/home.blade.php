@@ -52,14 +52,7 @@
                 </div>
             </div>
 
-            {{--            products listing--}}
-            <div class="grid lg:grid-cols-4 gap-4 mt-8">
-
-                @for($i =0;$i<4;$i++)
-                    @include("partials.product-item")
-                @endfor
-
-            </div>
+            @include("partials.product-grid")
 
             <div class="w-full text-center mt-6">
                 <x-button-component :link="route('products.index')" title="View All"/>
@@ -97,14 +90,8 @@
                 </div>
 
 
-                {{--            products listing--}}
-                <div class="grid lg:grid-cols-4 gap-4 mt-8">
+                @include("partials.product-grid")
 
-                    @for($i =0;$i<4;$i++)
-                        @include("partials.product-item")
-                    @endfor
-
-                </div>
             </div>
         </section>
 
@@ -126,14 +113,8 @@
                 </div>
 
 
-                {{--            products listing--}}
-                <div class="grid lg:grid-cols-4 gap-4 mt-8">
+                @include("partials.product-grid")
 
-                    @for($i =0;$i<8;$i++)
-                        @include("partials.product-item")
-                    @endfor
-
-                </div>
 
                 <div class="w-full text-center mt-6">
                     <x-button-component link="" title="View All Products"/>

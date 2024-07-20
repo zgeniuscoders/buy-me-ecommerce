@@ -7,9 +7,7 @@ use App\Http\Controllers\admin\store\StoreController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return view("products.home");
-})->name('home');
+Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
 
 Route::get('/products/{products}', [\App\Http\Controllers\ProductController::class,'show'])->name('products.show');
 Route::get('/products', [\App\Http\Controllers\ProductController::class,'index'])->name('products.index');
