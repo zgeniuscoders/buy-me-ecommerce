@@ -62,7 +62,7 @@
             </div>
 
             <div class="w-full text-center mt-6">
-                <x-button-component link="" title="View All"/>
+                <x-button-component :link="route('products.index')" title="View All"/>
             </div>
         </section>
 

@@ -24,8 +24,8 @@
         <h3 class="text-3xl font-medium"><a href="">Buy<span class="text-orange-500">Me</span></a></h3>
         <nav>
             <ul class="flex items-center">
-                <x-nav-link href="" name="Home" :isActive="true"/>
-                <x-nav-link href="" name="Contact" :isActive="false"/>
+                <x-nav-link :href="route('home')" name="Home" :isActive="request()->routeIs('home')"/>
+                <x-nav-link :href="route('products.index')" name="Product" :isActive="request()->routeIs('products.index')"/>
                 <x-nav-link href="" name="About" :isActive="false"/>
                 <x-nav-link href="" name="Sign Up" :isActive="false"/>
             </ul>
@@ -208,7 +208,7 @@
                             </li>
 
                             <li>
-                                <a href="#"
+                                <a href="{{route('login')}}"
                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Login / Register</a>
                             </li>
 
