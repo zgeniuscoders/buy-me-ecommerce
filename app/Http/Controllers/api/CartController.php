@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Services\Cart;
 use App\Models\Product;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
 
-    public function getCart(): \Illuminate\Http\Response
+    public function index(): \Illuminate\Http\JsonResponse
     {
         $cart = session('cart');
 
@@ -21,11 +21,14 @@ class CartController extends Controller
         $items = $cart->getItems();
         $totalPrice = $cart->getTotalPrice();
 
-        return response()->view('products.cart.index', ['cart' => $items, 'totalPrice' => $totalPrice]);
-
+        return response()->json([
+                "data" => $items,
+                "totalPrice" => $totalPrice
+            ]
+        );
     }
 
-    public function addToCart(Request $request): RedirectResponse
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $cart = session('cart');
 
@@ -41,7 +44,13 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function removeFromCart($productId): RedirectResponse
+    public function update($id,Request $request)
+    {
+        $cart = session('cart');
+        $cart->update($id,$request->qty);
+    }
+
+    public function removeFromCart($productId): \Illuminate\Http\RedirectResponse
     {
         $cart = session('cart');
 
@@ -56,7 +65,7 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function clearCart(): RedirectResponse
+    public function clearCart(): \Illuminate\Http\RedirectResponse
     {
         session()->forget('cart');
 

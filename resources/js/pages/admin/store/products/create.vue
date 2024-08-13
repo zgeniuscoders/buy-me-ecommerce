@@ -240,7 +240,7 @@ const form = useForm({
 })
 
 const submit = () => {
-    form.post('/products', {
+    form.post('/admin/products', {
             onError: () => {
                 toaster.error('An error occurred while adding the product')
             },
