@@ -28,7 +28,7 @@
 
 </template>
 
-<script setup>
+<script setup lang="ts">
 const emit = defineEmits(["update:modelValue"]);
 
 const props = defineProps({

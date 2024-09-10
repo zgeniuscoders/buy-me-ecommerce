@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import Quantity from "./quantity.vue";
 import DecrementButton from "./decrementButton.vue";
 import IncrementButton from "./incrementButton.vue";

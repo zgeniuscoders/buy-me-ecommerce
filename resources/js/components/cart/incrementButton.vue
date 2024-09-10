@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import emitter from "tiny-emitter/instance.js";
 import { onMounted, ref } from "vue";
 import { useCartStore } from "../../stores/cart";

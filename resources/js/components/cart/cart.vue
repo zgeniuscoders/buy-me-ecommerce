@@ -14,9 +14,9 @@
 </template>
 
 
-<script setup>
+<script setup lang="ts">
 
-import CartItem from "./cartItem.vue";
+import cartItem from "./cartItem.vue";
 import CartDetails from "./cartDetails.vue";
 import { useCartStore } from "../../stores/cart.js";
 import { onMounted, ref } from "vue";

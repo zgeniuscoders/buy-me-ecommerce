@@ -6,7 +6,7 @@
 </template>
 
 
-<script setup>
+<script setup lang="ts">
 import emit from "tiny-emitter/instance.js"
 import { useCartStore } from "../../stores/cart";
 import { onMounted, ref } from "vue";
