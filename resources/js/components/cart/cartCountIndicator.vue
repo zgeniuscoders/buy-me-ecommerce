@@ -1,24 +1,27 @@
-
 <template>
-    <div class="bg-red-500 rounded-full text-white absolute w-4 h-4 text-center text-sm -top-2 right-0 flex items-center justify-center">
-        {{counter}}
+    <div
+        class="bg-red-500 rounded-full text-white absolute w-4 h-4 text-center text-sm -top-2 right-0 flex items-center justify-center">
+        {{ itemCount }}
     </div>
 </template>
 
 
 <script setup>
-    import {ref} from "vue";
-    const counter = ref(0)
+import emit from "tiny-emitter/instance.js"
+import { useCartStore } from "../../stores/cart";
+import { onMounted, ref } from "vue";
 
-    import emit from "tiny-emitter/instance.js"
+const itemCount = ref(0)
+const { totalItems,getTotalItems } = useCartStore()
 
-    emit.on("cartChange", (count) => {
-        counter.value = counter.value + count
-        console.log(count)
-    })
+onMounted(() => {
+    itemCount.value = totalItems
+})
+
+emit.on("cartChange", () => {
+    itemCount.value = getTotalItems()
+})
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

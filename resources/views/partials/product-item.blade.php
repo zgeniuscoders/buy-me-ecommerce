@@ -38,13 +38,7 @@
                 <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
 
-            <form method="post" action="{{route("cart.store")}}">
-                @Csrf
-                <input type="hidden" name="productId" value="{{$product->id}}">
-                <button type="submit">add</button>
-            </form>
-
-            {{--            <add-to-cart-button :product="{{$product}}"/>--}}
+            <add-to-cart-button :product="{{$product}}"/>
         </div>
     </div>
 

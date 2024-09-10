@@ -13,22 +13,17 @@
                 <div class="space-y-2">
                     <dl class="flex items-center justify-between gap-4">
                         <dt class="text-base font-normal text-gray-500">Original price</dt>
-                        <dd class="text-base font-medium text-gray-900">$7,592.00</dd>
+                        <dd class="text-base font-medium text-gray-900">${{ props.totalPrice }}</dd>
                     </dl>
 
                     <dl class="flex items-center justify-between gap-4">
                         <dt class="text-base font-normal text-gray-500">Savings</dt>
-                        <dd class="text-base font-medium text-green-600">-$299.00</dd>
-                    </dl>
-
-                    <dl class="flex items-center justify-between gap-4">
-                        <dt class="text-base font-normal text-gray-500">Store Pickup</dt>
-                        <dd class="text-base font-medium text-gray-900">$99</dd>
+                        <dd class="text-base font-medium text-green-600">-$0</dd>
                     </dl>
 
                     <dl class="flex items-center justify-between gap-4">
                         <dt class="text-base font-normal text-gray-500">Tax</dt>
-                        <dd class="text-base font-medium text-gray-900">$799</dd>
+                        <dd class="text-base font-medium text-gray-900">$0</dd>
                     </dl>
                 </div>
 
@@ -54,7 +49,7 @@
         <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <form class="space-y-4">
                 <div>
-                    <label for="voucher" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Do you have a voucher or gift card? </label>
+                    <label for="voucher" class="mb-2 block text-sm font-medium text-gray-900"> Do you have a voucher or gift card? </label>
                     <input type="text" id="voucher" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-orange-500 focus:ring-orange-500" placeholder="" required />
                 </div>
                 <button type="submit" class="flex w-full items-center justify-center rounded-lg bg-orange-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-orange-300">Apply Code</button>

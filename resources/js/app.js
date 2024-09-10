@@ -8,9 +8,12 @@ import addToCartComponent from "./components/cart/addToCartButton.vue"
 import cartCountIndicator from "./components/cart/cartCountIndicator.vue"
 import cart from "./components/cart/cart.vue"
 
+import { createPinia } from 'pinia';
+
 
 createApp()
     .use(Toaster)
+    .use(createPinia())
     .component('cart-counter', cartCountIndicator)
     .component('add-to-cart-button', addToCartComponent)
     .component("cart",cart)
@@ -24,6 +27,7 @@ createInertiaApp({
     setup({el, App, props, plugin}) {
         createApp({render: () => h(App, props)})
             .use(plugin)
+            .use(createPinia())
             .use(Toaster)
             .mount(el)
     },
