@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\store\orders\OrderController;
 use App\Http\Controllers\admin\store\products\ProductController;
 use App\Http\Controllers\admin\store\StoreController;
+use App\Http\Controllers\api\ProceedToCheckoutController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,8 +15,7 @@ Route::get('/products/{products}', [\App\Http\Controllers\ProductController::cla
 Route::get('/products', [\App\Http\Controllers\ProductController::class,'index'])->name('products.index');
 
 Route::get('cart',[CartController::class,'getCart'])->name('cart.index');
-Route::get('api/cart',[\App\Http\Controllers\api\CartController::class,'index'])->name('api.cart.index');
-Route::put('api/cart/{id}',[\App\Http\Controllers\api\CartController::class,'update'])->name('api.cart.update');
+
 //
 Route::get('cart/clear',[CartController::class,'clearCart'])->name('cart.delete');
 Route::post('cart',[CartController::class,'addToCart'])->name('cart.store');

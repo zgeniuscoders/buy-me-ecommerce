@@ -17,25 +17,24 @@
 import emit from "tiny-emitter/instance.js"
 import { createToaster } from "@meforma/vue-toaster";
 import { useCartStore } from "../../stores/cart";
+import { ProductProps } from "@/models/ProductProps";
 
 const toaster = createToaster();
 const { addItem } = useCartStore()
 
-const props = defineProps({
-    product: {}
-})
+const {product} = defineProps<ProductProps>()
 
 const addToCart = () => {
 
     addItem({
-        id: props.product.id,
-        name: props.product.name,
-        price: props.product.price,
-        image: props.product.image,
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
         quantity: 1
     })
 
-    emit.emit("cartChange")
+    emit.emit("cartUpdated")
     toaster.success("product added succefuly")
 
 }

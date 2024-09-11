@@ -1,51 +1,73 @@
+import { ProductType } from '@/models/ProductType';
+import { CartItemsStorageService } from '@/services/CartItemsStorageService';
 import { acceptHMRUpdate, defineStore } from 'pinia';
+import { ref} from 'vue';
 
-export const useCartStore = defineStore('cart', {
-    state: () => ({
-        items: JSON.parse(localStorage.getItem('cartItems')) || []
-    }),
-    getters: {
-        totalItems: (state) => state.items.reduce((total, item) => total + item.quantity, 0),
-        totalPrice: (state) => state.items.reduce((total, item) => total + (item.price * item.quantity), 0)
-    },
-    actions: {
-        addItem(item) {
-            const existingItem = this.items.find(i => i.id === item.id);
-            if (existingItem) {
-                existingItem.quantity++;
-            } else {
-                this.items.push({ ...item, quantity: 1 });
-            }
-            this.saveToLocalStorage();
-        },
-        removeItem(itemId) {
-            this.items = this.items.filter(item => item.id !== itemId);
-            this.saveToLocalStorage();
-        },
-        clearCart() {
-            this.items = [];
-            this.saveToLocalStorage();
-        },
-        updateQuantity(itemId, quantity) {
-            const item = this.items.find(i => i.id === itemId);
-            if (item) {
-                item.quantity = quantity;
-                this.saveToLocalStorage();
-            }
-        },
-        getTotalItems(){
-            return this.totalItems
-        },
-        getCartItems(){
-            return this.items
-        },
-        saveToLocalStorage() {
-            localStorage.setItem('cartItems', JSON.stringify(this.items));
+const {saveToLocalStorage,getCartItemsFromStorage} = CartItemsStorageService()
+
+export const useCartStore = defineStore('cart', () => {
+
+    const  items = ref<Array<ProductType>>(getCartItemsFromStorage() || [])
+
+    function addItem(item: ProductType) {
+        const existingItem = items.value.find(i => i.id === item.id);
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            items.value.push({ ...item, quantity: 1 });
+        }
+        saveToLocalStorage(items.value);
+        refreshCart()
+    }
+
+    function removeItem(itemId: Number) {
+        items.value = items.value.filter(item => item.id !== itemId);
+        saveToLocalStorage(items.value);
+        refreshCart()
+    }
+
+    function clearCart() {
+        items.value = [];
+        saveToLocalStorage(items.value);
+        refreshCart()
+    }
+
+    function updateQuantity(itemId: Number, quantity: Number) {
+        const item = items.value.find(i => i.id === itemId);
+        if (item) {
+            item.quantity = quantity;
+            saveToLocalStorage(items.value);
+            refreshCart()
         }
     }
-});
 
+    function refreshCart(){
+        items.value = getCartItemsFromStorage()
+    }
 
+    function getCartItems(): Array<ProductType>{
+        return items.value
+    }
+
+    function getTotalItems(): number{
+        return items.value.reduce((total, item) => total + item.quantity, 0)
+    }
+
+    function getTotalPrice(): number{
+        return items.value.reduce((total, item) => total + (item.price * item.quantity), 0)
+    }
+
+    return {
+        items,
+        addItem,
+        updateQuantity,
+        clearCart,
+        removeItem,
+        getCartItems,
+        getTotalItems,
+        getTotalPrice
+    }
+})
 
 if (import.meta.hot) {
     import.meta.hot.accept(acceptHMRUpdate(useCartStore, import.meta.hot))

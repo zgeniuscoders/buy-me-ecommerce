@@ -1,31 +1,37 @@
 <script setup lang="ts">
+import emit from "tiny-emitter/instance.js"
+
 import Quantity from "./quantity.vue";
 import { ref } from "vue";
 import { useCartStore } from "@/stores/cart";
+import { ProductProps } from "@/models/ProductProps";
 
-const { updateQuantity } = useCartStore()
-
-const props = defineProps({
-    product: {}
-})
-
+const { updateQuantity, removeItem } = useCartStore()
+const { product } = defineProps<ProductProps>()
 const storagePath = ref('storage')
 
 const decrementItemQty = () => {
-    let qty = props.product.quantity
+    let qty = product.quantity
 
     if (qty > 1) {
-        qty = props.product.quantity - 1
-
-        updateQuantity(props.product.id, qty)
+        qty = product.quantity - 1
+        updateQuantity(product.id, qty)
+        emit.emit("cartUpdated")
     }
+
 
 }
 
 const incrementItemQty = async () => {
-    let qty = props.product.quantity + 1
+    let qty = product.quantity + 1
+    updateQuantity(product.id, qty)
+    emit.emit("cartUpdated")
+}
 
-    updateQuantity(props.product.id, qty)
+
+const removeFromCart = () => {
+    removeItem(product.id)
+    emit.emit("cartUpdated")
 }
 
 </script>
@@ -36,18 +42,16 @@ const incrementItemQty = async () => {
         <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:p-6">
             <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                 <a href="#" class="shrink-0 md:order-1">
-                    <img class="h-20 w-20 dark:hidden" :src="storagePath + '/' + props.product.image"
+                    <img class="h-20 w-20 dark:hidden" :src="storagePath + '/' + product.image"
                         alt="{{props.product.name}} image" />
-                    <img class="hidden h-20 w-20 dark:block" :src="storagePath + '/' + props.product.image"
+                    <img class="hidden h-20 w-20 dark:block" :src="storagePath + '/' + product.image"
                         alt="{{props.product.name}}" />
                 </a>
-
-                {{ props.product }}
-
 
                 <label for="counter-input" class="sr-only">Choose quantity:</label>
                 <div class="flex items-center justify-between md:order-3 md:justify-end">
                     <div class="flex items-center">
+
                         <!-- <decrement-button :productId="props.product.id" :qty="props.product.quantity" /> -->
                         <button @click="decrementItemQty" type="button" id="decrement-button"
                             data-input-counter-decrement="counter-input"
@@ -58,7 +62,9 @@ const incrementItemQty = async () => {
                                     stroke-width="2" d="M1 1h16" />
                             </svg>
                         </button>
-                        <quantity :qty="props.product.quantity" :productId="props.product.id" />
+
+                        <quantity :qty="product.quantity" :productId="product.id" />
+
                         <!-- <increment-button :productId="props.product.id" :qty="props.product.quantity" /> -->
                         <button @click="incrementItemQty" type="button" id="increment-button"
                             data-input-counter-increment="counter-input"
@@ -69,14 +75,17 @@ const incrementItemQty = async () => {
                                     stroke-width="2" d="M9 1v16M1 9h16" />
                             </svg>
                         </button>
+
                     </div>
+
                     <div class="text-end md:order-4 md:w-32">
-                        <p class="text-base font-bold text-gray-900">${{ props.product.price }}</p>
+                        <p class="text-base font-bold text-gray-900">${{ product.price }}</p>
                     </div>
+
                 </div>
 
                 <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
-                    <a href="#" class="text-base font-medium text-gray-900 hover:underline">{{ props.product.name }}</a>
+                    <a href="#" class="text-base font-medium text-gray-900 hover:underline">{{ product.name }}</a>
 
                     <div class="flex items-center gap-4">
                         <button type="button"
@@ -90,7 +99,7 @@ const incrementItemQty = async () => {
                             Add to Favorites
                         </button>
 
-                        <button type="button"
+                        <button type="button" @click.prevent="removeFromCart"
                             class="inline-flex items-center text-sm font-medium text-red-600 hover:underline">
                             <svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" fill="none" viewBox="0 0 24 24">

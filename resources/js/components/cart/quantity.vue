@@ -1,6 +1,6 @@
 <script setup lang="ts">
     const props = defineProps({
-        qty: 0
+        qty: Number
     })
 </script>
 
