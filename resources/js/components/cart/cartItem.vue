@@ -1,15 +1,32 @@
 <script setup lang="ts">
 import Quantity from "./quantity.vue";
-import DecrementButton from "./decrementButton.vue";
-import IncrementButton from "./incrementButton.vue";
 import { ref } from "vue";
+import { useCartStore } from "@/stores/cart";
+
+const { updateQuantity } = useCartStore()
 
 const props = defineProps({
-    product: {},
-    quantity: 0
+    product: {}
 })
 
 const storagePath = ref('storage')
+
+const decrementItemQty = () => {
+    let qty = props.product.quantity
+
+    if (qty > 1) {
+        qty = props.product.quantity - 1
+
+        updateQuantity(props.product.id, qty)
+    }
+
+}
+
+const incrementItemQty = async () => {
+    let qty = props.product.quantity + 1
+
+    updateQuantity(props.product.id, qty)
+}
 
 </script>
 
@@ -25,12 +42,33 @@ const storagePath = ref('storage')
                         alt="{{props.product.name}}" />
                 </a>
 
+                {{ props.product }}
+
+
                 <label for="counter-input" class="sr-only">Choose quantity:</label>
                 <div class="flex items-center justify-between md:order-3 md:justify-end">
                     <div class="flex items-center">
-                        <decrement-button :productId="props.product.id" :qty="props.product.quantity" />
+                        <!-- <decrement-button :productId="props.product.id" :qty="props.product.quantity" /> -->
+                        <button @click="decrementItemQty" type="button" id="decrement-button"
+                            data-input-counter-decrement="counter-input"
+                            class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100">
+                            <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M1 1h16" />
+                            </svg>
+                        </button>
                         <quantity :qty="props.product.quantity" :productId="props.product.id" />
-                        <increment-button :productId="props.product.id" :qty="props.product.quantity" />
+                        <!-- <increment-button :productId="props.product.id" :qty="props.product.quantity" /> -->
+                        <button @click="incrementItemQty" type="button" id="increment-button"
+                            data-input-counter-increment="counter-input"
+                            class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100">
+                            <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M9 1v16M1 9h16" />
+                            </svg>
+                        </button>
                     </div>
                     <div class="text-end md:order-4 md:w-32">
                         <p class="text-base font-bold text-gray-900">${{ props.product.price }}</p>
