@@ -7,26 +7,27 @@
 @section('content')
     <main class="container mx-auto lg:px-0 px-4">
 
-        <section class="bg-white py-8 antialiased md:py-16">
+        <section class="bg-white py-8 antialiased md:pb-16">
             <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Shopping Cart</h2>
+                @if (session('success'))
+                    <div class="bg-green-600 p-4 rounded-md text-white text-center mb-4">
+                        <p class="py-4">{{ session('success') }}</p>
+                        <clear-cart-button/>
+                    </div>
+                @endif
 
-{{--                <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">--}}
+                @if (session('error'))
+                    <div class="bg-red-600 p-4 rounded-md text-white text-center mb-4">
+                        <p>{{ session('error') }}</p>
+                    </div>
+                @endif
 
-{{--                    <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">--}}
-
-{{--                        @include("products.cart.components.cart-items")--}}
-
-{{--                        --}}{{--                        suggest products--}}
-{{--                        @include("products.cart.components.suggest-product")--}}
-{{--                    </div>--}}
-
-{{--                    --}}{{--                    orders details--}}
-{{--                    @include("products.cart.components.order-details")--}}
-{{--                </div>--}}
-                <cart/>
+                <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Shopping Cart</h2>
+                <form action="{{ route('checkout') }}" method="post">
+                    @csrf
+                    <cart />
+                </form>
             </div>
         </section>
     </main>
 @endsection
-

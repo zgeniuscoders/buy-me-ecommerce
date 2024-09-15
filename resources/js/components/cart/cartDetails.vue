@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import checkoutButton from './checkoutButton.vue';
+import buttonComponent from '../button-component.vue';
 
 const props = defineProps({
-    totalPrice: Number
+    totalPrice: Number,
+    totalItems: Number
 })
 
 </script>
@@ -36,7 +38,9 @@ const props = defineProps({
                 </dl>
             </div>
 
-            <checkout-button />
+
+            <checkout-button/>
+ 
 
             <div class="flex items-center justify-center gap-2">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> or </span>

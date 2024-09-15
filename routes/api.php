@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\ProceedToCheckoutController;
 
 
-Route::post("/procced-to-checkout", ProceedToCheckoutController::class);
-
+Route::middleware("auth")->group(function () {
+    Route::post("/procced-to-checkout", ProceedToCheckoutController::class);
+});
 
 Route::get('/user', function (Request $request) {
     return $request->user();

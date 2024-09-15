@@ -38,6 +38,7 @@ const removeFromCart = () => {
 
 <template>
     <div class="space-y-6">
+        <input type="hidden" :value="product.id" name="productId[]">
 
         <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:p-6">
             <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
