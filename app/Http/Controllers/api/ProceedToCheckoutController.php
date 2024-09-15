@@ -22,7 +22,7 @@ class ProceedToCheckoutController extends Controller
 
                 Order::create([
                     "product_id" => $product->id,
-                    "user_id" => 1,
+                    "user_id" => auth()->user->id,
                     "quantity" => $qty
                 ]);
             }

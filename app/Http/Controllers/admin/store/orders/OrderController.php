@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin\store\orders;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,7 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return Inertia::render("admin/store/orders/index");
+        $orders = Product::with(["orders"])->where("store_id", 1)->get();
+        return Inertia::render("admin/store/orders/index", compact("orders"));
     }
 
 

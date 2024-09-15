@@ -1,28 +1,21 @@
 <template>
     <div>
-        <div class="my-2" v-if="props.type === 'textarea'">
-            <label class="block text-gray-700" for="{{ props.name }}">{{ props.title }}</label>
-            <textarea :placeholder="props.placeholder"
-                      :name="props.name"
-                      :value="props.modelValue"
-                      :id="props.name"
-                      v-on:input="($event) => emit('update:modelValue', $event.target.value)"
-                      class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
-                      required>{{ props.modelValue }}</textarea>
+        <div class="my-2" v-if="data.type === 'textarea'">
+            <label class="block text-gray-700" for="{{ props.name }}">{{ data.title }}</label>
+            <textarea :placeholder="data.placeholder" :name="data.name" :value="data.modelValue" :id="data.name"
+                v-on:input="($event) => emit('update:modelValue', $event.target.value)"
+                class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                required>{{ data.modelValue }}</textarea>
         </div>
         <div class="my-2" v-else>
-            <label class="block text-gray-700" for="{{ props.name }}">{{ props.title }}</label>
-            <input :placeholder="props.placeholder"
-                   :name="props.name"
-                   :value="props.modelValue"
-                   :type="props.type"
-                   :id="props.name"
-                   v-on:input="($event) => emit('update:modelValue', $event.target.value)"
-                   class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
-                   autofocus autocomplete required>
+            <label class="block text-gray-700" for="{{ props.name }}">{{ data.title }}</label>
+            <input :placeholder="data.placeholder" :name="data.name" :value="data.modelValue" :type="data.type"
+                :id="data.name" v-on:input="($event) => emit('update:modelValue', $event.target.value)"
+                class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                autofocus autocomplete required>
 
         </div>
-        <div class="text-red-500 my-2" v-if="props.error">{{ props.error }}</div>
+        <div class="text-red-500 my-2" v-if="data.error">{{ data.error }}</div>
 
     </div>
 
@@ -31,17 +24,20 @@
 <script setup lang="ts">
 const emit = defineEmits(["update:modelValue"]);
 
-const props = defineProps({
-    name: "",
-    title: "",
-    placeholder: "",
-    value: "",
-    modelValue: [String, Number],
-    type: "",
-    error: ""
-});
+type Input = {
+    name: string,
+    title: string,
+    type: string,
+    placeholder: string,
+    modelValue: string,
+    error: string
+}
+
+interface Props {
+    data: Input
+}
+
+const { data } = defineProps<Props>()
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
