@@ -14,8 +14,8 @@ class TotalProductCount extends Controller
      */
     public function __invoke(Request $request): JsonResponse
     {
-        $count = Store::where("user_id", $request->user()->id)->withCount("products")->firstOrFail();
+        $shop = Store::where("user_id", $request->user()->id)->withCount("products")->firstOrFail();
 
-        return response()->json(["products_count" => $count->products_count]);
+        return response()->json(["products_count" => $shop->products_count]);
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductApiRequest;
 use App\Http\Requests\ProductRequest;
+use App\Http\Resources\ProductResource;
 
 class ApiProductController extends Controller
 {
@@ -16,7 +17,8 @@ class ApiProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::with(["category","store"])->get();
+        return ProductResource::collection($products);
     }
 
     /**

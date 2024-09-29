@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\URL;
 
 class Product extends Model
 {
@@ -36,15 +37,37 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    protected function images(): Attribute
-    {
-        return Attribute::make(
-            get: fn(string $value) => json_decode($value),
-        );
-    }
+    // protected function images(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn(string $value) => json_decode($value),
+    //     );
+    // }
 
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function getImageAttribute($value)
+    {
+        return URL::to("storage/$value");
+    }
+
+    public function getStatusAttribute($value)
+    {
+        if ($value) {
+            return true;
+        }
+        return false;
+    }
+
+    public function getImagesAttribute($value){
+        $images = [];
+        foreach(json_decode($value) as $image){
+            $images[] = URL::to("storage/$image");
+        }
+        
+        return $images;
     }
 }
