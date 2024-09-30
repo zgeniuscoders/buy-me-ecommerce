@@ -15,10 +15,13 @@ class ShopResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            "id" => $this->id,
             "name" => $this->name,
             "image" => $this->image,
             "cover_image" => $this->cover_image,
-            "description" => $this->description
+            "description" => $this->description,
+            "subscribers" => $this->subscribers_count,
+            "products" => ProductResource::collection($this->whenLoaded("products"))
         ];
     }
 }

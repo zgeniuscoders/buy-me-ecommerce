@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ShopResource;
 use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -62,7 +63,8 @@ class ShopController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $shop = Store::with("products")->withCount("subscribers")->findOrFail($id);
+        return new ShopResource($shop);
     }
 
     /**
