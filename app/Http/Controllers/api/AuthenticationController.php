@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -26,7 +27,7 @@ class AuthenticationController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'succces',
-            'user' => $user,
+            'user' => new UserResource($user),
             'token' => $user->createToken("API TOKEN")->plainTextToken
         ]);
     }
@@ -60,6 +61,14 @@ class AuthenticationController extends Controller
             'message' => 'succces',
             'user' => $user,
             'token' => $user->createToken("API TOKEN")->plainTextToken
+        ]);
+    }
+
+    public function logout(Request $request){
+        $request->user()->tokens()->delete();
+
+        return response()->json([
+            "message" => "success"
         ]);
     }
 }

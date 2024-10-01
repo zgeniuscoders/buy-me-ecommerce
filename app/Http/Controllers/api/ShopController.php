@@ -16,7 +16,12 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //
+        $shops = Store::withCount("subscribers")
+            ->with("subscribers")
+            ->get();
+        
+
+        return ShopResource::collection($shops);
     }
 
     /**

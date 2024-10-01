@@ -18,7 +18,7 @@ class SubscribeToShopController extends Controller
             ->findOrFail($request->shopId);
 
         $shop->subscribers()->toggle([
-            $request->user->id
+            request()->user()->id
         ]);
 
         return new ShopResource($shop);

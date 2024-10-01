@@ -26,19 +26,16 @@ Route::prefix("v1")->group(function () {
     Route::post("/login", [AuthenticationController::class, "login"]);
     Route::post("/register", [AuthenticationController::class, "register"]);
 
-    // Route::middleware("auth:sanctum")->group(function () {
-    //     Route::post("/logout", [AuthenticationController::class, "logout"]);
-    //     Route::apiResource("shop", ShopController::class);
-    //     Route::apiResource("products", ApiProductController::class);
-    //     Route::get("categories", CategoryApiController::class);
+    Route::middleware("auth:sanctum")->group(function () {
+        Route::delete("/logout", [AuthenticationController::class, "logout"]);
+        Route::apiResource("shop", ShopController::class);
+        Route::apiResource("products", ApiProductController::class);
+        // Route::get("categories", CategoryApiController::class);
+        Route::apiResource("categories", CategoryApiController::class)->except(["store", "destroy", "update", "edit"]);
 
-    //     Route::get("count", TotalProductCount::class);
-    //     Route::get("orders-count", TotalOrderCountController::class);
-    // });
+        Route::get("count", TotalProductCount::class);
+        Route::get("orders-count", TotalOrderCountController::class);
 
-    Route::post("shop/subscribe", SubscribeToShopController::class);
-    Route::apiResource("shop", ShopController::class);
-    Route::apiResource("products", ApiProductController::class);
-    Route::apiResource("categories", CategoryApiController::class)->except(["store","destroy","update","edit"]);
-    
+        Route::post("shop/subscribe", SubscribeToShopController::class);
+    });
 });
