@@ -15,9 +15,12 @@ class ApiProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with(["category","store"])->get();
+        $perPage = $request->input("per_page") ?: 2;
+        $products = Product::with(["category", "store", "favoriteProductUser"])
+            ->paginate($perPage);
+
         return ProductResource::collection($products);
     }
 
@@ -53,7 +56,7 @@ class ApiProductController extends Controller
                 ]
             )
         );
-        
+
         return response()->json([
             "data" => $request->hasFile('image')
         ]);

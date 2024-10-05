@@ -44,6 +44,12 @@ class Product extends Model
     //     );
     // }
 
+    public function favoriteProductUser()
+    {
+        return $this->belongsToMany(User::class, "favorite_products");
+    }
+
+
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
@@ -62,12 +68,13 @@ class Product extends Model
         return false;
     }
 
-    public function getImagesAttribute($value){
+    public function getImagesAttribute($value)
+    {
         $images = [];
-        foreach(json_decode($value) as $image){
+        foreach (json_decode($value) as $image) {
             $images[] = URL::to("storage/$image");
         }
-        
+
         return $images;
     }
 }

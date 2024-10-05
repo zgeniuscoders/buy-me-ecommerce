@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\AddProductFavoriteController;
 use App\Http\Controllers\api\ApiProductController;
 use App\Http\Controllers\api\AuthenticationController;
 use App\Http\Controllers\api\CategoryApiController;
@@ -23,6 +24,7 @@ Route::get('/user', function (Request $request) {
 
 
 Route::prefix("v1")->group(function () {
+    
     Route::post("/login", [AuthenticationController::class, "login"]);
     Route::post("/register", [AuthenticationController::class, "register"]);
 
@@ -37,5 +39,9 @@ Route::prefix("v1")->group(function () {
         Route::get("orders-count", TotalOrderCountController::class);
 
         Route::post("shop/subscribe", SubscribeToShopController::class);
+        Route::post("product/favorite", AddProductFavoriteController::class);
+
     });
+
+    
 });

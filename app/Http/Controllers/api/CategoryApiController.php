@@ -15,7 +15,10 @@ class CategoryApiController extends Controller
      */
     public function index(Request $request)
     {
-        return CategoryResource::collection(Category::all());
+        $perPage = $request->input("per_page") ?: 2;
+        $categories = Category::paginate($perPage);
+        
+        return CategoryResource::collection($categories);
     }
 
     /**
