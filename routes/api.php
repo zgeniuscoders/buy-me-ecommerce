@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\api\AddProductFavoriteController;
 use App\Http\Controllers\api\ApiProductController;
 use App\Http\Controllers\api\AuthenticationController;
 use App\Http\Controllers\api\CategoryApiController;
+use App\Http\Controllers\api\OrderProductController;
+use App\Http\Controllers\api\OrderUserController;
 use App\Http\Controllers\api\ProceedToCheckoutController;
+use App\Http\Controllers\api\ProductFavoriteController;
 use App\Http\Controllers\api\ShopController;
 use App\Http\Controllers\api\TotalOrderCountController;
 use App\Http\Controllers\api\TotalProductCount;
@@ -24,7 +26,7 @@ Route::get('/user', function (Request $request) {
 
 
 Route::prefix("v1")->group(function () {
-    
+
     Route::post("/login", [AuthenticationController::class, "login"]);
     Route::post("/register", [AuthenticationController::class, "register"]);
 
@@ -34,14 +36,14 @@ Route::prefix("v1")->group(function () {
         Route::apiResource("products", ApiProductController::class);
         // Route::get("categories", CategoryApiController::class);
         Route::apiResource("categories", CategoryApiController::class)->except(["store", "destroy", "update", "edit"]);
+        Route::apiResource("product/favorite", ProductFavoriteController::class)->except(["destroy", "update", "show"]);
+        Route::post("product/orders", OrderProductController::class);
+        
+        Route::get("user/orders", OrderUserController::class);
 
         Route::get("count", TotalProductCount::class);
         Route::get("orders-count", TotalOrderCountController::class);
 
         Route::post("shop/subscribe", SubscribeToShopController::class);
-        Route::post("product/favorite", AddProductFavoriteController::class);
-
     });
-
-    
 });
