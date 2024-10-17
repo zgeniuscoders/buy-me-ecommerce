@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers\api\product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductFavoriteResource;

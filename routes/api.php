@@ -1,19 +1,21 @@
 <?php
 
-use App\Http\Controllers\api\ApiProductController;
-use App\Http\Controllers\api\AuthenticationController;
-use App\Http\Controllers\api\CategoryApiController;
-use App\Http\Controllers\api\OrderProductController;
-use App\Http\Controllers\api\OrderUserController;
-use App\Http\Controllers\api\ProceedToCheckoutController;
-use App\Http\Controllers\api\ProductFavoriteController;
-use App\Http\Controllers\api\ShopController;
-use App\Http\Controllers\api\TotalOrderCountController;
-use App\Http\Controllers\api\TotalProductCount;
-use App\Http\Controllers\SubscribeToShopController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\api\ShopController;
+use App\Http\Controllers\api\post\PostController;
+use App\Http\Controllers\api\CategoryApiController;
+use App\Http\Controllers\SubscribeToShopController;
+use App\Http\Controllers\api\post\CommentController;
+use App\Http\Controllers\api\post\PostLikeController;
+use App\Http\Controllers\api\AuthenticationController;
+use App\Http\Controllers\api\order\OrderUserController;
+use App\Http\Controllers\api\product\TotalProductCount;
+use App\Http\Controllers\api\ProceedToCheckoutController;
+use App\Http\Controllers\api\order\OrderProductController;
+use App\Http\Controllers\api\product\ApiProductController;
+use App\Http\Controllers\api\order\TotalOrderCountController;
+use App\Http\Controllers\api\product\ProductFavoriteController;
 
 
 Route::middleware("auth")->group(function () {
@@ -32,18 +34,28 @@ Route::prefix("v1")->group(function () {
 
     Route::middleware("auth:sanctum")->group(function () {
         Route::delete("/logout", [AuthenticationController::class, "logout"]);
+
+        // posts 
+        Route::apiResource("posts", PostController::class);
+        Route::post("post/like", PostLikeController::class);
+        Route::post("post/comment", [CommentController::class, "store"]);
+
+        // shop 
         Route::apiResource("shop", ShopController::class);
+        Route::post("shop/subscribe", SubscribeToShopController::class);
+
+        // productd
         Route::apiResource("products", ApiProductController::class);
-        // Route::get("categories", CategoryApiController::class);
         Route::apiResource("categories", CategoryApiController::class)->except(["store", "destroy", "update", "edit"]);
         Route::apiResource("product/favorite", ProductFavoriteController::class)->except(["destroy", "update", "show"]);
-        Route::post("product/orders", OrderProductController::class);
-        
-        Route::get("user/orders", OrderUserController::class);
-
         Route::get("count", TotalProductCount::class);
-        Route::get("orders-count", TotalOrderCountController::class);
 
-        Route::post("shop/subscribe", SubscribeToShopController::class);
+
+        // orders 
+        Route::get("user/orders", OrderUserController::class);
+        Route::get("orders-count", TotalOrderCountController::class);
+        Route::post("product/orders", OrderProductController::class);
+
+
     });
 });
