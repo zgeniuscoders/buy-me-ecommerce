@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
 
-        $products = Product::with("favoriteProductUser")->paginate(5);
+        $products = Product::with("favoriteProductUser")->paginate(2);
         $user = auth()->user();
 
         // Vérification des favoris pour l'utilisateur
@@ -54,7 +54,13 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $product = Product::findOrFail($id);
-        return view("products.show", compact("product"));
+
+        $products = Product::where("category_id", $product->category_id)
+            ->take(8)
+            ->get();
+
+
+        return view("products.show", compact("product","products"));
     }
 
 

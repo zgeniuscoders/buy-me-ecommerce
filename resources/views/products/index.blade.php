@@ -15,6 +15,10 @@
 
             @include("partials.product-grid")
 
+            <div class="w-full text-center mt-8">
+                {{ $products->links() }}
+            </div>
+
         </section>
 
 

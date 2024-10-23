@@ -13,8 +13,9 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $products = Product::all();
+        $products = Product::take(8)->get();
         $categories = Category::withCount("products")->get();
+        
         return view("products.home", compact("products", "categories"));
     }
 }

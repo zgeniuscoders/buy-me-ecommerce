@@ -1,6 +1,6 @@
-<form action="{{ route("products.index") }}" method="get" class="mr-4 hidden md:block">
-    <div class="bg-gray-100 dark:bg-secondary-dark rounded-md flex items-center py-2 px-4">
-        <input type="search" name="q" class="outline-none border-none bg-transparent w-[250px]" placeholder="Rechercher un article" value="{{ old("q") }}">
+<form action="{{ route("products.index") }}" method="get" class="mr-4 hidden md:block w-[600px]">
+    <div class="border border-gray-200 rounded-md flex items-center py-2 px-4 min-w-[300px]">
+        <input type="search" name="q" class="outline-none border-none bg-transparent w-full" placeholder="Rechercher un article" value="{{ old("q") }}">
         <button type="submit">
             <svg fill="#000000" version="1.1" id="Capa_1" class="h-5 w-5 text-white"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 488.4 488.4"
