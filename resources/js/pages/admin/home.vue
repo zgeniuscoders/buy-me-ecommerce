@@ -127,7 +127,7 @@
 
                         <button type="button"
                                 class="bg-gray-800 py-2 px-4 rounded-md text-white mt-4 hover:bg-gray-900">
-                            <Link href="/products/create">
+                            <Link href="admin/products/create">
                             Add Product
                             </Link>
                         </button>
