@@ -13,7 +13,24 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::all();
+
+        $products = Product::with("favoriteProductUser")
+            ->paginate(5);
+        $user = auth()->user();
+
+        // Vérification des favoris pour l'utilisateur
+        if ($user) {
+            $products->getCollection()->transform(function ($product) use ($user) {
+                $product->isFavorited = $product->favoriteProductUser->contains('id', $user->id);
+                return $product;
+            });
+        } else {
+            // Si l'utilisateur n'est pas connecté, on définit isFavorited à false
+            $products->getCollection()->transform(function ($product) {
+                $product->isFavorited = false;
+                return $product;
+            });
+        }
 
         if ($request->has("category")) {
             $category = Category::where("name", $request->input("category"))->firstOrFail();

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -66,6 +67,11 @@ class Product extends Model
             return true;
         }
         return false;
+    }
+
+    public function getExcerpt()
+    {
+        return Str::limit($this->description, 100) . (Str::length($this->description) < 100 ? "" : "...");
     }
 
     public function getImagesAttribute($value)

@@ -25,24 +25,25 @@ Route::middleware("auth")->group(function () {
     Route::get('cart', [CartController::class, 'getCart'])->name('cart.index');
     Route::post('/checkout', CheckoutController::class)->name("checkout");
 
-    Route::get("/admin/store/create", [StoreController::class, "create"])->name("admin.store.create");
-    Route::post("/admin/store", [StoreController::class, "store"])->name("admin.store.store");
+    Route::get("/ma-boutique/store/create", [StoreController::class, "create"])->name("admin.store.create");
+    Route::post("/ma-boutique/store", [StoreController::class, "store"])->name("admin.store.store");
 
-    
-    Route::resource("product/favorite", FavoriteController::class)->names("product.favorite");
+
+    Route::resource("articles/favorite", FavoriteController::class)
+        ->names("product.favorite")
+        ->except(["create", "edit", "update"]);
 
     // account 
-    Route::resource("account", AcountController::class)->names("account");
+    Route::resource("mon-compte", AcountController::class)->names("account");
 
     Route::middleware("has_store_middleware")->group(function () {
-        Route::get('/admin', HomeController::class)->name("admin");
-        Route::resource("/admin/store", StoreController::class)
+        Route::get('/ma-boutique', HomeController::class)->name("admin");
+        Route::resource("/ma-boutique/store", StoreController::class)
             ->except("create", "store")
             ->names("admin.store");
 
-        Route::resource('/admin/products', ProductController::class)->names("admin.products");
+        Route::resource('/ma-boutique/articles', ProductController::class)->names("admin.products");
 
-        Route::resource('/admin/orders', OrderController::class)->only(['index', 'update']);
+        Route::resource('/ma-boutique/commandes', OrderController::class)->only(['index', 'update']);
     });
-    
 });
