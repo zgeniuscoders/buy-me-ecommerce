@@ -20,7 +20,16 @@ interface Props {
     data: Select
 }
 
-const {data} = defineProps<Props>()
+// const {data} = defineProps<Props>()
+const data = defineProps({
+    name: String,
+    title: String,
+    placeholder: String,
+    value: String,
+    modelValue: [String, Number],
+    options: Option,
+    error: String
+})
 
 </script>
 

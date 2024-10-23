@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 </head>
 
-<body id="app-client">
+<body id="app-client" class="bg-background dark:bg-background-dark">
     @include('layouts.header')
     
     @yield('content')

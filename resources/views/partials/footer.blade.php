@@ -3,7 +3,7 @@
 
     <div class="mx-auto max-w-7xl py-12 px-6 lg:py-16 lg:px-8">
 
-        <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+        <div class="xl:grid xl:grid-cols-2 xl:gap-8">
 
             <div class="space-y-8 xl:col-span-1">
                 <img class="h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=600"
@@ -60,91 +60,46 @@
                 </div>
             </div>
 
-            <div class="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+            <div class="mt-12 xl:mt-0">
 
                 <div class="md:grid md:grid-cols-2 md:gap-8">
                     <div>
-                        <h3 class="text-base font-medium text-white">Solutions</h3>
+                        <h3 class="text-base font-medium text-white">Mon compte</h3>
                         <ul role="list" class="mt-4 space-y-4">
 
+                            @auth
+                                <li>
+                                    <a href="{{ route('admin') }}"
+                                        class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">My
+                                        Account</a>
+                                </li>
+                            @endauth
+
+
+                            @guest
+                                <li>
+                                    <a href="{{ route('login') }}"
+                                        class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Login
+                                        / Register</a>
+                                </li>
+                            @endguest
+
                             <li>
-                                <a href="#"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Marketing</a>
+                                <a href="{{ route('cart.index') }}"
+                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Panier</a>
                             </li>
 
                             <li>
-                                <a href="#"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Analytics</a>
+                                <a href="{{ route('product.favorite.index') }}"
+                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Mes
+                                    favorite</a>
                             </li>
 
                             <li>
-                                <a href="#"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Commerce</a>
+                                <a href="{{ route('shop.index') }}"
+                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Nos
+                                    boutiques</a>
                             </li>
-
-                            <li>
-                                <a href="#"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Insights</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="mt-12 md:mt-0">
-                        <h3 class="text-base font-medium text-white">Support</h3>
-                        <ul role="list" class="mt-4 space-y-4">
-
-                            <li>
-                                <a href="#"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Pricing</a>
-                            </li>
-
-                            <li>
-                                <a href="#"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Documentation</a>
-                            </li>
-
-                            <li>
-                                <a href="#"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Guides</a>
-                            </li>
-
-                            <li>
-                                <a href="#"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">API
-                                    Status</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="md:grid md:grid-cols-2 md:gap-8">
-                    <div>
-                        <h3 class="text-base font-medium text-white">Account</h3>
-                        <ul role="list" class="mt-4 space-y-4">
-
-                            <li>
-                                <a href="#"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">My
-                                    Account</a>
-                            </li>
-
-                            <li>
-                                <a href="{{ route('login') }}"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Login
-                                    / Register</a>
-                            </li>
-
-                            <li>
-                                <a href="#"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Cart</a>
-                            </li>
-
-                            <li>
-                                <a href="#"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Shop</a>
-                            </li>
-
 
                         </ul>
                     </div>
@@ -170,10 +125,11 @@
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="mt-12 border-t border-gray-200 pt-8">
-            <p class="text-base text-gray-400 xl:text-center">© 2024 BUYME, Inc. All rights reserved.
+            <p class="text-base text-gray-400 xl:text-center">© 2024 MATRIXT, Inc. All rights reserved.
             </p>
         </div>
     </div>

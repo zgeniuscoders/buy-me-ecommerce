@@ -2,23 +2,27 @@
     <span class="capitalize">Summer sold for all swim Suits and free express delivery</span> - OFF 50% <span
         class="font-medium"><a href="">shop now</a></span>
 </div>
-<div class="border-b bg-white text-slate-900 ">
+<div class="border-b border-outline-dark bg-white text-slate-900 dark:bg-secondary-container-dark">
     <header class="flex items-center justify-between container mx-auto py-4">
-        <h3 class="text-3xl font-medium"><a href="">Buy<span class="text-orange-500">Me</span></a></h3>
+        <h3 class="text-3xl font-medium"><a href="" class="dark:text-white">Matri<span class="text-primary">xt</span></a></h3>
         <nav>
             <ul class="flex items-center justify-center">
                 <x-nav-link :href="route('home')" name="Home" :isActive="request()->routeIs('home')" />
                 <x-nav-link :href="route('products.index')" name="Products" :isActive="request()->routeIs('products.index')" />
                 <x-nav-link :href="route('store.index')" name="Stores" :isActive="request()->routeIs('store.index')" />
 
+                @auth
+                    <x-nav-link :href="route('account.index')" name="Mon compte" :isActive="request()->routeIs('store.index')" />
+                @endauth
+
                 @guest
-                    <x-nav-link href="{{ route('login') }}" name="Sign Up" :isActive="false" />
+                    <x-nav-link href="{{ route('login') }}" name="Se connecter" :isActive="false" />
                 @endguest
             </ul>
         </nav>
 
         <div class="flex items-center">
-            <form action="" method="get" class="mr-4">
+            <form action="" method="get" class="mr-4 hidden md:block">
                 <div class="bg-gray-100 rounded-md flex items-center py-2 px-4">
                     <input type="search" name="q" class="outline-none border-none bg-transparent w-[250px]"
                         placeholder="Search">

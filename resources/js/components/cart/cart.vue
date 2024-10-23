@@ -11,7 +11,7 @@
                     <h3 class="text-5xl text-gray-300 mb-4">Cart is totaly empty please buy some products</h3>
 
                     <button
-                        class="rounded-lg bg-orange-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-orange-800 focus:outline-none focus:ring-4 focus:ring-orange-300">
+                        class="rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300">
                         <a href="/products">Shop now</a>
                     </button>
                 </div>

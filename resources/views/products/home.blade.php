@@ -12,8 +12,9 @@
             <div class="hidden lg:block border-r">
                 <ul class="mt-4">
                     @foreach ($categories as $category)
-                        <li class="py-2 text-sm pr-4">
-                            <a href="{{ route("products.index") }}?category={{ $category->name }}" class="flex items-center justify-between">
+                        <li class="py-2 text-sm pr-4 dark:text-white  dark:hover:text-secondary hover:text-gray-400">
+                            <a href="{{ route('products.index') }}?category={{ $category->name }}"
+                                class="flex items-center justify-between">
                                 <span>{{ $category->name }}</span>
                                 <span>({{ $category->products_count }})</span>
                             </a>
@@ -26,42 +27,6 @@
             </div>
         </section>
 
-        {{--        flash sales --}}
-        <section class="my-6">
-            <div class="">
-                <x-section-title-component title="Today's" />
-                <div class="mt-4 grid lg:grid-cols-hero-grid gap-4 items-center">
-                    <h3 class="lg:text-2xl text-xl font-medium">Flash Sales</h3>
-                    <div class="flex items-center gap-6">
-                        <div class="flex flex-col">
-                            <span class="text-sm">Days</span>
-                            <span class="text-2xl font-bold">03</span>
-                        </div>
-                        <span class="text-blue-800">:</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm">Hours</span>
-                            <span class="text-2xl font-bold">03</span>
-                        </div>
-                        <span class="text-blue-800">:</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm">Minutes</span>
-                            <span class="text-2xl font-bold">03</span>
-                        </div>
-                        <span class="text-blue-800">:</span>
-                        <div class="flex flex-col">
-                            <span class="text-sm">Seconds</span>
-                            <span class="text-2xl font-bold">03</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            @include('partials.product-grid')
-
-            <div class="w-full text-center mt-6">
-                <x-button-component :link="route('products.index')" title="View All" />
-            </div>
-        </section>
 
         {{--        categories --}}
         <section class="border-t mt-4">
@@ -72,7 +37,7 @@
                 {{--                categories listing --}}
                 <div class="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-4 mt-8">
                     @for ($i = 0; $i < 6; $i++)
-                        <div class="bg-white border h-[150px] rounded-md flex items-center justify-center">
+                        <div class="bg-white dark:bg-secondary-container-dark border dark:border-outline-dark h-[150px] rounded-md flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px"
                                 fill="#5f6368">
                                 <path
@@ -83,13 +48,27 @@
                 </div>
             </div>
         </section>
-        {{--        best selling --}}
+
+        {{-- flash sales --}}
+        <section class="my-6">
+            <div class="">
+                <x-section-title-component title="Today's" />
+            </div>
+
+            @include('partials.product-grid')
+
+            <div class="w-full text-center mt-6">
+                <x-button-component :link="route('products.index')" title="View All" />
+            </div>
+        </section>
+
+        {{--        recommanded products --}}
         <section class="border-t mt-4 mb-6">
             <div class="mt-8">
 
                 <x-section-title-component title="This mounth" />
                 <div class=" mt-4 flex items-center justify-between">
-                    <h3 class="lg:text-2xl text-xl font-medium">Best Sellings Products</h3>
+                    <h3 class="lg:text-2xl text-xl font-medium dark:text-white">Articles recommander</h3>
                     <x-button-component link="#" title="View All" />
                 </div>
 
@@ -100,7 +79,7 @@
         </section>
 
         {{--        promotion --}}
-        <section class="border-t mt-12">
+        <section class="border-t dark:border-outline-dark mt-12">
 
             <img src="{{ asset('Frame 600.png') }}" alt="" class="w-full">
 
@@ -112,7 +91,7 @@
 
                 <x-section-title-component title="Our products" />
                 <div class=" mt-4 flex items-center justify-between">
-                    <h3 class="lg:text-2xl text-xl font-medium">Explore Our Products</h3>
+                    <h3 class="lg:text-2xl text-xl font-medium dark:text-white">Explore Our Products</h3>
                     <x-button-component link="#" title="View All" />
                 </div>
 

@@ -15,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(["store", "comments","comments.user"])->withCount("likes")->get();
+        $posts = Post::with(["store", "comments", "comments.user"])
+            ->withCount(["likes", "comments"])->get();
         return PostResource::collection($posts);
     }
 
@@ -45,7 +46,20 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::with(
+            [
+                "store",
+                "comments",
+                "comments.user"
+            ]
+        )
+            ->withCount([
+                "likes",
+                "comments"
+            ])
+            ->findOrFail($id);
+
+        return new PostResource($post);
     }
 
     /**

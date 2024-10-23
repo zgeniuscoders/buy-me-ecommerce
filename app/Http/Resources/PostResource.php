@@ -22,6 +22,8 @@ class PostResource extends JsonResource
             "shop" => new ShopResource($this->whenLoaded("store")),
             "comments" => CommentResource::collection($this->whenLoaded("comments")),
             "likes" => $this->likes_count,
+            "comments_count" => $this->comments_count,
+            "is_like" => $this->likes()->where("user_id", $request->user()->id)->exists(),
         ];
     }
 }
