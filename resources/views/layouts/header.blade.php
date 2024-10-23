@@ -4,7 +4,8 @@
 </div>
 <div class="border-b border-outline-dark bg-white text-slate-900 dark:bg-secondary-container-dark">
     <header class="flex items-center justify-between container mx-auto py-4">
-        <h3 class="text-3xl font-medium"><a href="" class="dark:text-white">Matri<span class="text-primary">xt</span></a></h3>
+        <h3 class="text-3xl font-medium"><a href="" class="dark:text-white">Matri<span
+                    class="text-primary">xt</span></a></h3>
         <nav>
             <ul class="flex items-center justify-center">
                 <x-nav-link :href="route('home')" name="Home" :isActive="request()->routeIs('home')" />
@@ -22,29 +23,10 @@
         </nav>
 
         <div class="flex items-center">
-            <form action="" method="get" class="mr-4 hidden md:block">
-                <div class="bg-gray-100 dark:bg-secondary-dark rounded-md flex items-center py-2 px-4">
-                    <input type="search" name="q" class="outline-none border-none bg-transparent w-[250px]"
-                        placeholder="Search">
-                    <button type="submit">
-                        <svg fill="#000000" version="1.1" id="Capa_1" class="h-5 w-5 text-white"
-                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                            viewBox="0 0 488.4 488.4" xml:space="preserve">
-                            <g>
-                                <g>
-                                    <path d="M0,203.25c0,112.1,91.2,203.2,203.2,203.2c51.6,0,98.8-19.4,134.7-51.2l129.5,129.5c2.4,2.4,5.5,3.6,8.7,3.6
-                                s6.3-1.2,8.7-3.6c4.8-4.8,4.8-12.5,0-17.3l-129.6-129.5c31.8-35.9,51.2-83,51.2-134.7c0-112.1-91.2-203.2-203.2-203.2
-                                S0,91.15,0,203.25z M381.9,203.25c0,98.5-80.2,178.7-178.7,178.7s-178.7-80.2-178.7-178.7s80.2-178.7,178.7-178.7
-                                S381.9,104.65,381.9,203.25z" />
-                                </g>
-                            </g>
-                        </svg>
-                    </button>
-                </div>
-            </form>
-
+            @include('components.search-bar-component')
+            
             <button class="mx-2">
-                <a href="{{ route("product.favorite.index") }}">
+                <a href="{{ route('product.favorite.index') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-[24px] h-[24px]"
                         fill="dark:text-white">
                         <path

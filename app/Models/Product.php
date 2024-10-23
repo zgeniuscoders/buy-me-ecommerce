@@ -69,9 +69,9 @@ class Product extends Model
         return false;
     }
 
-    public function getExcerpt()
+    public function getExcerpt($size = 100)
     {
-        return Str::limit($this->description, 100) . (Str::length($this->description) < 100 ? "" : "...");
+        return Str::limit($this->description, $size) . (Str::length($this->description) < $size ? "" : "...");
     }
 
     public function getImagesAttribute($value)

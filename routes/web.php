@@ -28,10 +28,10 @@ Route::middleware("auth")->group(function () {
     Route::get("/ma-boutique/store/create", [StoreController::class, "create"])->name("admin.store.create");
     Route::post("/ma-boutique/store", [StoreController::class, "store"])->name("admin.store.store");
 
-
+    //favorite
     Route::resource("articles/favorite", FavoriteController::class)
         ->names("product.favorite")
-        ->except(["create", "edit", "update"]);
+        ->except(["create", "edit", "update", "show"]);
 
     // account 
     Route::resource("mon-compte", AcountController::class)->names("account");

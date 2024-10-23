@@ -16,7 +16,7 @@
         <div>
             <a href="{{ route('products.show', ['products' => $product->id]) }}"
                 class="text-lg font-semibold leading-tight text-black dark:text-white hover:underline">{{ $product->name }}</a>
-            <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">{{ $product->description }}</p>
+            <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">{{ $product->getExcerpt(50) }}</p>
         </div>
         <div>
             <p class="text-lg font-bold text-gray-900">
