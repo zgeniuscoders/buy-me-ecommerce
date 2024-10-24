@@ -1,5 +1,5 @@
 <template>
-    <form action="">
+    <form action="" class="w-full">
         <button type="button" @click.prevent="addToCart"
             class="inline-flex w-full items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium  text-white hover:bg-primary focus:outline-none focus:ring-4 focus:ring-primary">
             <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"

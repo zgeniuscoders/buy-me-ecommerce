@@ -70,7 +70,7 @@
                             @auth
                                 <li>
                                     <a href="{{ route('admin') }}"
-                                        class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">My
+                                        class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">My
                                         Account</a>
                                 </li>
                             @endauth
@@ -79,25 +79,25 @@
                             @guest
                                 <li>
                                     <a href="{{ route('login') }}"
-                                        class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Login
-                                        / Register</a>
+                                        class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Se connecter
+                                        / S'incrire</a>
                                 </li>
                             @endguest
 
                             <li>
                                 <a href="{{ route('cart.index') }}"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Panier</a>
+                                    class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Panier</a>
                             </li>
 
                             <li>
                                 <a href="{{ route('product.favorite.index') }}"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Mes
+                                    class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Mes
                                     favorite</a>
                             </li>
 
                             <li>
                                 <a href="{{ route('shop.index') }}"
-                                    class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Nos
+                                    class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Nos
                                     boutiques</a>
                             </li>
 

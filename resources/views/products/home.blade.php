@@ -7,12 +7,8 @@
 @section('content')
     <main class="container mx-auto lg:px-0 px-4">
 
-        {{--        hero --}}
-        <section class="w-full space-y-4 mt-4">
-            <img src="{{ asset('Frame 560.png') }}" alt="" class="w-full">
-        </section>
-
-
+        @include('partials.banner')
+        
         {{--        categories --}}
         <section class="border-t mt-4">
             <div class="mt-8">

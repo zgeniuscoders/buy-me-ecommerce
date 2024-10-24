@@ -44,6 +44,7 @@
         <ul class="flex items-center justify-center">
             <x-nav-link :href="route('home')" name="Accueil" :isActive="request()->routeIs('home')" />
             <x-nav-link :href="route('products.index')" name="Articles" :isActive="request()->routeIs('products.index')" />
+            <x-nav-link href="" name="Categories" :isActive="request()->routeIs('products.index')" />
             <x-nav-link :href="route('store.index')" name="Boutiques" :isActive="request()->routeIs('store.index')" />
 
             @auth
