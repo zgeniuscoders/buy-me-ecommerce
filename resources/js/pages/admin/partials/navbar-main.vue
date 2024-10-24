@@ -55,5 +55,5 @@
 import notificationDropdown from './notification-dropdown.vue';
 import appDropdown from './app-dropdown.vue';
 import ProfileDropsown from './profile-dropsown.vue';
-import SearchBar from './search-bar.vue';
+import SearchBar from '../../partials/search-bar.vue';
 </script>

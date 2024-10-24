@@ -29,7 +29,7 @@
 
                         </ul>
 
-                        <nav-links />
+                        <nav-links :menus="menus.menus"/>
                     </div>
                 </div>
 
@@ -53,6 +53,10 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { MenuItemProps } from '@/utils/MenuItemProps';
 import navLinks from './nav-links.vue';
+
+const menus = defineProps<MenuItemProps>()
+
 </script>
