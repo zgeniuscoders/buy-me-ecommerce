@@ -2,7 +2,7 @@
     <div class="pt-2 space-y-2">
 
         <template v-for="menu in menus.menus" :key="menu">
-            <Link :href='menu.url' :class="{ 'bg-gray-100': $page.url === menu.url }"
+            <Link :href='menu.url' :class="{ 'bg-secondaryContainer': $page.url === menu.url }"
                 class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-200 group">
 
             <svg aria-hidden="true"

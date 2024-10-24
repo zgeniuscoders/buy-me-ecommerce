@@ -1,7 +1,8 @@
 <script setup>
 
 import Layout from "../../layouts/layout.vue";
-import OrderTable from "./components/order-table.vue"
+import orderTable from "@/components/order-table.vue";
+
 </script>
 
 <template>

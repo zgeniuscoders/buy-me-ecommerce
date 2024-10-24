@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Acount;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,7 +15,12 @@ class AcountController extends Controller
      */
     public function index()
     {
-        return Inertia::render("profile/account/account");
+
+        $propduct = Order::where("user_id", auth()->user()->id)
+            ->with(["product"])
+            ->paginate(2);
+
+        return Inertia::render("profile/account/account", ["products" => $propduct]);
     }
 
     /**

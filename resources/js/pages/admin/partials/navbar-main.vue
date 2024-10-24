@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed z-30 w-full bg-white border-b border-gray-200">
+  <nav class="fixed z-30 w-full bg-background dark:bg-background-dark border-b border-gray-200">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
       <div class="flex items-center justify-between">
         <div class="flex items-center justify-start">
@@ -22,7 +22,7 @@
 
           <a href="" class="flex ml-2 md:mr-24">
             <!-- <img src="" class="h-8 mr-3" alt="FlowBite Logo" /> -->
-            <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap">Buy me</span>
+            <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap">Matrixt </span>
           </a>
           <search-bar />
         </div>

@@ -8,7 +8,7 @@ const menus = ref(
     [
         {
             name: "Accueil",
-            url: "/mon-compte/accueil",
+            url: "/mon-compte",
             logo: "grid"
         },
         {
@@ -29,7 +29,7 @@ const menus = ref(
 <template>
     <div>
         <navbar-main />
-        <div class="flex pt-16 overflow-hidden bg-gray-50">
+        <div class="flex pt-16 overflow-hidden bg-background dark:bg-background-dark">
             <sidebar :menus="menus"/>
             <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64">
                 <main>
