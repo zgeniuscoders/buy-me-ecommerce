@@ -38,14 +38,14 @@ console.log(data);
             <label class="block text-gray-700" for="{{ props.name }}">{{ data.title }}</label>
             <textarea :placeholder="data.placeholder" :name="data.name" :value="data.modelValue" :id="data.name"
                 v-on:input="($event) => emit('update:modelValue', $event.target.value)"
-                class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-outline-dark focus:bg-background focus:outline-none"
                 required>{{ data.modelValue }}</textarea>
         </div>
         <div class="my-2" v-else>
             <label class="block text-gray-700" for="{{ props.name }}">{{ data.title }}</label>
             <input :placeholder="data.placeholder" :name="data.name" :value="data.modelValue" :type="data.inputType"
                 :id="data.name" v-on:input="($event) => emit('update:modelValue', $event.target.value)"
-                class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-outline-dark focus:bg-background focus:outline-none"
                 autofocus autocomplete required>
 
         </div>

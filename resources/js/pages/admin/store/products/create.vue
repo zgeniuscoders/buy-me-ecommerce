@@ -193,7 +193,7 @@
                         <card class="mt-4">
                             <div class="flex items-end justify-end">
                                 <button type="submit" @click.prevent="submit"
-                                    class="bg-blue-800 text-white p-2 rounded-md hover:bg-blue-900 transition-all">
+                                    class="bg-primary text-white p-2 rounded-md hover:bg-primary-dark transition-all">
                                     Add Product
                                 </button>
                             </div>

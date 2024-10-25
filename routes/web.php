@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Account\AccountController;
+use App\Http\Controllers\Account\ChangePasswordController;
 use App\Http\Controllers\Account\FavoriteController as AccountFavoriteController;
+use App\Http\Controllers\Account\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\admin\HomeController;
@@ -35,7 +37,15 @@ Route::middleware("auth")->group(function () {
         ->except(["create", "edit", "update", "show"]);
 
     Route::resource("/mon-compte/articles-favorite", AccountFavoriteController::class)
-        ->names("account.favorite");
+        ->names("account.favorite")
+        ->except(["edit", "update", "show", "create"]);
+
+    // profile
+    Route::resource("/mon-compte/profile", ProfileController::class)
+        ->names("account.profile");
+
+    Route::put("mon-compte/changer-mot-de-passe", ChangePasswordController::class)
+        ->name("account.changePassword");
 
     // Route::delete("/mon-compte/articles-favorite/{id}", [AccountFavoriteController::class, "index"])
     //     ->name("account.favorite.index");
