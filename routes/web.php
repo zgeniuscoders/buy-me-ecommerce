@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Acount\AcountController;
+use App\Http\Controllers\Account\AccountController;
+use App\Http\Controllers\Account\FavoriteController as AccountFavoriteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\admin\HomeController;
@@ -33,8 +34,14 @@ Route::middleware("auth")->group(function () {
         ->names("product.favorite")
         ->except(["create", "edit", "update", "show"]);
 
+    Route::resource("/mon-compte/articles-favorite", AccountFavoriteController::class)
+        ->names("account.favorite");
+
+    // Route::delete("/mon-compte/articles-favorite/{id}", [AccountFavoriteController::class, "index"])
+    //     ->name("account.favorite.index");
+
     // account 
-    Route::resource("mon-compte", AcountController::class)->names("account");
+    Route::resource("mon-compte", AccountController::class)->names("account");
 
     Route::middleware("has_store_middleware")->group(function () {
         Route::get('/ma-boutique', HomeController::class)->name("admin");

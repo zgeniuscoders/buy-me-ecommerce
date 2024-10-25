@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Acount;
+namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class AcountController extends Controller
+class AccountController extends Controller
 {
     /**
      * Display a listing of the resource.

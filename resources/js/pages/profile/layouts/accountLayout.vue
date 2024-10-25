@@ -13,7 +13,7 @@ const menus = ref(
         },
         {
             name: "Favoris",
-            url: "/mon-compte/favoris",
+            url: "/mon-compte/articles-favorite",
             logo: "heart"
         },
         {

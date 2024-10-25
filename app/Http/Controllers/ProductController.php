@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
 
-        $products = Product::with("favoriteProductUser")->paginate(2);
+        $products = Product::with("favoriteProductUser")->paginate(12);
         $user = auth()->user();
 
         // Vérification des favoris pour l'utilisateur
