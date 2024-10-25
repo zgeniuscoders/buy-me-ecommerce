@@ -5,7 +5,7 @@
             aria-label="Sidebar">
             <div class="relative flex flex-col flex-1 min-h-0 pt-0 bg-background dark:bg-background-dark border-r border-gray-200">
                 <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
-                    <div class="flex-1 px-3 space-y-1 bg-white divide-y divide-gray-200">
+                    <div class="flex-1 px-3 space-y-1 bg-background divide-y divide-gray-200">
                         <ul class="pb-2 space-y-2">
                             <li>
                                 <form action="#" method="GET" class="">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
 
-                <div class="absolute bottom-0 left-0 hidden w-full p-4 space-x-4 bg-white lg:flex" sidebar-bottom-menu>
+                <div class="absolute bottom-0 left-0 hidden w-full p-4 space-x-4 bg-background lg:flex" sidebar-bottom-menu>
                     <Link href=""
                         class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 group">
                     <svg class="mx-auto mb-1 text-gray-500 w-7 h-7 dark:text-gray-400" fill="currentColor"

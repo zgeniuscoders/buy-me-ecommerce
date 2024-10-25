@@ -21,14 +21,23 @@ const passwordForm = useForm({
 })
 
 const saveProfileInfo = () => {
+    profileNamesForm.put("/mon-compte/changer-mon-nom-ou-adresse-email", {
+        onError: (e) => {
+            console.error(e);
 
+        },
+        onSuccess: () => {
+            toaster.success("Votre profile a ete bien mis a jour")
+            passwordForm.reset()
+        }
+    })
 }
 
 const updatePassword = () => {
     passwordForm.put("/mon-compte/changer-mot-de-passe", {
         onError: (e) => {
             console.error(e);
-            
+
         },
         onSuccess: () => {
             toaster.success("Votre mot de passe a ete changer")
@@ -38,7 +47,10 @@ const updatePassword = () => {
 }
 
 const deleteAccount = () => {
+    let isTrue: Boolean = confirm("voulez-vous vraiment supprimer votre compte ?")
+    if (isTrue) {
 
+    }
 }
 
 </script>
@@ -75,8 +87,7 @@ const deleteAccount = () => {
                         :error="passwordForm.errors.current_password" />
 
                     <input-component placeholder="Nouveau mot de passe" name="password" title="password"
-                        v-model="passwordForm.password" inputType="password"
-                        :error="passwordForm.errors.password" />
+                        v-model="passwordForm.password" inputType="password" :error="passwordForm.errors.password" />
 
                     <input-component placeholder="Confirmer le mot de passe" name="confirmation_password"
                         title="Confirmer le mot de passe" v-model="passwordForm.password_confirmation"

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="p-4 bg-white border rounded-md">
+    <div class="p-4 bg-onSecondary border rounded-md">
         <slot/>
     </div>
 </template>

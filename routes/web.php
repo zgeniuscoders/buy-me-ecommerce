@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Account\AccountController;
+use App\Http\Controllers\Account\ChangeEmailOrNameController;
 use App\Http\Controllers\Account\ChangePasswordController;
 use App\Http\Controllers\Account\FavoriteController as AccountFavoriteController;
 use App\Http\Controllers\Account\ProfileController;
@@ -46,6 +47,9 @@ Route::middleware("auth")->group(function () {
 
     Route::put("mon-compte/changer-mot-de-passe", ChangePasswordController::class)
         ->name("account.changePassword");
+
+    Route::put("mon-compte/changer-mon-nom-ou-adresse-email", ChangeEmailOrNameController::class)
+        ->name("account.changeEmail");
 
     // Route::delete("/mon-compte/articles-favorite/{id}", [AccountFavoriteController::class, "index"])
     //     ->name("account.favorite.index");
