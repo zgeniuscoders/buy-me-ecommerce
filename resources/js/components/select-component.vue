@@ -28,7 +28,8 @@ const data = defineProps({
     value: String,
     modelValue: [String, Number],
     options: Option,
-    error: String
+    error: String,
+    idKey: Boolean
 })
 
 </script>
@@ -43,7 +44,8 @@ const data = defineProps({
            class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
             autofocus required>
         <template v-for="option in data.options" :key="option">
-            <option :value="option.id">{{ option?.name }}</option>
+            <option v-if="idKey" :value="option.id" :selected="option.id == 1">{{ option?.name }}</option>
+            <option v-else :value="option.name" :selected="option.id == 1">{{ option?.name }}</option>
         </template>
 
 

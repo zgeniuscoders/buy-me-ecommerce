@@ -5,6 +5,8 @@ use App\Http\Controllers\Account\ChangeEmailOrNameController;
 use App\Http\Controllers\Account\ChangePasswordController;
 use App\Http\Controllers\Account\FavoriteController as AccountFavoriteController;
 use App\Http\Controllers\Account\ProfileController;
+use App\Http\Controllers\admin\admin\AdminController;
+use App\Http\Controllers\admin\admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\admin\HomeController;
@@ -37,11 +39,21 @@ Route::middleware("auth")->group(function () {
         ->names("product.favorite")
         ->except(["create", "edit", "update", "show"]);
 
-    Route::resource("/mon-compte/articles-favorite", AccountFavoriteController::class)
-        ->names("account.favorite")
-        ->except(["edit", "update", "show", "create"]);
 
-    // profile
+    // admin 
+    Route::get("/admin", AdminController::class)
+        ->name("admin");
+
+    Route::resource("/admin/categories", CategoryController::class)
+        ->names("admin.category")
+        ->except(["show"]);
+
+
+    // Route::delete("/mon-compte/articles-favorite/{id}", [AccountFavoriteController::class, "index"])
+    //     ->name("account.favorite.index");
+
+    // account 
+    Route::resource("mon-compte", AccountController::class)->names("account");
     Route::resource("/mon-compte/profile", ProfileController::class)
         ->names("account.profile");
 
@@ -51,14 +63,13 @@ Route::middleware("auth")->group(function () {
     Route::put("mon-compte/changer-mon-nom-ou-adresse-email", ChangeEmailOrNameController::class)
         ->name("account.changeEmail");
 
-    // Route::delete("/mon-compte/articles-favorite/{id}", [AccountFavoriteController::class, "index"])
-    //     ->name("account.favorite.index");
+    Route::resource("/mon-compte/articles-favorite", AccountFavoriteController::class)
+        ->names("account.favorite")
+        ->except(["edit", "update", "show", "create"]);
 
-    // account 
-    Route::resource("mon-compte", AccountController::class)->names("account");
 
     Route::middleware("has_store_middleware")->group(function () {
-        Route::get('/ma-boutique', HomeController::class)->name("admin");
+        Route::get('/ma-boutique', HomeController::class)->name("shop");
         Route::resource("/ma-boutique/store", StoreController::class)
             ->except("create", "store")
             ->names("admin.store");

@@ -3,7 +3,7 @@
 
     <div class="mx-auto max-w-7xl py-12 px-6 lg:py-16 lg:px-8">
 
-        <div class="xl:grid xl:grid-cols-2 xl:gap-8">
+        <div class="xl:grid xl:grid-cols-3 xl:gap-8">
 
             <div class="space-y-8 xl:col-span-1">
                 <img class="h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=600"
@@ -79,7 +79,8 @@
                             @guest
                                 <li>
                                     <a href="{{ route('login') }}"
-                                        class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Se connecter
+                                        class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Se
+                                        connecter
                                         / S'incrire</a>
                                 </li>
                             @endguest
@@ -124,6 +125,35 @@
 
                         </ul>
                     </div>
+
+                </div>
+
+            </div>
+
+            <div class="mt-12 xl:mt-0">
+
+                <div>
+                    <h3 class="text-base font-medium text-white">Vendre</h3>
+                    <ul role="list" class="mt-4 space-y-4">
+
+                        <li>
+                            <a href="{{ route('admin.store.create') }}"
+                                class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Comment Devenir
+                                vendeur ?</a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('shop.index') }}"
+                                class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Plan et abonnements</a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.store.create') }}"
+                                class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Cree une
+                                boutique</a>
+                        </li>
+
+                    </ul>
                 </div>
 
             </div>

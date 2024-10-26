@@ -15,9 +15,9 @@
 </head>
 
 <body>
-<section class="flex flex-col md:flex-row h-screen items-center">
+<section class="flex flex-col md:flex-row h-screen items-center bg-background dark:bg-background-dark">
 
-    <div class="bg-blue-800 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
+    <div class="bg-primary hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
         <img src="{{ asset("./log.jpg") }}" alt="" class="w-full h-full object-cover">
     </div>
 
