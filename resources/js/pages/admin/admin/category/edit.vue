@@ -66,7 +66,7 @@ const updateCategory = (id: Number) => {
                         :error="categoryForm.errors.category_id"/>
 
                     <select-component id="status" name="status" title="Status" :options="$page.props.status"
-                        v-model="categoryForm.status" :error="categoryForm.errors.status" />
+                        v-model="categoryForm.status" :error="categoryForm.errors.status"  />
 
                 </card>
 

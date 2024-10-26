@@ -18,7 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(10);
+        $categories = Category::with("category")->paginate(10);
+
         return Inertia::render("admin/admin/category/index", ["categories" => $categories]);
     }
 

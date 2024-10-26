@@ -29,23 +29,21 @@ const data = defineProps({
     modelValue: [String, Number],
     options: Option,
     error: String,
-    idKey: Boolean
+    idKey: Boolean,
 })
 
 </script>
 
 <template>
     <label class="block text-gray-700" for="{{ props.name }}">{{ data.title }}</label>
-    <select
-           :name="data.name"
-           :value="data.modelValue"
-           :id="data.name"
-           v-on:input="($event) => emit('update:modelValue', $event.target.value)"
-           class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
-            autofocus required>
+    <select :name="data.name" :value="data.modelValue" :id="data.name"
+        v-on:input="($event) => emit('update:modelValue', $event.target.value)"
+        class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+        autofocus required>
+        
         <template v-for="option in data.options" :key="option">
-            <option v-if="idKey" :value="option.id" :selected="option.id == 1">{{ option?.name }}</option>
-            <option v-else :value="option.name" :selected="option.id == 1">{{ option?.name }}</option>
+            <option v-if="idKey" :value="option.id">{{ option?.name }}</option>
+            <option v-else :value="option.name">{{ option?.name }}</option>
         </template>
 
 
@@ -54,6 +52,4 @@ const data = defineProps({
 
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

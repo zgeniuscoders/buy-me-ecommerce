@@ -9,17 +9,15 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-    // protected $fillable = ["status", "name", "image", "category_id"];
+    protected $fillable = ["status", "name", "image", "category_id","slug"];
 
-    public function subCategories(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function category()
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Product::class);
     }
-
 }

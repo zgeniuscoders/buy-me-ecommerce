@@ -31,7 +31,8 @@ const deleteCategory = (id: number) => {
             <div class="flex items-center justify-between p-4">
                 <h1 class="text-xl font-medium">Categories</h1>
                 <Link href='/admin/categories/create'
-                    class="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-primary">Ajouter une categorie</Link>
+                    class="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-primary">
+                Ajouter une categorie</Link>
             </div>
 
             <table class="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -46,6 +47,12 @@ const deleteCategory = (id: number) => {
                 </th> -->
                         <th scope="col" class="px-6 py-3">
                             Category
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Categorie parent
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Slug
@@ -65,9 +72,14 @@ const deleteCategory = (id: number) => {
                                 {{ category.name }}
                             </th>
                             <td class="px-6 py-4">
+                                {{ category.status }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ category.category?.name ? category.category?.name : "non definie" }}
+                            </td>
+                            <td class="px-6 py-4">
                                 {{ category.slug }}
                             </td>
-
                             <td class="px-6 py-4 md:flex md:items-center md:gap-4">
 
                                 <form action="" method="post">
