@@ -34,10 +34,5 @@ const menus = ref([
         url: "/ma-boutique/commandes",
         logo: "persons"
     },
-    {
-        name: "clients",
-        url: "/ma-boutique/clients",
-        logo: "persons"
-    },
 ])
 </script>
