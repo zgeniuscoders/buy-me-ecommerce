@@ -2,6 +2,7 @@
 
 import Layout from "../../layouts/layout.vue";
 import orderTable from "@/components/order-table.vue";
+import sortCard from "@/components/sort-card.vue";
 
 </script>
 
@@ -9,7 +10,11 @@ import orderTable from "@/components/order-table.vue";
     <Layout>
         <section class="p-4">
 
-            <order-table :products="$page.props.orders" />
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <sort-card />
+                <order-table :products="$page.props.orders" />
+            </div>
+
 
         </section>
 

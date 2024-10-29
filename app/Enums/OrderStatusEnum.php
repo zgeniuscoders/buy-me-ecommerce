@@ -2,9 +2,9 @@
 
 namespace App\enums;
 
-enum CategoryStatusEnum: string
+enum OrderStatusEnum: string
 {
     case PANDING = "panding";
     case CANCELED = "canceled";
-    case DELIVERED = "delivered";
+    case COMPLETED = "completed";
 }

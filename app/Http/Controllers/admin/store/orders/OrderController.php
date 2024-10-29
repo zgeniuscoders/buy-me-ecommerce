@@ -15,7 +15,13 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Product::with(["orders"])->where("store_id", 1)->get();
+        $shopId = 1;
+        $orders = Order::whereHas('product', function ($query) use ($shopId) {
+            $query->where('store_id', $shopId);
+        })->with(["product", "customer"])->get();
+
+
+
         return Inertia::render("admin/store/orders/index", compact("orders"));
     }
 
@@ -27,5 +33,4 @@ class OrderController extends Controller
     {
         //
     }
-
 }

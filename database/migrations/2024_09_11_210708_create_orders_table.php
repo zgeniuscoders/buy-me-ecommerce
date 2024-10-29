@@ -1,5 +1,6 @@
 <?php
 
+use App\enums\OrderStatusEnum;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -19,6 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->integer("quantity")->default(1);
             $table->integer("status")->default(0);
+            $table->enum("status", array_column(OrderStatusEnum::cases(), 'value'))->default('pending');
             $table->timestamps();
         });
     }
