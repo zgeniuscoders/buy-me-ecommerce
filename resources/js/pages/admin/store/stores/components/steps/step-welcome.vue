@@ -47,11 +47,10 @@ const form = useForm({
 })
 
 const submit = async () => {
-    form.post('/store', {
+    form.post('/ma-boutique', {
         onSuccess: () => {
             form.clearErrors()
-            router.visit('/admin')
-            console.log(router)
+            router.visit('/ma-boutique')
         },
         onError: () => {
             console.log('error')

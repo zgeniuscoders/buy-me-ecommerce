@@ -5,13 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Store extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name','description', 'user_id','image','cover_image','social_networks','slug'
+        'name',
+        'description',
+        'user_id',
+        'image',
+        'cover_image',
+        'social_networks',
+        'slug'
     ];
 
     public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
@@ -24,7 +31,13 @@ class Store extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function subscribers(): BelongsToMany{
+    public function subscribers(): BelongsToMany
+    {
         return $this->belongsToMany(User::class, "shop_subscribers");
+    }
+
+    public function rates(): MorphToMany
+    {
+        return $this->morphToMany(Rate::class, "rateble");
     }
 }

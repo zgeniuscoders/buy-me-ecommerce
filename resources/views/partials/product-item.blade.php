@@ -8,7 +8,7 @@
             </div>
         @endif
         <a href="{{ route('products.show', ['products' => $product->id]) }}" class="overflow-hidden rounded">
-            <img class="mx-auto h-44 w-44 dark:hidden object-cover" src="{{ $product->image }}"
+            <img class="mx-auto h-44 w-44 dark:hidden object-contain" src="{{ $product->image }}"
                 alt="{{ $product->name }} image" />
             <img class="mx-auto hidden h-44 w-44 dark:block" src="{{ $product->image }}"
                 alt="{{ $product->name }} image" />

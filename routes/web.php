@@ -31,8 +31,8 @@ Route::middleware("auth")->group(function () {
     Route::get('cart', [CartController::class, 'getCart'])->name('cart.index');
     Route::post('/checkout', CheckoutController::class)->name("checkout");
 
-    Route::get("/ma-boutique/store/create", [StoreController::class, "create"])->name("admin.store.create");
-    Route::post("/ma-boutique/store", [StoreController::class, "store"])->name("admin.store.store");
+    Route::get("/cree-ma-boutique", [StoreController::class, "create"])->name("admin.store.create");
+    Route::post("/ma-boutique", [StoreController::class, "store"])->name("admin.store.store");
 
     //favorite
     Route::resource("articles/favorite", FavoriteController::class)
@@ -70,9 +70,9 @@ Route::middleware("auth")->group(function () {
 
     Route::middleware("has_store_middleware")->group(function () {
         Route::get('/ma-boutique', HomeController::class)->name("shop");
-        Route::resource("/ma-boutique/store", StoreController::class)
-            ->except("create", "store")
-            ->names("admin.store");
+        // Route::resource("/ma-boutique/store", StoreController::class)
+        //     ->except("create", "store")
+        //     ->names("admin.store");
 
         Route::resource('/ma-boutique/articles', ProductController::class)->names("admin.products");
 

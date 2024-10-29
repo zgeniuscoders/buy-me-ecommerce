@@ -170,12 +170,12 @@
                         <card>
                             <h3 class="font-medium mb-4">Status</h3>
                             <select-component id="status" name="status" title="status" :options="$page.props.status"
-                                v-model="form.status" :error="form.errors.status" />
+                                v-model="form.status" :error="form.errors.status" :id-key="true" />
 
                             <h3 class="my-4 font-medium">Product Organization</h3>
                             <select-component id="category_id" name="category_id" title="category"
                                 :options="$page.props.categories" v-model="form.category_id"
-                                :error="form.errors.category_id" />
+                                :error="form.errors.category_id" :id-key="true" />
 
                         </card>
 
@@ -238,7 +238,7 @@ const form = useForm({
 })
 
 const submit = () => {
-    form.post('/admin/products', {
+    form.post('/ma-boutique/articles', {
         onError: () => {
             toaster.error('An error occurred while adding the product')
         },
