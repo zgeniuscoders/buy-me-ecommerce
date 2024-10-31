@@ -1,10 +1,22 @@
 <script setup lang="ts">
 
 import adminLayout from '../../layouts/adminLayout.vue';
-import { Link, useForm } from '@inertiajs/vue3';
+import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { createToaster } from "@meforma/vue-toaster";
+import pagination from '@/components/pagination.vue';
+import { onMounted, ref } from 'vue';
 
+const props = usePage().props
 const toaster = createToaster();
+
+const categories = ref()
+
+categories.value = props.categories
+
+
+onMounted(() => {
+    categories.value = props.categories
+})
 
 const deleteCategory = (id: number) => {
     let isDeleted = confirm("voulez-vous vraiment supprimer cette category ?")
@@ -65,7 +77,7 @@ const deleteCategory = (id: number) => {
                 </thead>
                 <tbody>
 
-                    <template v-for="category in $page.props.categories.data" :key="category.id">
+                    <template v-for="category in categories.data" :key="category.id">
 
                         <tr class="bg-white border-b hover:bg-gray-50">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
@@ -101,19 +113,7 @@ const deleteCategory = (id: number) => {
             </table>
 
 
-            <div class="p-4 flex items-center justify-between">
-                <template v-if="$page.props.categories.next_page_url">
-                    <Link :href='$page.props.categories.next_page_url'
-                        class="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary focus:outline-none focus:ring-4 focus:ring-primary">
-                    Suivant</Link>
-                </template>
-
-                <template v-if="$page.props.categories.prev_page_url">
-                    <Link :href='$page.props.categories.prev_page_url'
-                        class="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary focus:outline-none focus:ring-4 focus:ring-primary">
-                    Precedent</Link>
-                </template>
-            </div>
+            <pagination :next-page-uri="categories.next_page_url" :previous-page-url="categories.prev_page_url" />
 
         </section>
 

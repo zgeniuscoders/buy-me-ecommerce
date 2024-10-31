@@ -17,8 +17,8 @@ const menus = ref([
         logo: "grid"
     },
     {
-        name: "vendeur",
-        url: "/admin/vendeurs",
+        name: "Utilisateurs",
+        url: "/admin/utilisateurs",
         logo: "product"
     },
     {

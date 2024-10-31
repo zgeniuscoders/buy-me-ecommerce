@@ -7,6 +7,7 @@ use App\Http\Controllers\Account\FavoriteController as AccountFavoriteController
 use App\Http\Controllers\Account\ProfileController;
 use App\Http\Controllers\admin\admin\AdminController;
 use App\Http\Controllers\admin\admin\CategoryController;
+use App\Http\Controllers\admin\admin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\admin\HomeController;
@@ -41,12 +42,19 @@ Route::middleware("auth")->group(function () {
 
 
     // admin 
-    Route::get("/admin", AdminController::class)
-        ->name("admin");
+    Route::prefix("/admin")->group(function () {
+        Route::get("/", AdminController::class)
+            ->name("admin");
 
-    Route::resource("/admin/categories", CategoryController::class)
-        ->names("admin.category")
-        ->except(["show"]);
+        Route::resource("/categories", CategoryController::class)
+            ->names("admin.category")
+            ->except(["show"]);
+
+        Route::resource("/utilisateurs", UserController::class)
+            ->names("admin.users")
+            ->except(["show"]);
+    });
+
 
 
     // Route::delete("/mon-compte/articles-favorite/{id}", [AccountFavoriteController::class, "index"])

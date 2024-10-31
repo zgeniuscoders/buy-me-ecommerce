@@ -4,14 +4,20 @@ import { onMounted, ref } from 'vue';
 import adminLayout from '../layouts/adminLayout.vue';
 import cardStats from '@/components/card-stats.vue';
 import { usePage } from '@inertiajs/vue3';
+import pagination from '@/components/pagination.vue';
 
 const userCount = ref(0)
 const shops = ref()
 
+const props = usePage().props
+
+shops.value = props.shops
+
+
 onMounted(() => {
-    const props = usePage().props
     userCount.value = props.userCounts
     shops.value = props.shops
+
 })
 
 </script>
@@ -57,8 +63,8 @@ onMounted(() => {
                         </thead>
                         <tbody>
 
-                            <template v-for="shop in shops" :key="shop.id">
-                                <tr class="bg-background hover:bg-gray-50">
+                            <template v-for="shop in shops.data" :key="shop.id">
+                                <tr class="bg-white border-b hover:bg-gray-50">
                                     <td class="w-4 p-4">
                                         <div class="flex items-center">
                                             <input id="checkbox-table-search-3" type="checkbox"
@@ -73,15 +79,18 @@ onMounted(() => {
                                     <td class="px-6 py-4">
                                         {{ shop.name }}
                                     </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#" class="font-medium text-red-600 hover:underline">Desactiver</a>
-                                        <a href="#" class="font-medium text-red-600 hover:underline">Cancel</a>
+                                    <td class="px-6 py-4 space-x-4">
+                                        <a href="#" class="font-medium text-error hover:underline">Desactiver</a>
+                                        <a href="#" class="font-medium text-primary hover:underline">Voir les
+                                            informations</a>
                                     </td>
                                 </tr>
                             </template>
 
                         </tbody>
                     </table>
+
+                    <pagination :next-page-uri="shops.next_page_url" :previous-page-url="shops.prev_page_url" />
                 </div>
 
             </section>
