@@ -17,35 +17,34 @@ const props = defineProps({
             <div class="space-y-4">
                 <div class="space-y-2">
                     <dl class="flex items-center justify-between gap-4">
-                        <dt class="text-base font-normal text-gray-500">Original price</dt>
+                        <dt class="text-base font-normal text-gray-500">Prix HT</dt>
                         <dd class="text-base font-medium text-gray-900">${{ props.totalPrice }}</dd>
                     </dl>
 
-                    <dl class="flex items-center justify-between gap-4">
+                    <!-- <dl class="flex items-center justify-between gap-4">
                         <dt class="text-base font-normal text-gray-500">Savings</dt>
-                        <dd class="text-base font-medium text-green-600">-$0</dd>
-                    </dl>
+                        <dd class="text-base font-medium text-primary">-$0</dd>
+                    </dl> -->
 
                     <dl class="flex items-center justify-between gap-4">
-                        <dt class="text-base font-normal text-gray-500">Tax</dt>
-                        <dd class="text-base font-medium text-gray-900">$0</dd>
+                        <dt class="text-base font-normal text-gray-500">Tva</dt>
+                        <dd class="text-base font-medium text-gray-900">16%</dd>
                     </dl>
                 </div>
 
                 <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2">
-                    <dt class="text-base font-bold text-gray-900">Total</dt>
-                    <dd class="text-base font-bold text-gray-900">${{ props.totalPrice }}</dd>
+                    <dt class="text-base font-bold text-gray-900">Prix TTC</dt>
+                    <dd class="text-base font-bold text-gray-900">${{ (props.totalPrice * 16) / 100 }}</dd>
                 </dl>
             </div>
 
 
             <checkout-button/>
- 
 
-            <div class="flex items-center justify-center gap-2">
+            <!-- <div class="flex items-center justify-center gap-2">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> or </span>
                 <a href="/products" title=""
-                    class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline">
+                    class="inline-flex items-center gap-2 text-sm font-medium text-primary underline hover:no-underline">
                     Continue Shopping
                     <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24">
@@ -53,10 +52,10 @@ const props = defineProps({
                             d="M19 12H5m14 0-4 4m4-4-4-4" />
                     </svg>
                 </a>
-            </div>
+            </div> -->
         </div>
 
-        <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+        <!-- <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <form class="space-y-4">
                 <div>
                     <label for="voucher" class="mb-2 block text-sm font-medium text-gray-900"> Do you have a voucher or
@@ -66,10 +65,10 @@ const props = defineProps({
                         placeholder="" required />
                 </div>
                 <button type="submit"
-                    class="flex w-full items-center justify-center rounded-lg bg-primary-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-300">Apply
+                    class="flex w-full items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-300">Apply
                     Code</button>
             </form>
-        </div>
+        </div> -->
     </div>
 </template>
 

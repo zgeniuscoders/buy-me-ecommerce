@@ -25,7 +25,7 @@ Route::get('/products/{products}', [\App\Http\Controllers\ProductController::cla
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
 
 Route::resource("store", ControllersStoreController::class)
-    ->only(["index", "show"]);
+    ->only(["show"]);
 
 Route::middleware("auth")->group(function () {
 
@@ -38,7 +38,7 @@ Route::middleware("auth")->group(function () {
     //favorite
     Route::resource("articles/favorite", FavoriteController::class)
         ->names("product.favorite")
-        ->except(["create", "edit", "update", "show"]);
+        ->except(["create", "edit", "update", "show", "index"]);
 
 
     // admin 
@@ -55,25 +55,25 @@ Route::middleware("auth")->group(function () {
             ->except(["show"]);
     });
 
-
-
     // Route::delete("/mon-compte/articles-favorite/{id}", [AccountFavoriteController::class, "index"])
     //     ->name("account.favorite.index");
 
     // account 
-    Route::resource("mon-compte", AccountController::class)->names("account");
-    Route::resource("/mon-compte/profile", ProfileController::class)
-        ->names("account.profile");
+    Route::prefix("/mon-compte")->group(function () {
+        Route::resource("/", AccountController::class)->names("account");
+        Route::resource("/profile", ProfileController::class)
+            ->names("account.profile");
 
-    Route::put("mon-compte/changer-mot-de-passe", ChangePasswordController::class)
-        ->name("account.changePassword");
+        Route::put("/changer-mot-de-passe", ChangePasswordController::class)
+            ->name("account.changePassword");
 
-    Route::put("mon-compte/changer-mon-nom-ou-adresse-email", ChangeEmailOrNameController::class)
-        ->name("account.changeEmail");
+        Route::put("/changer-mon-nom-ou-adresse-email", ChangeEmailOrNameController::class)
+            ->name("account.changeEmail");
 
-    Route::resource("/mon-compte/articles-favorite", AccountFavoriteController::class)
-        ->names("account.favorite")
-        ->except(["edit", "update", "show", "create"]);
+        Route::resource("/articles-favorite", AccountFavoriteController::class)
+            ->names("account.favorite")
+            ->except(["edit", "update", "show", "create"]);
+    });
 
 
     Route::middleware("has_store_middleware")->group(function () {

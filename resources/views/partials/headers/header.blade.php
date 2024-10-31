@@ -1,22 +1,37 @@
-<div class="bg-black text-white w-full text-center py-2 text-sm">
+<div class="bg-primary text-white w-full text-center py-2 text-sm">
     <span class="capitalize">Summer sold for all swim Suits and free express delivery</span> - OFF 50% <span
         class="md:font-medium text-sm md:text-md"><a href="">shop now</a></span>
 </div>
 
-<header class="">
+<header>
 
-    {{-- header searcg bar --}}
-    <div class="border boder-gray-200">
-        <div class="flex items-center justify-between container mx-auto py-4">
-            <h3 class="text-3xl font-medium"><a href="" class="dark:text-white">Matri<span
-                        class="text-primary">xt</span></a></h3>
+    <div class="header-main">
 
-            @include('components.search-bar-component')
+        <div class="container">
 
-            {{-- header icons  --}}
-            <div>
+            <a href="#" class="header-logo">
+                <img src="" alt="Anon's logo" width="120" height="36">
+            </a>
+
+            <div class="header-search-container">
+
+                <input type="search" name="search" class="search-field" placeholder="Enter your product name...">
+
+                <button class="search-btn">
+                    <ion-icon name="search-outline"></ion-icon>
+                </button>
+
+            </div>
+
+            <div class="header-user-actions">
+
+                <button class="action-btn">
+                    <ion-icon name="person-outline"></ion-icon>
+                </button>
+
                 <button class="mx-2">
-                    <a href="{{ route("account.favorite.index") }}">
+                    <ion-icon name="heart-outline"></ion-icon>
+                    <a href="{{ route('account.favorite.index') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-[24px] h-[24px]"
                             fill="dark:text-white">
                             <path
@@ -25,7 +40,7 @@
                     </a>
                 </button>
 
-                <button class="mx-2 relative">
+                <button class="action-btn">
                     <a href="{{ route('cart.index') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-[24px] w-[24px]"
                             fill="#5f6368">
@@ -35,27 +50,16 @@
                     </a>
                     <cart-counter />
                 </button>
+
             </div>
+
         </div>
+
     </div>
 
-    {{-- nav bar --}}
-    <nav class="container mx-auto py-4 hidden md:block">
-        <ul class="flex items-center justify-center">
-            <x-nav-link :href="route('home')" name="Accueil" :isActive="request()->routeIs('home')" />
-            <x-nav-link :href="route('products.index')" name="Articles" :isActive="request()->routeIs('products.index')" />
-            <x-nav-link href="" name="Categories" :isActive="request()->routeIs('products.index')" />
-            <x-nav-link :href="route('store.index')" name="Boutiques" :isActive="request()->routeIs('store.index')" />
+    @include("partials.headers.headerDesktop")
+    @include("partials.headers.headerMobile")
 
-            @auth
-                <x-nav-link :href="route('account.index')" name="Mon compte" :isActive="request()->routeIs('store.index')" />
-            @endauth
-
-            @guest
-                <x-nav-link href="{{ route('login') }}" name="Se connecter" :isActive="false" />
-            @endguest
-        </ul>
-    </nav>
 </header>
 
 {{-- bottom navbar --}}
@@ -65,7 +69,7 @@
         <ul class="flex gap-4 items-center justify-around w-full container mx-auto py-2">
             <x-bottom-bar-item :href="route('home')" name="Accueil" :isActive="request()->routeIs('home')" />
             <x-bottom-bar-item :href="route('products.index')" name="Articles" :isActive="request()->routeIs('products.index')" />
-            <x-bottom-bar-item :href="route('store.index')" name="Boutiques" :isActive="request()->routeIs('store.index')" />
+            {{-- <x-bottom-bar-item :href="route('store.index')" name="Boutiques" :isActive="request()->routeIs('store.index')" /> --}}
             <x-bottom-bar-item href="" name="Mon Compte" :isActive="false" />
         </ul>
     </nav>
