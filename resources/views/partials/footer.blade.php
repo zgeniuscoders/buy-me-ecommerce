@@ -51,9 +51,9 @@
 
                             @auth
                                 <li>
-                                    <a href="{{ route('admin') }}"
-                                        class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">My
-                                        Account</a>
+                                    <a href="{{ route('account.index') }}"
+                                        class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Mon
+                                        compte</a>
                                 </li>
                             @endauth
 
@@ -73,7 +73,7 @@
                             </li>
 
                             <li>
-                                <a href="{{ route("account.favorite.index") }}"
+                                <a href="{{ route('account.favorite.index') }}"
                                     class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Mes
                                     favorite</a>
                             </li>
@@ -83,6 +83,14 @@
                                     class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Nos
                                     boutiques</a>
                             </li>
+
+                            @can('admin.cards.*')
+                                <li>
+                                    <a href="{{ route('admin') }}"
+                                        class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Acceder
+                                        a l'administraction</a>
+                                </li>
+                            @endcan
 
                         </ul>
                     </div>
@@ -120,13 +128,15 @@
 
                         <li>
                             <a href="{{ route('admin.store.create') }}"
-                                class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Comment Devenir
+                                class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Comment
+                                Devenir
                                 vendeur ?</a>
                         </li>
 
                         <li>
                             <a href="{{ route('shop.index') }}"
-                                class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Plan et abonnements</a>
+                                class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Plan et
+                                abonnements</a>
                         </li>
 
                         <li>

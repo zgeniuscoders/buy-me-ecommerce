@@ -18,14 +18,26 @@ class RoleSeeder extends Seeder
         foreach (RoleEnum::cases() as $role) {
             Role::create([
                 "name" => $role->value,
-
             ]);
         }
 
         (Permission::create([
-            "name" => "category-cards.*"
+            "name" => "super-admin-cards.*"
         ]))->assignRole(
             Role::firstWhere("name", RoleEnum::SUPER_ADMIN->value)
         );
+
+        (Permission::create([
+            "name" => "admin-cards.*"
+        ]))->assignRole(
+            Role::firstWhere("name", RoleEnum::ADMIN->value)
+        );
+
+        (Permission::create([
+            "name" => "user-cards.*"
+        ]))->assignRole(
+            Role::firstWhere("name", RoleEnum::USER->value)
+        );
+
     }
 }
