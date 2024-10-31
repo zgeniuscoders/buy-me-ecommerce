@@ -2,7 +2,7 @@
     <Layout>
         <section class="p-4">
 
-            <h3 class="text-2xl mb-4 mt-2 font-medium">Ajout de l'article</h3>
+            <h3 class="text-2xl mb-4 mt-2 font-medium">Ajout d'un article</h3>
 
         </section>
 
@@ -14,13 +14,13 @@
 
                         <!--                        general information-->
                         <card>
-                            <h2 class="text-xl font-medium">General Information</h2>
+                            <h2 class="text-xl font-medium">Information generale de l'article</h2>
 
 
-                            <input-component name="name" title="Product name" placeholder="T-Shirt" v-model="form.name"
-                                inputType="text" :error="form.errors.name" />
+                            <input-component name="name" title="Nom de l'article" placeholder="T-Shirt"
+                                v-model="form.name" inputType="text" :error="form.errors.name" />
 
-                            <input-component name="description" title="Product description" placeholder=""
+                            <input-component name="description" title="Decrivez votre article" placeholder=""
                                 v-model="form.description" inputType="textarea" :error="form.errors.description" />
                         </card>
 
@@ -68,10 +68,8 @@
                             <h2>Inventory</h2>
                             <div class="border-b py-4">
                                 <div class="grid lg:grid-cols-2 gap-2">
-                                    <input-component name="barcode" title="Barcode" placeholder="3782084972"
-                                        v-model="form.barcode" inputType="text" :error="form.errors.barcode" />
-                                    <input-component name="qty" title="Qty" placeholder="2" v-model="form.qty"
-                                        inputType="number" :error="form.errors.qty" />
+                                    <input-component name="qty" title="Quantite en stock" placeholder="2"
+                                        v-model="form.qty" inputType="number" :error="form.errors.qty" />
                                 </div>
                             </div>
                         </card>
@@ -82,10 +80,11 @@
                         <!--                        status & category-->
                         <card>
                             <h3 class="font-medium mb-4">Status</h3>
-                            <select-component id="status" name="status" title="status" :options="$page.props.status"
-                                v-model="form.status" :error="form.errors.status" :id-key="true" />
+                            <select-component id="status" name="status" title="Status de l'article"
+                                :options="$page.props.status" v-model="form.status" :error="form.errors.status"
+                                :id-key="true" />
 
-                            <h3 class="my-4 font-medium">Product Organization</h3>
+                            <h3 class="my-4 font-medium">Category de l'article</h3>
                             <select-component id="category_id" name="category_id" title="category"
                                 :options="$page.props.categories" v-model="form.category_id"
                                 :error="form.errors.category_id" :id-key="true" />
@@ -94,12 +93,26 @@
 
                         <!--                        pricing & discount-->
                         <card class="mt-4">
-                            <h3 class="font-medium mb-4">Pricing</h3>
-                            <input-component name="price" title="Product price" placeholder="100" v-model="form.price"
-                                inputType="number" :error="form.errors.price" />
+                            <h3 class="font-medium mb-4">Prix</h3>
+                            <input-component name="price" title="Prix de l'article" placeholder="100"
+                                v-model="form.price" inputType="number" :error="form.errors.price" />
 
                             <input-component name="discount" title="Discount Percentage" placeholder="10"
                                 v-model="form.discount" inputType="number" :error="form.errors.discount" />
+                        </card>
+
+                        <card class="mt-4">
+                            <h3 class="font-medium mb-4">Mode de livraison</h3>
+                            <div class="flex items-center space-x-4">
+
+                                <input type="checkbox" name="has_delivered" v-model="form.has_delivered" />
+                                <label for="has_delivered">Livraison a domicile</label>
+                            </div>
+
+                            <div class="text-red-500 my-2" v-if="form.errors.has_delivered">{{ form.errors.has_delivered
+                                }}</div>
+
+
                         </card>
 
                         <!--                        btn submit-->
@@ -107,7 +120,7 @@
                             <div class="flex items-end justify-end">
                                 <button type="submit" @click.prevent="submit"
                                     class="bg-primary text-white p-2 rounded-md hover:bg-primary-dark transition-all">
-                                    Add Product
+                                    Ajouter l'article
                                 </button>
                             </div>
                         </card>
@@ -148,6 +161,7 @@ const form = useForm({
     status: null,
     barcode: null,
     discount: null,
+    has_delivered: false
 })
 
 const submit = () => {

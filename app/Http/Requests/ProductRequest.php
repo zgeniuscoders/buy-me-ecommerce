@@ -33,7 +33,7 @@ class ProductRequest extends FormRequest
             'images.*' => ['required', 'image', 'mimes:jpeg,jpg,png', 'max:5120'],
             'discount' => ['required', 'integer'],
             'status' => ['required', 'integer'],
+            'has_delivered' => ["boolean"]
         ];
     }
-
 }

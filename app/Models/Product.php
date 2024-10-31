@@ -26,8 +26,16 @@ class Product extends Model
         'qty',
         'description',
         'category_id',
-        'store_id'
+        'store_id',
+        'has_delivered'
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'has_delivered' => 'boolean',
+        ];
+    }
 
     public function store(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -88,5 +96,14 @@ class Product extends Model
     public function rates(): MorphToMany
     {
         return $this->morphToMany(Rate::class, "rateble");
+    }
+
+    public function getHasDeliveredAttribute($value)
+    {
+        if ($value) {
+            return "Oui";
+        } else {
+            return "Non";
+        }
     }
 }

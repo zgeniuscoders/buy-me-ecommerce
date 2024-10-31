@@ -30,6 +30,7 @@ const addCategory = () => {
         },
         onSuccess: () => {
             toaster.success(`La category ${categoryForm.name} est ete mis ajour avec success`)
+            categoryForm.reset()
         }
     })
 }
@@ -50,7 +51,7 @@ const addCategory = () => {
 
                     <select-component id="category_id" name="category_id" title="Sous category"
                         :options="$page.props.categories" v-model="categoryForm.category_id"
-                        :error="categoryForm.errors.category_id" :idKey="true"/>
+                        :error="categoryForm.errors.category_id" :idKey="true" />
 
                     <select-component id="status" name="status" title="Status" :options="$page.props.status"
                         v-model="categoryForm.status" :error="categoryForm.errors.status" />

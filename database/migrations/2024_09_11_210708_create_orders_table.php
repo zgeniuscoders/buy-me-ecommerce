@@ -19,8 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->integer("quantity")->default(1);
-            $table->integer("status")->default(0);
-            $table->enum("status", array_column(OrderStatusEnum::cases(), 'value'))->default('pending');
+            $table->enum("status", array_column(OrderStatusEnum::cases(), 'value'))->default('panding');
             $table->timestamps();
         });
     }

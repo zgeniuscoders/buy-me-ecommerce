@@ -23,9 +23,10 @@ return new class extends Migration
             $table->string("images");
             $table->text("description");
             $table->integer("price");
-            $table->integer("discount");
+            $table->integer("discount")->default(0);
             $table->integer("status");
             $table->integer("qty");
+            $table->boolean("has_delivered")->default(false);
             $table->timestamps();
         });
     }

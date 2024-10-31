@@ -14,7 +14,9 @@ return new class extends Migration
     {
         Schema::create('rateble', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained()->nullOnDelete();
+            $table->foreignIdFor(User::class)
+                ->nullable()
+                ->constrained()->nullOnDelete();
             $table->integer("rate");
             $table->morphs("rateble");
             $table->timestamps();

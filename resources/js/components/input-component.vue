@@ -55,7 +55,7 @@ console.log(data);
                 autofocus autocomplete required>
 
         </div>
-        <div class="text-red-500 my-2" v-if="data.error">{{ data.error }}</div>
+        <div class="text-error my-2" v-if="data.error">{{ data.error }}</div>
 
     </div>
 
