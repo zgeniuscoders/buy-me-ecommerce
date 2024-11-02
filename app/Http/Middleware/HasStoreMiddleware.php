@@ -16,11 +16,11 @@ class HasStoreMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
-        if($request->user()->store()->exists()){
+        if ($request->user()->store()->exists()) {
             return $next($request);
         }
 
-        return  redirect()->route("shop");
-
+        return  redirect()->route("home")
+            ->with("shop", "vous n'avez pas le droit d'acceder a cette page car vous n'avez pas de boutique");
     }
 }

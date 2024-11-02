@@ -6,6 +6,17 @@ import inputComponent from '@/components/input-component.vue';
 import selectComponent from '@/components/select-component.vue';
 import { useForm } from '@inertiajs/vue3';
 import { createToaster } from "@meforma/vue-toaster";
+import Input from '@/components/ui/input/Input.vue';
+import Label from '@/components/ui/label/Label.vue';
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 const toaster = createToaster();
 
@@ -44,17 +55,47 @@ const addCategory = () => {
             <h1 class="text-xl p-4">Ajout d'une categorie </h1>
             <form action="" method="post" class="space-y-4">
 
-                <card>
+                <card class="space-y-4">
 
-                    <inputComponent placeholder="Category" name="name" title="Nom de category"
-                        v-model="categoryForm.name" :error="categoryForm.errors.name" />
+                    <div class="space-y-2">
+                        <Label for="name">Nom de la category</Label>
+                        <Input placeholder="Nom de la category" v-model="categoryForm.name" id="name" />
+                        <span v-if="categoryForm.errors.name" class="text-red-400 text-sm">{{ categoryForm.errors.name
+                            }}</span>
+                    </div>
 
-                    <select-component id="category_id" name="category_id" title="Sous category"
-                        :options="$page.props.categories" v-model="categoryForm.category_id"
-                        :error="categoryForm.errors.category_id" :idKey="true" />
 
-                    <select-component id="status" name="status" title="Status" :options="$page.props.status"
-                        v-model="categoryForm.status" :error="categoryForm.errors.status" />
+                    <div class="space-y-2">
+                        <Select v-model="categoryForm.category_id">
+                            <SelectTrigger>
+                                <SelectValue placeholder="Selectioner une categorie" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <template v-for="category in $page.props.categories" :key="category.id">
+                                    <SelectItem :value="category.id">{{ category.name }}</SelectItem>
+                                </template>
+                            </SelectContent>
+                        </Select>
+                        <span v-if="categoryForm.errors.category_id" class="text-red-400 text-sm">{{
+                            categoryForm.errors.category_id }}</span>
+
+                    </div>
+
+                    <div class="space-y-2">
+                        <Select v-model="categoryForm.status">
+                            <SelectTrigger>
+                                <SelectValue placeholder="Selectioner le status de votre categorie" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <template v-for="status in $page.props.status" :key="status.id">
+                                    <SelectItem :value="status.name">{{ status.name }}</SelectItem>
+                                </template>
+                            </SelectContent>
+                        </Select>
+                        <span v-if="categoryForm.errors.status" class="text-red-400 text-sm">{{
+                            categoryForm.errors.status }}</span>
+
+                    </div>
 
                 </card>
 
