@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <main class="container mx-auto lg:px-0 px-4">
+    <main class="container">
 
         @include('partials.banner')
         
@@ -35,13 +35,13 @@
         {{-- flash sales --}}
         <section class="my-6">
             <div class="">
-                <x-section-title-component title="Today's" />
+                <x-section-title-component title="Aujourd'hui." />
             </div>
 
             @include('partials.product-grid')
 
             <div class="w-full text-center mt-6">
-                <x-button-component :link="route('products.index')" title="View All" />
+                <x-button-component :link="route('products.index')" title="Voir plus" />
             </div>
         </section>
 
@@ -49,10 +49,10 @@
         <section class="border-t mt-4 mb-6">
             <div class="mt-8">
 
-                <x-section-title-component title="This mounth" />
+                <x-section-title-component title="Ce mois-ci" />
                 <div class=" mt-4 flex items-center justify-between">
-                    <h3 class="lg:text-2xl text-xl font-medium dark:text-white">Articles recommander</h3>
-                    <x-button-component link="#" title="View All" />
+                    <h3 class="lg:text-2xl text-xl font-medium dark:text-white">Produits recommandés</h3>
+                    <x-button-component link="#" title="Voir plus" />
                 </div>
 
 
@@ -72,10 +72,10 @@
         <section class="mt-4 mb-8">
             <div class="mt-8">
 
-                <x-section-title-component title="Our products" />
+                <x-section-title-component title="Nos Produits" />
                 <div class=" mt-4 flex items-center justify-between">
-                    <h3 class="lg:text-2xl text-xl font-medium dark:text-white">Explore Our Products</h3>
-                    <x-button-component link="#" title="View All" />
+                    <h3 class="lg:text-2xl text-xl font-medium dark:text-white">Explorez Nos Produits</h3>
+                    <x-button-component link="#" title="Voir plus" />
                 </div>
 
 

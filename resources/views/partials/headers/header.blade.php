@@ -1,6 +1,6 @@
 <div class="bg-primary text-white w-full text-center py-2 text-sm">
-    <span class="capitalize">Summer sold for all swim Suits and free express delivery</span> - OFF 50% <span
-        class="md:font-medium text-sm md:text-md"><a href="">shop now</a></span>
+    <span class="capitalize w-full">Achetez aujourd'hui et faites-vous livrer aujourd'hui ! <span><a
+        href="{{ route('products.index') }}">Achetez-maitenant</a></span> </span>
 </div>
 
 <header>

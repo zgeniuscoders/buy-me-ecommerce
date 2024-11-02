@@ -36,14 +36,7 @@ class ProductController extends Controller
             $products = $products->where("category_id", $category->id);
         }
 
-        if ($request->has("q")) {
-            $searchQuery = $request->input("q");
-            $products = $products->filter(function ($product) use ($searchQuery) {
-                return str_contains($product->name, $searchQuery) || str_contains($product->description, $searchQuery);
-            });
-        }
-
-
+  
         return view("products.index", compact("products"));
     }
 

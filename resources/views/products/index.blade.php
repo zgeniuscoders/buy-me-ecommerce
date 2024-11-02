@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <main class="container mx-auto lg:px-0 px-4">
+    <main class="container">
 
 
         {{--        flash sales--}}
