@@ -13,21 +13,21 @@
                 <img src="" alt="Anon's logo" width="120" height="36">
             </a>
 
-            <div class="header-search-container">
+            <form method="get" action="{{ route('search') }}" class="header-search-container">
 
-                <input type="search" name="search" class="search-field" placeholder="Enter your product name...">
+                <input type="search" name="q" class="search-field" placeholder="Entrer le nom de l'article...">
 
-                <button class="search-btn">
+                <button class="search-btn" type="submit">
                     <ion-icon name="search-outline"></ion-icon>
                 </button>
 
-            </div>
+            </form>
 
             <div class="header-user-actions">
 
-                <button class="action-btn">
+                <a class="action-btn" href="{{ route('account.index') }}">
                     <ion-icon name="person-outline"></ion-icon>
-                </button>
+                </a>
 
                 <button class="mx-2">
                     <ion-icon name="heart-outline"></ion-icon>
@@ -57,8 +57,8 @@
 
     </div>
 
-    @include("partials.headers.headerDesktop")
-    @include("partials.headers.headerMobile")
+    @include('partials.headers.headerDesktop')
+    @include('partials.headers.headerMobile')
 
 </header>
 

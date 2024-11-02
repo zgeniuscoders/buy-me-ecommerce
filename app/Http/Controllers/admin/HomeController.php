@@ -26,10 +26,10 @@ class HomeController extends Controller
             return $order->product->price * $order->quantity;
         });
 
-        $orderCounts = Product::withCount("orders")
+        $products = Product::withCount("orders")
             ->where('store_id', $shopId)
-            ->firstOrFail()
-            ->orders_count;
+            ->get();
+
 
         $totalCustomers = User::whereHas('orders.product', function ($query) use ($shopId) {
             $query->where('store_id', $shopId);
@@ -38,9 +38,10 @@ class HomeController extends Controller
             ->count();
 
 
+
         return Inertia::render("admin/home", [
             "totalOrdersPrice" => number_format($totalOrdersPrice, 2, ','),
-            "totalOrders" => $orderCounts,
+            "products" => $products,
             "totalCustomers" => $totalCustomers,
         ]);
     }

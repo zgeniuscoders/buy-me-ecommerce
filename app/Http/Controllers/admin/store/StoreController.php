@@ -14,10 +14,7 @@ class StoreController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): \Inertia\Response
-    {
-
-    }
+    public function index(): \Inertia\Response {}
 
     /**
      * Show the form for creating a new resource.
@@ -32,10 +29,16 @@ class StoreController extends Controller
      */
     public function store(StoreRequest $request)
     {
+
+        $imagePath = "";
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('shops/images', 'public');
+        }
+
         Store::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
-            'image' => null,
+            'image' => $imagePath,
             'cover_image' => null,
             'description' => $request->description,
             'user_id' => auth()->id()

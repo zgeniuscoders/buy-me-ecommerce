@@ -1,73 +1,47 @@
 <template>
     <section class="flex items-center justify-center">
-        <div
-            class="w-full max-w-3xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
-            <form class="space-y-6" method="post" action="/store">
-                <h5 class="text-xl font-medium text-gray-900 dark:text-white">Création de la boutique</h5>
+        <card>
+            <CardHeader>
+                <CardTitle>Bienvenue sur Matrixt !</CardTitle>
+                <CardDescription>Créez votre boutique en ligne en toute simplicité et démarquez-vous dans le monde du
+                    e-commerce !</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <p>Nous sommes ravis de vous accueillir sur Matrixt, la plateforme qui vous permet de créer votre propre
+                    boutique en ligne en toute simplicité !
 
-                <progress v-if="form.progress" :value="form.progress.percentage" max="100">
-                    {{ form.progress.percentage }}%
-                </progress>
+                    Avec Matrixt, vous aurez toutes les outils nécessaires pour lancer votre projet, que vous soyez un
+                    entrepreneur débutant ou un commerçant expérimenté. Créez votre boutique, personnalisez-la selon vos
+                    goûts et commencez à vendre vos produits en quelques clics.
 
-                <div>
-                    <input-component type="text" placeholder="Store name" name="name" id="name" title="Nom de la boutique"
-                                     v-model="form.name"/>
-                    <div class="text-red-500" v-if="form.errors.name">{{ form.errors.name }}</div>
-                </div>
+                    Notre équipe est là pour vous accompagner tout au long de votre aventure. Profitez de nos
+                    ressources, de nos conseils et de notre support pour faire de votre boutique en ligne un véritable
+                    succès.
 
-                <div>
-                    <input-component type="textarea" placeholder="Store name" name="description" id="description"
-                                     title="Description" v-model="form.description"/>
-                    <div class="text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
-                </div>
-
-
-                <button type="submit"
-                        @click.prevent="submit"
-                        :disabled="form.processing"
-                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                    Suivant
-                </button>
-
-            </form>
-        </div>
+                    Merci de nous choisir pour réaliser votre rêve entrepreneurial. Commencez dès maintenant et
+                    transformez votre passion en profit avec Matrixt !</p>
+            </CardContent>
+            <CardFooter>
+                <Button variant="outline" @click.prevent="$emit('next')">Suivant</Button>
+            </CardFooter>
+        </card>
     </section>
 </template>
 
-<script setup>
-import {ref} from "vue";
+<script setup lang="ts">
 import emitter from "tiny-emitter/instance"
-import InputComponent from "../../../../../../components/input-component.vue";
-import {router, useForm} from "@inertiajs/vue3";
+import { Button } from "@/components/ui/button"
 
-const form = useForm({
-    name: "",
-    description: "",
-    img: "",
-})
-
-const submit = async () => {
-    form.post('/ma-boutique', {
-        onSuccess: () => {
-            form.clearErrors()
-            router.visit('/ma-boutique')
-        },
-        onError: () => {
-            console.log('error')
-        }
-    })
-}
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
 
 
-const img = ref("log.jpg")
-
-const props = defineProps(["formValues"])
-const next = () => {
-    emitter.emit("changeStep")
-}
 </script>
 
-<style scoped>
-
-
-</style>
+<style scoped></style>

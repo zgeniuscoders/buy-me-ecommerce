@@ -3,7 +3,8 @@
         <aside id="sidebar"
             class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 hidden w-64 h-full pt-16 font-normal duration-75 lg:flex transition-width"
             aria-label="Sidebar">
-            <div class="relative flex flex-col flex-1 min-h-0 pt-0 bg-background dark:bg-background-dark border-r border-gray-200">
+            <div
+                class="relative flex flex-col flex-1 min-h-0 pt-0 bg-background dark:bg-background-dark border-r border-gray-200">
                 <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
                     <div class="flex-1 px-3 space-y-1 bg-background divide-y divide-gray-200">
                         <ul class="pb-2 space-y-2">
@@ -29,22 +30,23 @@
 
                         </ul>
 
-                        <nav-links :menus="menus.menus"/>
+                        <nav-links :menus="menus.menus" />
                     </div>
                 </div>
 
-                <div class="absolute bottom-0 left-0 hidden w-full p-4 space-x-4 bg-background lg:flex" sidebar-bottom-menu>
-                    <Link href=""
+                <div class="absolute bottom-0 left-0 hidden w-full p-4 space-x-4 bg-background lg:flex"
+                    sidebar-bottom-menu>
+                    <button type="button" @click="logout"
                         class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 group">
-                    <svg class="mx-auto mb-1 text-gray-500 w-7 h-7 dark:text-gray-400" fill="currentColor"
-                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"></path>
-                        <path fill-rule="evenodd"
-                            d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="ml-3" sidebar-toggle-item>Parametres</span>
-                    </Link>
+                        <svg class="mx-auto mb-1 text-gray-500 w-7 h-7 dark:text-gray-400" fill="currentColor"
+                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"></path>
+                            <path fill-rule="evenodd"
+                                d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="ml-3" sidebar-toggle-item>Se deconnecter</span>
+                    </button>
                 </div>
             </div>
         </aside>
@@ -56,7 +58,19 @@
 <script setup lang="ts">
 import { MenuItemProps } from '@/utils/MenuItemProps';
 import navLinks from './nav-links.vue';
+import { useForm } from '@inertiajs/vue3';
 
 const menus = defineProps<MenuItemProps>()
+const route = useForm({})
+
+const logout = () => {
+    route.post('/logout', {
+        onError: () => {
+            console.log("logout error");
+        }, onSuccess: () => {
+            location.reload();
+        }
+    })
+}
 
 </script>

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class HasStoreMiddleware
+class RedirectIfHasShopMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,10 @@ class HasStoreMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        if($request->user()->store()->exists()){
+        if (!$request->user()->store()->exists()) {
             return $next($request);
         }
 
-        return  redirect()->route("shop");
-
+        return redirect()->route("shop");
     }
 }

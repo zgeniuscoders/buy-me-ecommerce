@@ -17,7 +17,7 @@ onMounted(() => {
     const props = usePage().props
 
     stats.value.totalOrdersPrice = props.totalOrdersPrice
-    stats.value.totalOrders = props.totalOrders
+    stats.value.totalOrders = props.products.orders_count ? props.products.orders_count : 0
     stats.value.totalCustomers = props.totalCustomers
 
     const ctx = document.getElementById('myChart');

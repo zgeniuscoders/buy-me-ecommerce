@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\HandleInertiaRequests;
+use App\Http\Middleware\RedirectIfHasShopMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -18,7 +19,8 @@ return Application::configure(basePath: dirname(__DIR__))
             HandleInertiaRequests::class,
         ]);
         $middleware->alias([
-            "has_store_middleware" => \App\Http\Middleware\HasStoreMiddleware::class
+            "has_store_middleware" => \App\Http\Middleware\HasStoreMiddleware::class,
+            "dont_has_shop_middleware" => RedirectIfHasShopMiddleware::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
