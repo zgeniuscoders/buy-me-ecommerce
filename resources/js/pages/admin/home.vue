@@ -84,16 +84,14 @@ onMounted(() => {
                 <div class="bg-white rounded-md shadow-md p-4">
                     <div class="rounded-md bg-blue-100 p-4">
                         <h3 class="text-xl font-bold">Add Product</h3>
-                        <h4 class="font-medium mt-2">Add your first products</h4>
-                        <p class="mt-1 text-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis
-                            perferendis minus
-                            adipisci natus velit
-                            corporis nemo autem accusantium perspiciatis sed? Voluptates</p>
+                        <h4 class="font-medium mt-2">Ajoutez vos premiers produits</h4>
+                        <p class="mt-1 text-sm">Dans cette section, nous vous guiderons à travers le processus d'ajout
+                            d'un nouvel article sur notre plateforme.s</p>
 
                         <button type="button"
                             class="bg-gray-800 py-2 px-4 rounded-md text-white mt-4 hover:bg-gray-900">
                             <Link href="/ma-boutique/articles/create">
-                            Add Product
+                                Ajoutez un produit
                             </Link>
                         </button>
                     </div>

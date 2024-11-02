@@ -21,6 +21,10 @@ Route::middleware("auth")->group(function () {
 
     include "adminRoute.php";
 
+    Route::get('/user', function () {
+        return request()->user();
+    });
+
     Route::middleware("can:user-cards.*")->group(function () {
 
         Route::get('cart', [CartController::class, 'getCart'])->name('cart.index');

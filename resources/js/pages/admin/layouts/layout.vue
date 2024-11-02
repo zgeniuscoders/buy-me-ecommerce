@@ -1,9 +1,10 @@
 <template>
     <div>
-        <navbar-main />
+        <navbar-main @toggleSidebarMobile="toggleSidebarMobile" />
         <div class="flex pt-16 overflow-hidden bg-background dark:bg-background-dark">
-            <sidebar :menus="menus"/>
-            <div id="main-content" class="relative w-full h-full overflow-y-auto bg-background dark:bg-background-dark lg:ml-64">
+            <sidebar :menus="menus" :toggleSidebarMobile="state.toggleSidebarMobile" />
+            <div id="main-content"
+                class="relative w-full h-full overflow-y-auto bg-background dark:bg-background-dark lg:ml-64">
                 <main>
                     <slot />
                 </main>
@@ -35,4 +36,12 @@ const menus = ref([
         logo: "persons"
     },
 ])
+
+const state = ref({
+    toggleSidebarMobile: false
+})
+
+const toggleSidebarMobile = () => {
+    state.value.toggleSidebarMobile = !state.value.toggleSidebarMobile
+}
 </script>

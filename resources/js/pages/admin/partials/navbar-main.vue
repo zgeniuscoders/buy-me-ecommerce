@@ -4,7 +4,7 @@
       <div class="flex items-center justify-between">
         <div class="flex items-center justify-start">
 
-          <button id="toggleSidebarMobile" aria-expanded="true" aria-controls="sidebar"
+          <button id="toggleSidebarMobile" aria-expanded="true" aria-controls="sidebar" @click="$emit('toggleSidebarMobile')"
             class="p-2 text-gray-600 rounded cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100">
             <svg id="toggleSidebarMobileHamburger" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +44,8 @@
           <notification-dropdown />
           <app-dropdown />
 
-          <profile-dropsown />
+      
+          <profile-dropsown :user="user" />
         </div>
       </div>
     </div>
@@ -56,4 +57,21 @@ import notificationDropdown from './notification-dropdown.vue';
 import appDropdown from './app-dropdown.vue';
 import ProfileDropsown from './profile-dropsown.vue';
 import SearchBar from '../../partials/search-bar.vue';
+import { onMounted, ref } from 'vue';
+import { router } from '@inertiajs/vue3';
+import axios from 'axios';
+
+
+const user = ref({})
+
+const res = axios.get('/user').then(res => {
+  user.value = res.data
+})
+
+onMounted(() => {
+  const res = axios.get('/user').then(res => {
+    user.value = res.data
+  })
+
+})
 </script>
