@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    Page d'accueil
+    {{ $product->name }} {{ $product->price }}$
 @endsection
 
 @section('content')

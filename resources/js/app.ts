@@ -12,6 +12,7 @@ import cartCountIndicator from "./components/cart/cartCountIndicator.vue"
 import cart from "./components/cart/cart.vue"
 import clearCartButton from './components/cart/clearCartButton.vue';
 import productDetail from './components/product/productDetail.vue';
+import productFilter from './components/product/productFilter.vue';
 
 import { createPinia } from 'pinia';
 
