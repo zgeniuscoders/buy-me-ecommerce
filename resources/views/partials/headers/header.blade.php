@@ -1,6 +1,6 @@
 <div class="bg-primary text-white w-full text-center py-2 text-sm">
     <span class="capitalize w-full">Achetez aujourd'hui et faites-vous livrer aujourd'hui ! <span><a
-        href="{{ route('products.index') }}">Achetez-maitenant</a></span> </span>
+                href="{{ route('products.index') }}">Achetez-maitenant</a></span> </span>
 </div>
 
 <header>
@@ -25,18 +25,13 @@
 
             <div class="header-user-actions">
 
-                <a class="action-btn" href="{{ route('account.index') }}">
+                <a class="action-btn" href="{{ route('account.favorite.index') }}">
                     <ion-icon name="person-outline"></ion-icon>
                 </a>
 
                 <button class="mx-2">
-                    <ion-icon name="heart-outline"></ion-icon>
                     <a href="{{ route('account.favorite.index') }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-[24px] h-[24px]"
-                            fill="dark:text-white">
-                            <path
-                                d="m480-190-22-20q-97-89-160.5-152t-100-110.5Q161-520 146.5-558T132-634q0-71 48.5-119.5T300-802q53 0 99 28.5t81 83.5q35-55 81-83.5t99-28.5q71 0 119.5 48.5T828-634q0 38-14.5 76t-51 85.5Q726-425 663-362T502-210l-22 20Zm0-38q96-87 158-149t98-107.5q36-45.5 50-80.5t14-69q0-60-40-100t-100-40q-48 0-88.5 27.5T494-660h-28q-38-60-78-87t-88-27q-59 0-99.5 40T160-634q0 34 14 69t50 80.5q36 45.5 98 107T480-228Zm0-273Z" />
-                        </svg>
+                        <ion-icon name="heart-outline"></ion-icon>
                     </a>
                 </button>
 
@@ -61,16 +56,3 @@
     @include('partials.headers.headerMobile')
 
 </header>
-
-{{-- bottom navbar --}}
-
-<div class="bg-background border-t border-gray-200 w-full fixed bottom-0 z-10 block md:hidden mt-10">
-    <nav class="flex">
-        <ul class="flex gap-4 items-center justify-around w-full container mx-auto py-2">
-            <x-bottom-bar-item :href="route('home')" name="Accueil" :isActive="request()->routeIs('home')" />
-            <x-bottom-bar-item :href="route('products.index')" name="Articles" :isActive="request()->routeIs('products.index')" />
-            {{-- <x-bottom-bar-item :href="route('store.index')" name="Boutiques" :isActive="request()->routeIs('store.index')" /> --}}
-            <x-bottom-bar-item href="" name="Mon Compte" :isActive="false" />
-        </ul>
-    </nav>
-</div>

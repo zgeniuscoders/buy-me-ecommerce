@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
 
-        $shopId = 1;
+        $shopId = $request->user()->store->id;
 
         $totalOrdersPrice = Order::whereHas('product', function ($query) use ($shopId) {
             $query->where('store_id', $shopId);

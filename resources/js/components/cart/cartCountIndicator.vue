@@ -1,8 +1,8 @@
 <template>
-    <div
-        class="bg-red-500 rounded-full text-white absolute w-4 h-4 text-center text-sm -top-2 right-0 flex items-center justify-center">
+    <span
+        class="count">
         {{ itemCount }}
-    </div>
+    </span>
 </template>
 
 

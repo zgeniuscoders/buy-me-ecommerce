@@ -17,7 +17,11 @@ class ProductController extends Controller
      */
     public function index(): \Inertia\Response
     {
-        $products = Product::with(['category'])->paginate(10);
+        $storeId = auth()->user()->store->id;
+
+        $products = Product::with(['category'])
+            ->where("store_id", $storeId)
+            ->paginate(10);
         return Inertia::render('admin/store/products/index', [
             'products' => $products
         ]);
@@ -66,7 +70,6 @@ class ProductController extends Controller
                 ]
             )
         );
-
     }
 
     /**

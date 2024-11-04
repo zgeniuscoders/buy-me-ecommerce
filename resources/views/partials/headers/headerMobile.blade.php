@@ -4,25 +4,26 @@
         <ion-icon name="menu-outline"></ion-icon>
     </button>
 
-    <button class="action-btn">
+    <a class="action-btn" href="{{ route("cart.index") }}">
         <ion-icon name="bag-handle-outline"></ion-icon>
 
         <span class="count">0</span>
-    </button>
+    </a>
 
-    <button class="action-btn">
+    <a class="action-btn" href="{{ route("home") }}">
         <ion-icon name="home-outline"></ion-icon>
-    </button>
+    </a>
 
-    <button class="action-btn">
+    <a class="action-btn" href="{{ route("account.favorite.index") }}">
         <ion-icon name="heart-outline"></ion-icon>
 
-        <span class="count">0</span>
-    </button>
+        <cart-counter />
 
-    <button class="action-btn" data-mobile-menu-open-btn>
+    </a>
+
+    <a class="action-btn" data-mobile-menu-open-btn href="{{ route("products.index") }}">
         <ion-icon name="grid-outline"></ion-icon>
-    </button>
+    </a>
 
 </div>
 
