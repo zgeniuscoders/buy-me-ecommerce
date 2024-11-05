@@ -7,10 +7,10 @@
                 id="user-menu-button-2" aria-expanded="false" data-dropdown-toggle="dropdown-2">
                 <span class="sr-only">Open user menu</span>
                 <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                    alt="user photo" v-if="props.user.profile">
+                    alt="user photo" v-if="user.profile">
                 <div v-else
                     class="w-8 h-8 rounded-full bg-slate-900 text-white text-center flex items-center justify-center font-medium">
-                    {{ props.user.name }}</div>
+                    {{ user.name }}</div>
             </button>
         </div>
         <!-- Dropdown menu -->
@@ -51,6 +51,7 @@
 </template>
 
 <script setup lang="ts">
+import { User } from '@/models/User';
 import { ref } from 'vue';
 
 
@@ -58,12 +59,8 @@ const state = ref({
     showMenu: false
 })
 
-const props = defineProps<{
-    user: {
-        name: string,
-        email: string,
-        profile: string
-    }
+const { user } = defineProps<{
+    user: User
 }>()
 
 

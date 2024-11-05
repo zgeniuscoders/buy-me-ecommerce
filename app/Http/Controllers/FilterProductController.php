@@ -36,7 +36,7 @@ class FilterProductController extends Controller
                 ->orWhere('description', 'LIKE', "%{$searchQuery}%");
         }
 
-        $products = $products->paginate(20);
+        $products = $products->paginate(10);
 
         return view("products.filter-product", compact("products", "categories"));
     }

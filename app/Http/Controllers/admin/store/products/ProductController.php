@@ -21,7 +21,8 @@ class ProductController extends Controller
 
         $products = Product::with(['category'])
             ->where("store_id", $storeId)
-            ->paginate(10);
+            ->get();
+
         return Inertia::render('admin/store/products/index', [
             'products' => $products
         ]);

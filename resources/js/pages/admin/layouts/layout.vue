@@ -21,19 +21,24 @@ import { ref } from 'vue';
 
 const menus = ref([
     {
-        name: "accueil",
+        name: "Accueil",
         url: "/ma-boutique",
-        logo: "grid"
+        logo: "grid-outline"
     },
     {
-        name: "articles",
+        name: "Articles",
         url: "/ma-boutique/articles",
-        logo: "product"
+        logo: "albums-outline"
     },
     {
-        name: "commandes",
+        name: "Commandes",
         url: "/ma-boutique/commandes",
-        logo: "persons"
+        logo: "orders-outline"
+    },
+    {
+        name: "Parametres",
+        url: "/ma-boutique/commandes",
+        logo: "settings-outline"
     },
 ])
 

@@ -63,7 +63,9 @@
 
         </section>
 
-
+        <div class="w-full text-center my-8">
+            {{ $products->links() }}
+        </div>
     </main>
 @endsection
 

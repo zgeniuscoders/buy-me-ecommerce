@@ -7,30 +7,36 @@ import { ref } from 'vue';
 
 const menus = ref([
     {
-        name: "accueil",
+        name: "Accueil",
         url: "/admin",
-        logo: "grid"
+        logo: "grid-outline"
     },
     {
-        name: "categories",
+        name: "Categories",
         url: "/admin/categories",
-        logo: "grid"
+        logo: "albums-outline"
+    },
+    {
+        name: "Clients",
+        url: "/admin/clients",
+        logo: "people-outline"
+    },
+    {
+        name: "Boutiques",
+        url: "/admin/boutiques",
+        logo: "storefront-outline"
     },
     {
         name: "Utilisateurs",
         url: "/admin/utilisateurs",
-        logo: "product"
+        logo: "person-outline"
     },
     {
-        name: "clients",
+        name: "Parametres",
         url: "/admin/clients",
-        logo: "persons"
+        logo: "settings-outline"
     },
-    {
-        name: "clients",
-        url: "/ma-boutique/clients",
-        logo: "persons"
-    },
+
 ])
 
 </script>
