@@ -17,3 +17,4 @@ export function valueUpdater<T extends Updater<any>>(updaterOrValue: T, ref: Ref
 export function readFileData(file) {
   return URL.createObjectURL(file)
 }
+

@@ -1,15 +1,158 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
 import Layout from './layouts/layout.vue';
 import Chart from 'chart.js/auto';
-import { Link, usePage } from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
 import cardStats from '@/components/card-stats.vue';
+import type {
+    ColumnDef,
+    ColumnFiltersState,
+    ExpandedState,
+    SortingState,
+    VisibilityState,
+} from '@tanstack/vue-table'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Input } from "@/components/ui/input";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table'
+import { cn, valueUpdater } from '@/lib/utils'
+import {
+    createColumnHelper,
+    FlexRender,
+    getCoreRowModel,
+    getExpandedRowModel,
+    getFilteredRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    useVueTable,
+} from '@tanstack/vue-table'
+import {
+    DropdownMenu,
+    DropdownMenuCheckboxItem,
+    DropdownMenuContent,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { ArrowUpDown, ChevronDown } from 'lucide-vue-next'
+import { h, ref, shallowRef, onMounted } from 'vue'
+
+import { usePage } from "@inertiajs/vue3";
+import { ProductInterface } from "@/models/ProductType";
+import { Order } from "@/models/Order";
+
+
+const props = usePage().props
+const data = shallowRef<Order[]>()
+data.value = props.orders
 
 const stats = ref({
     totalOrdersPrice: 0,
     totalOrders: 0,
     totalCustomers: 0,
     customers: {}
+})
+
+
+const columnHelper = createColumnHelper<Order>()
+const columns = [
+    columnHelper.display({
+        id: 'select',
+        header: ({ table }) => h(Checkbox, {
+            'checked': table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate'),
+            'onUpdate:checked': value => table.toggleAllPageRowsSelected(!!value),
+            'ariaLabel': 'Select all',
+        }),
+        cell: ({ row }) => {
+            return h(Checkbox, {
+                'checked': row.getIsSelected(),
+                'onUpdate:checked': value => row.toggleSelected(!!value),
+                'ariaLabel': 'Select row',
+            })
+        },
+        enableSorting: false,
+        enableHiding: false,
+    }),
+    columnHelper.accessor('customer', {
+        header: ({ column }) => {
+            return h(Button, {
+                variant: 'ghost',
+                onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+            }, () => ['Name', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
+        },
+        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('customer')?.name),
+    }),
+    columnHelper.accessor('customer', {
+        header: ({ column }) => {
+            return h(Button, {
+                variant: 'ghost',
+                onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+            }, () => ['Email', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
+        },
+        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('customer')?.email),
+    }),
+    columnHelper.accessor('quantity', {
+        header: ({ column }) => {
+            return h(Button, {
+                variant: 'ghost',
+                onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+            }, () => ['Quantite', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
+        },
+        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('quantity')),
+    }),
+    columnHelper.accessor('status', {
+        enablePinning: true,
+        header: 'Status',
+        cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('status')),
+    }),
+    // columnHelper.display({
+    //     id: 'actions',
+    //     enableHiding: false,
+    //     cell: ({ row }) => {
+    //         const payment = row.original
+
+    //         return h('div', { class: 'relative' }, h(DropdownAction, {
+    //             payment,
+    //             onExpand: row.toggleExpanded,
+    //         }))
+    //     },
+    // }),
+]
+
+const sorting = ref<SortingState>([])
+const columnFilters = ref<ColumnFiltersState>([])
+const columnVisibility = ref<VisibilityState>({})
+const rowSelection = ref({})
+const expanded = ref<ExpandedState>({})
+
+
+const table = useVueTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
+    onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
+    onColumnFiltersChange: updaterOrValue => valueUpdater(updaterOrValue, columnFilters),
+    onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
+    onRowSelectionChange: updaterOrValue => valueUpdater(updaterOrValue, rowSelection),
+    onExpandedChange: updaterOrValue => valueUpdater(updaterOrValue, expanded),
+    state: {
+        get sorting() { return sorting.value },
+        get columnFilters() { return columnFilters.value },
+        get columnVisibility() { return columnVisibility.value },
+        get rowSelection() { return rowSelection.value },
+        get expanded() { return expanded.value },
+        columnPinning: {
+            left: ['id'],
+        },
+    },
 })
 
 onMounted(() => {
@@ -91,7 +234,7 @@ onMounted(() => {
                         <button type="button"
                             class="bg-gray-800 py-2 px-4 rounded-md text-white mt-4 hover:bg-gray-900">
                             <Link href="/ma-boutique/articles/create">
-                                Ajoutez un produit
+                            Ajoutez un produit
                             </Link>
                         </button>
                     </div>
@@ -101,146 +244,88 @@ onMounted(() => {
             </section>
 
             <section class="p-4">
-
-
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <div
-                        class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white p-4">
-                        <div>
-                            <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
-                                class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5"
-                                type="button">
-                                <span class="sr-only">Action button</span>
-                                Action
-                                <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 4 4 4-4" />
-                                </svg>
-                            </button>
-                            <!-- Dropdown menu -->
-                            <div id="dropdownAction"
-                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                                    aria-labelledby="dropdownActionButton">
-                                    <li>
-                                        <a href="#"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Promote</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Activate
-                                            account</a>
-                                    </li>
-                                </ul>
-                                <div class="py-1">
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete
-                                        User</a>
-                                </div>
-                            </div>
-                        </div>
-                        <label for="table-search" class="sr-only">Search</label>
-                        <div class="relative">
-                            <div
-                                class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
-                            </div>
-                            <input type="text" id="table-search-users"
-                                class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Search for users">
-                        </div>
+                
+                <div class="w-full">
+                    <div class="flex gap-2 items-center py-4">
+                        <Input class="max-w-sm" placeholder="Filtrer par nom"
+                            :model-value="table.getColumn('name')?.getFilterValue() as string"
+                            @update:model-value=" table.getColumn('name')?.setFilterValue($event)" />
+                        <DropdownMenu>
+                            <DropdownMenuTrigger as-child>
+                                <Button variant="outline" class="ml-auto">
+                                    Columns
+                                    <ChevronDown class="ml-2 h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                <DropdownMenuCheckboxItem
+                                    v-for="column in table.getAllColumns().filter((column) => column.getCanHide())"
+                                    :key="column.id" class="capitalize" :checked="column.getIsVisible()"
+                                    @update:checked="(value) => {
+                                        column.toggleVisibility(!!value)
+                                    }">
+                                    {{ column.id }}
+                                </DropdownMenuCheckboxItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                     </div>
 
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                            <tr>
-                                <th scope="col" class="p-4">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-all-search" type="checkbox"
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                                    </div>
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    ID
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Nom du client
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Product
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Qty
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Status
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Action
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="rounded-md border">
+                        <Table>
+                            <TableHeader>
+                                <TableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
+                                    <TableHead v-for="header in headerGroup.headers" :key="header.id">
+                                        <FlexRender v-if="!header.isPlaceholder"
+                                            :render="header.column.columnDef.header" :props="header.getContext()" />
+                                    </TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                <template v-if="table.getRowModel().rows?.length">
+                                    <template v-for="row in table.getRowModel().rows" :key="row.id">
+                                        <TableRow :data-state="row.getIsSelected() && 'selected'">
+                                            <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id"
+                                                :data-pinned="cell.column.getIsPinned()" :class="cn(
+                                                    { 'sticky bg-background/95': cell.column.getIsPinned() },
+                                                    cell.column.getIsPinned() === 'left' ? 'left-0' : 'right-0',
+                                                )">
+                                                <FlexRender :render="cell.column.columnDef.cell"
+                                                    :props="cell.getContext()" />
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow v-if="row.getIsExpanded()">
+                                            <TableCell :colspan="row.getAllCells().length">
+                                                {{ row.original }}
+                                            </TableCell>
+                                        </TableRow>
+                                    </template>
+                                </template>
 
-                            <template v-for="customer in stats.customers.data" :key="customer.id">
-                                <tr class="bg-white hover:bg-gray-50">
-                                    <td class="w-4 p-4">
-                                        <div class="flex items-center">
-                                            <input id="checkbox-table-search-3" type="checkbox"
-                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                                            <label for="checkbox-table-search-3" class="sr-only">checkbox</label>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        #{{ customer.id }}
-                                    </td>
-                                    <th scope="row"
-                                        class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                        <img class="w-10 h-10 rounded-full" v-if="customer.profile"
-                                            src="https://unsplash.com/photos/ai-generated-portrait-of-a-dark-haired-model-wearing-a-pink-shirt-nT57h53Dq3c"
-                                            alt="Jese image">
+                                <TableRow v-else>
+                                    <TableCell :colspan="columns.length" class="h-24 text-center">
+                                        No results.
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </div>
 
-                                        <div v-else
-                                            class="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark text-center flex items-center justify-center text-white">
-                                            {{ customer.name[0] }}
-                                        </div>
-
-                                        <div class="ps-3">
-                                            <div class="text-base font-semibold">{{ customer.name }}</div>
-                                            <div class="font-normal text-gray-500">{{ customer.email }}</div>
-                                        </div>
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        SEO Specialist
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        100
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <div class="h-2.5 w-2.5 rounded-full bg-yellow-500 me-2"></div>
-                                            Pending
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#" class="font-medium text-red-600 hover:underline">Cancel</a>
-                                    </td>
-                                </tr>
-                            </template>
-
-                        </tbody>
-                    </table>
-
+                    <div class="flex items-center justify-end space-x-2 py-4">
+                        <div class="flex-1 text-sm text-muted-foreground">
+                            {{ table.getFilteredSelectedRowModel().rows.length }} of
+                            {{ table.getFilteredRowModel().rows.length }} row(s) selected.
+                        </div>
+                        <div class="space-x-2">
+                            <Button variant="outline" size="sm" :disabled="!table.getCanPreviousPage()"
+                                @click="table.previousPage()">
+                                Previous
+                            </Button>
+                            <Button variant="outline" size="sm" :disabled="!table.getCanNextPage()"
+                                @click="table.nextPage()">
+                                Next
+                            </Button>
+                        </div>
+                    </div>
                 </div>
 
             </section>

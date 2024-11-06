@@ -20,8 +20,6 @@ class OrderController extends Controller
             $query->where('store_id', $shopId);
         })->with(["product", "customer"])->get();
 
-
-
         return Inertia::render("admin/store/orders/index", compact("orders"));
     }
 

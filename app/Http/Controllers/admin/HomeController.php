@@ -31,6 +31,12 @@ class HomeController extends Controller
             ->get();
 
 
+        $shopId = 1;
+        $orders = Order::whereHas('product', function ($query) use ($shopId) {
+            $query->where('store_id', $shopId);
+        })->with(["product", "customer"])->get();
+
+
         $totalCustomers = User::whereHas('orders.product', function ($query) use ($shopId) {
             $query->where('store_id', $shopId);
         })
@@ -38,11 +44,11 @@ class HomeController extends Controller
             ->count();
 
 
-
         return Inertia::render("admin/home", [
             "totalOrdersPrice" => number_format($totalOrdersPrice, 2, ','),
             "products" => $products,
             "totalCustomers" => $totalCustomers,
+            "orders" => $orders
         ]);
     }
 }

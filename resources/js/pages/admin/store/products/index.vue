@@ -44,8 +44,6 @@ import Layout from "../../layouts/layout.vue";
 import { usePage } from "@inertiajs/vue3";
 import { ProductInterface, ProductType } from '@/models/ProductType'
 
-
-
 const props = usePage().props
 const data = shallowRef<ProductInterface[]>([])
 data.value = props.products
