@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\admin\store\products;
 
+use Inertia\Inertia;
+use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
-use App\Models\Category;
-use App\Models\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -107,6 +108,11 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        if (Storage::exists($product->image)) {
+            Storage::delete($product->image);
+        }
+
+        $product->delete();
     }
 }

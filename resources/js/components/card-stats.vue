@@ -20,11 +20,11 @@
             </div>
 
         </div>
-        <hr class="border-t w-full mt-4">
+        <!-- <hr class="border-t w-full mt-4">
         <div class="flex items-center justify-between mt-4">
             <span class="text-gray-400 text-sm">VS Previous Day</span>
             <h4 class="text-emerald-600 text-sm">2,67</h4>
-        </div>
+        </div> -->
 
     </article>
 </template>

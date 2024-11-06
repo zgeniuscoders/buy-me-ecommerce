@@ -33,12 +33,12 @@ const menus = ref([
     {
         name: "Commandes",
         url: "/ma-boutique/commandes",
-        logo: "orders-outline"
+        logo: "list-circle-outline"
     },
     {
-        name: "Parametres",
-        url: "/ma-boutique/commandes",
-        logo: "settings-outline"
+        name: "Ma boutique",
+        url: "/ma-boutique/parametres",
+        logo: "storefront-outline"
     },
 ])
 

@@ -6,7 +6,25 @@ import { Input } from "@/components/ui/input";
 import { Button } from '@/components/ui/button'
 
 import { ChevronDown } from 'lucide-vue-next'
-import {FlexRender} from '@tanstack/vue-table'
+import { FlexRender } from '@tanstack/vue-table'
+import { ref } from 'vue';
+
+import { valueUpdater } from '@/lib/utils'
+import {
+    getCoreRowModel,
+    getExpandedRowModel,
+    getFilteredRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    useVueTable,
+} from '@tanstack/vue-table'
+
+import type {
+    ColumnFiltersState,
+    ExpandedState,
+    SortingState,
+    VisibilityState,
+} from '@tanstack/vue-table'
 
 import {
     Table,
@@ -24,9 +42,43 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-const { table } = defineProps<{
-    table: {}
+const { data, columns } = defineProps<{
+    data: {},
+    columns: {}
 }>()
+
+
+const sorting = ref<SortingState>([])
+const columnFilters = ref<ColumnFiltersState>([])
+const columnVisibility = ref<VisibilityState>({})
+const rowSelection = ref({})
+const expanded = ref<ExpandedState>({})
+
+
+const table = useVueTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
+    onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
+    onColumnFiltersChange: updaterOrValue => valueUpdater(updaterOrValue, columnFilters),
+    onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
+    onRowSelectionChange: updaterOrValue => valueUpdater(updaterOrValue, rowSelection),
+    onExpandedChange: updaterOrValue => valueUpdater(updaterOrValue, expanded),
+    state: {
+        get sorting() { return sorting.value },
+        get columnFilters() { return columnFilters.value },
+        get columnVisibility() { return columnVisibility.value },
+        get rowSelection() { return rowSelection.value },
+        get expanded() { return expanded.value },
+        columnPinning: {
+            left: ['id'],
+        },
+    },
+})
 
 </script>
 <template>

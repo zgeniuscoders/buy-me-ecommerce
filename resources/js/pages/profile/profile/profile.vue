@@ -85,7 +85,7 @@ const deleteAccount = () => {
                         <div>
                             <Label for="name">Nom d'utilisateur</Label>
                             <Input v-model="profileNamesForm.name" placeholder="Nom d'utilisateur" id="name" />
-                            <span v-if="profileNamesForm.errors.qty" class="text-red-400 text-sm" pla>{{
+                            <span v-if="profileNamesForm.errors.name" class="text-red-400 text-sm" pla>{{
                                 profileNamesForm.errors.name }}</span>
                         </div>
 

@@ -38,13 +38,7 @@
                     sidebar-bottom-menu>
                     <button type="button" @click="logout"
                         class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 group">
-                        <svg class="mx-auto mb-1 text-gray-500 w-7 h-7 dark:text-gray-400" fill="currentColor"
-                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"></path>
-                            <path fill-rule="evenodd"
-                                d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-                                clip-rule="evenodd"></path>
-                        </svg>
+                        <ion-icon name="log-out-outline"></ion-icon>
                         <span class="ml-3" sidebar-toggle-item>Se deconnecter</span>
                     </button>
                 </div>

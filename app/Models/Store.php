@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Store extends Model
 {
@@ -42,6 +43,10 @@ class Store extends Model
         return $this->morphToMany(Rate::class, "rateble");
     }
 
+    public function getImageAttribute($value)
+    {
+        return URL::to("storage/$value");
+    }
 
     // public function getisDisabledAttribute($value){
     //     if($value){
