@@ -43,7 +43,6 @@ import { ArrowUpDown, ChevronDown } from 'lucide-vue-next'
 import { h, ref, shallowRef } from 'vue'
 
 import { usePage } from "@inertiajs/vue3";
-import { ProductInterface } from "@/models/ProductType";
 import { Order } from "@/models/Order";
 
 

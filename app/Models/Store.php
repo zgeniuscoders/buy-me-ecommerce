@@ -18,7 +18,8 @@ class Store extends Model
         'image',
         'cover_image',
         'social_networks',
-        'slug'
+        'slug',
+        'is_disabled'
     ];
 
     public function products(): \Illuminate\Database\Eloquent\Relations\HasMany

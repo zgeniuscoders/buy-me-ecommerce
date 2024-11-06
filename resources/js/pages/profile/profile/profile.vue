@@ -2,10 +2,19 @@
 
 import { useForm } from '@inertiajs/vue3';
 import accountLayout from '../layouts/accountLayout.vue';
-import inputComponent from '@/components/input-component.vue';
-import buttonComponent from '@/components/button-component.vue';
-import card from '@/components/card.vue';
 import { createToaster } from "@meforma/vue-toaster";
+import Input from '@/components/ui/input/Input.vue';
+import Label from '@/components/ui/label/Label.vue';
+import Button from '@/components/ui/button/Button.vue';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+
 
 const toaster = createToaster();
 
@@ -58,59 +67,106 @@ const deleteAccount = () => {
 <template>
 
     <account-layout>
-        <section class="py-2 space-y-4">
+        <section class="py-2 space-y-4 p-2">
+
             <card>
-                <h3 class="text-xl">Profile</h3>
-                <p>Update your accounts's profile information and email address.</p>
 
-                <form action="" method="post">
-                    <input-component placeholder="Nom d'utilisateur" name="name" title="Nom d'utilisateur"
-                        v-model="profileNamesForm.name" inputType="text" :error="profileNamesForm.errors.name" />
-                    <input-component placeholder="Email" name="email" title="Email" v-model="profileNamesForm.email"
-                        inputType="email" :error="profileNamesForm.errors.email" />
+                <CardHeader>
+                    <CardTitle>
+                        Profile
+                    </CardTitle>
+                    <CardDescription>
+                        Update your accounts's profile information and email address.
+                    </CardDescription>
+                </CardHeader>
 
-                    <!-- <button-component title="Modifier" type="submit" isLink="false" onclick="saveProfileInfo()"/> -->
-                    <button type="submit" @click.prevent="saveProfileInfo"
-                        class="bg-primary text-white p-2 rounded-md hover:bg-primary-dark transition-all">
-                        Modifier
-                    </button>
-                </form>
+                <CardContent>
+                    <form action="" method="post" class="space-y-4">
+                        <div>
+                            <Label for="name">Nom d'utilisateur</Label>
+                            <Input v-model="profileNamesForm.name" placeholder="Nom d'utilisateur" id="name" />
+                            <span v-if="profileNamesForm.errors.qty" class="text-red-400 text-sm" pla>{{
+                                profileNamesForm.errors.name }}</span>
+                        </div>
+
+                        <div>
+                            <Label for="name">Email</Label>
+                            <Input v-model="profileNamesForm.email" placeholder="Adresse email" id="name" />
+                            <span v-if="profileNamesForm.errors.email" class="text-red-400 text-sm" pla>{{
+                                profileNamesForm.errors.email }}</span>
+                        </div>
+
+
+                        <Button type="submit" @click.prevent="saveProfileInfo"
+                            class="bg-primary text-white p-2 rounded-md hover:bg-primary-dark transition-all">
+                            Modifier
+                        </Button>
+                    </form>
+                </CardContent>
+
             </card>
 
             <card>
-                <h3 class="text-xl">Update password</h3>
-                <p>Ensure your account is using a long, random password to stay secure.</p>
+                <CardHeader>
+                    <CardTitle>
+                        Update password
+                    </CardTitle>
+                    <CardDescription>
+                        Ensure your account is using a long, random password to stay secure.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <form action="" method="post" class="space-y-2">
 
-                <form action="" method="post">
-                    <input-component placeholder="Mot de passe actuelle" name="currentPassword"
-                        title="Mot de passe actuelle" v-model="passwordForm.current_password" inputType="password"
-                        :error="passwordForm.errors.current_password" />
+                        <div>
+                            <Label for="currentPassword">Mot de passe actuelle</Label>
+                            <Input v-model="passwordForm.current_password" placeholder="Mot de passe actuelle"
+                                id="currentPassword" />
+                            <span v-if="passwordForm.errors.current_password" class="text-red-400 text-sm" pla>{{
+                                passwordForm.errors.current_password }}</span>
+                        </div>
 
-                    <input-component placeholder="Nouveau mot de passe" name="password" title="password"
-                        v-model="passwordForm.password" inputType="password" :error="passwordForm.errors.password" />
+                        <div>
+                            <Label for="password">Nouveau mot de passe</Label>
+                            <Input v-model="passwordForm.password" placeholder="Nouveau mot de passe" id="password" />
+                            <span v-if="passwordForm.errors.password" class="text-red-400 text-sm" pla>{{
+                                passwordForm.errors.password }}</span>
+                        </div>
 
-                    <input-component placeholder="Confirmer le mot de passe" name="confirmation_password"
-                        title="Confirmer le mot de passe" v-model="passwordForm.password_confirmation"
-                        inputType="password" :error="passwordForm.errors.password_confirmation" />
+                        <div>
+                            <Label for="password">Confirmer le mot de passe</Label>
+                            <Input v-model="passwordForm.password_confirmation" placeholder="Confirmer le mot de passe"
+                                id="confirmation_password" />
+                            <span v-if="passwordForm.errors.password_confirmation" class="text-red-400 text-sm" pla>{{
+                                passwordForm.errors.password_confirmation }}</span>
+                        </div>
 
-                    <!-- <button-component title="Modifier" type="submit" isLink="false" onclick="saveProfileInfo()"/> -->
-                    <button type="submit" @click.prevent="updatePassword"
-                        class="bg-primary text-white p-2 rounded-md hover:bg-primary-dark transition-all">
-                        Modifier le mot de passe
-                    </button>
-                </form>
+                        <Button type="submit" @click.prevent="updatePassword"
+                            class="bg-primary text-white p-2 rounded-md hover:bg-primary-dark transition-all">
+                            Modifier le mot de passe
+                        </Button>
+                    </form>
+                </CardContent>
+
             </card>
 
             <card>
-                <h3 class="text-xl">Delete account</h3>
-                <p class="mb-4">Once your account is deleted , all of its resources and data will be permenantly
-                    deleted,
-                    Before deleting your account , please download any data or information that you wish to retain
-                </p>
-                <button type="submit" @click.prevent="deleteAccount"
-                    class="bg-error text-white p-2 rounded-md hover:bg-error transition-all">
-                    Supprimer mon compte
-                </button>
+                <CardHeader>
+                    <CardTitle>Delete account</CardTitle>
+                    <CardDescription>
+                        Once your account is deleted , all of its resources and data will be permenantly
+                        deleted,
+                        Before deleting your account , please download any data or information that you wish to retain
+                    </CardDescription>
+                </CardHeader>
+
+                <CardFooter>
+                    <Button type="submit" @click.prevent="deleteAccount"
+                        class="bg-red-500 text-white p-2 rounded-md hover:bg-error transition-all">
+                        Supprimer mon compte
+                    </Button>
+                </CardFooter>
+
             </card>
 
         </section>

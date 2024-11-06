@@ -9,17 +9,17 @@ const menus = ref(
         {
             name: "Accueil",
             url: "/mon-compte",
-            logo: "grid"
+            logo: "grid-outline"
         },
         {
             name: "Favoris",
             url: "/mon-compte/articles-favorite",
-            logo: "heart"
+            logo: "heart-outline"
         },
         {
             name: "Profile",
             url: "/mon-compte/profile",
-            logo: "person"
+            logo: "person-outline"
         },
     ]
 )

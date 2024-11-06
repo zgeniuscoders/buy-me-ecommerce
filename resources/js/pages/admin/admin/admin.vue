@@ -1,10 +1,51 @@
 <script setup lang="ts">
 
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 import adminLayout from '../layouts/adminLayout.vue';
 import cardStats from '@/components/card-stats.vue';
-import { usePage } from '@inertiajs/vue3';
+import { usePage, useForm } from '@inertiajs/vue3';
 import pagination from '@/components/pagination.vue';
+import dataTable from '@/components/data-table.vue';
+import type {
+    ColumnDef,
+    ColumnFiltersState,
+    ExpandedState,
+    SortingState,
+    VisibilityState,
+} from '@tanstack/vue-table'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table'
+import { cn, valueUpdater } from '@/lib/utils'
+import {
+    createColumnHelper,
+    FlexRender,
+    getCoreRowModel,
+    getExpandedRowModel,
+    getFilteredRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    useVueTable,
+} from '@tanstack/vue-table'
+import { ArrowUpDown, ChevronDown } from 'lucide-vue-next'
+import { h, ref, shallowRef } from 'vue'
+// import DropdownAction from './DataTableDemoColumn.vue'
+
+import {
+    DropdownMenu,
+    DropdownMenuCheckboxItem,
+    DropdownMenuContent,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { Input } from '@/components/ui/input'
+
 
 const userCount = ref(0)
 const shops = ref()
@@ -12,6 +53,22 @@ const shops = ref()
 const props = usePage().props
 
 shops.value = props.shops
+const router = useForm({
+    shopId: null
+});
+
+
+const disabledShop = (id: number) => {
+    router.shopId = id
+    router.post('/admin/disable-shop', {
+        onError: (e) => {
+
+        },
+        onSuccess: (e) => {
+
+        }
+    })
+}
 
 
 onMounted(() => {
@@ -80,7 +137,8 @@ onMounted(() => {
                                         {{ shop.name }}
                                     </td>
                                     <td class="px-6 py-4 space-x-4">
-                                        <a href="#" class="font-medium text-error hover:underline">Desactiver</a>
+                                        <button class="font-medium text-error hover:underline"
+                                            @click="disabledShop(shop.id)">Desactiver</button>
                                         <a href="#" class="font-medium text-primary hover:underline">Voir les
                                             informations</a>
                                     </td>

@@ -17,8 +17,8 @@ class AccountController extends Controller
     {
 
         $propduct = Order::where("user_id", auth()->user()->id)
-            ->with(["product"])
-            ->paginate(2);
+            ->with(["product", "product.store"])
+            ->get();
 
         return Inertia::render("profile/account/account", ["products" => $propduct]);
     }

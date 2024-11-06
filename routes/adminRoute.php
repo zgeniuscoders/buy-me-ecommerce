@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\admin\UserController;
 use App\Http\Controllers\admin\admin\AdminController;
 use App\Http\Controllers\admin\admin\CategoryController;
 use App\Http\Controllers\admin\admin\CustomerController;
+use App\Http\Controllers\admin\admin\DisabledShopController;
 use App\Http\Controllers\admin\admin\ShopController;
 
 // admin 
@@ -14,6 +15,10 @@ Route::prefix("/admin")
 
         Route::get("/", AdminController::class)
             ->name("admin");
+
+
+        Route::post("/disable-shop", DisabledShopController::class)
+            ->name("admin.disabled.shop");
 
         Route::resource("/categories", CategoryController::class)
             ->names("admin.category")
