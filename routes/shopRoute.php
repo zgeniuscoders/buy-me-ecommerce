@@ -13,7 +13,7 @@ Route::middleware("dont_has_shop_middleware")->group(function () {
     Route::post("/ma-boutique", [StoreController::class, "store"])->name("admin.store.store");
 });
 
-Route::middleware("has_store_middleware")->group(function () {
+Route::middleware(["has_store_middleware", "has_shop_enabled"])->group(function () {
     Route::get('/ma-boutique', HomeController::class)->name("shop");
     // Route::resource("/ma-boutique/store", StoreController::class)
     //     ->except("create", "store")

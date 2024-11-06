@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\ShopDisabledController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SearchController;
@@ -27,6 +28,8 @@ Route::middleware("auth")->group(function () {
     Route::get('/user', function () {
         return request()->user();
     });
+
+    Route::get("/disabled", ShopDisabledController::class)->name("disabled");
 
     Route::middleware("can:user-cards.*")->group(function () {
 

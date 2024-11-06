@@ -41,4 +41,17 @@ class Store extends Model
     {
         return $this->morphToMany(Rate::class, "rateble");
     }
+
+
+    // public function getisDisabledAttribute($value){
+    //     if($value){
+    //         return "Desactiver";
+    //     }else{
+    //         return "Activer";
+    //     }
+    // }
+
+    // public function getCreatedAtAttribute($value){
+    //     return $value->format("YY");
+    // }
 }

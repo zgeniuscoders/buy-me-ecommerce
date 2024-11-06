@@ -17,7 +17,7 @@ class AdminController extends Controller
     {
 
         $userCounts = User::all()->count();
-        $shops = Store::paginate(10);
+        $shops = Store::get();
 
         return Inertia::render("admin/admin/admin",[
             "userCounts" => $userCounts,

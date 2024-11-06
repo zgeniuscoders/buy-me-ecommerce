@@ -14,7 +14,7 @@ class ShopController extends Controller
      */
     public function __invoke()
     {
-        $shops = Store::paginate(10);
+        $shops = Store::get();
         return Inertia::render("admin/admin/shop/shop", [
             "shops" => $shops
         ]);

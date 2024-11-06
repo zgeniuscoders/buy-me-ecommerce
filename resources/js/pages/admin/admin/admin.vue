@@ -45,14 +45,15 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
+import { Shop } from '@/models/Shop';
 
 
 const userCount = ref(0)
-const shops = ref()
+const data = ref()
 
 const props = usePage().props
 
-shops.value = props.shops
+data.value = props.shops
 const router = useForm({
     shopId: null
 });
@@ -69,6 +70,100 @@ const disabledShop = (id: number) => {
         }
     })
 }
+
+const columnHelper = createColumnHelper<Shop>()
+
+const columns = [
+    columnHelper.display({
+        id: 'select',
+        header: ({ table }) => h(Checkbox, {
+            'checked': table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate'),
+            'onUpdate:checked': value => table.toggleAllPageRowsSelected(!!value),
+            'ariaLabel': 'Select all',
+        }),
+        cell: ({ row }) => {
+            return h(Checkbox, {
+                'checked': row.getIsSelected(),
+                'onUpdate:checked': value => row.toggleSelected(!!value),
+                'ariaLabel': 'Select row',
+            })
+        },
+        enableSorting: false,
+        enableHiding: false,
+    }),
+    columnHelper.accessor('name', {
+        header: ({ column }) => {
+            return h(Button, {
+                variant: 'ghost',
+                onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+            }, () => ['Nom de la boutique', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
+        },
+        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('name')),
+    }),
+    columnHelper.accessor('is_disabled', {
+        header: ({ column }) => {
+            return h(Button, {
+                variant: 'ghost',
+                onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+            }, () => ['Status de la boutique', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
+        },
+        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('is_disabled')),
+    }),
+    columnHelper.accessor('created_at', {
+        header: ({ column }) => {
+            return h(Button, {
+                variant: 'ghost',
+                onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+            }, () => ['Date création', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
+        },
+        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('created_at')),
+    }),
+    // columnHelper.display({
+    //     id: 'actions',
+    //     enableHiding: false,
+    //     cell: ({ row }) => {
+    //         const payment = row.original
+
+    //         return h('div', { class: 'relative' }, h(DropdownAction, {
+    //             payment,
+    //             onExpand: row.toggleExpanded,
+    //         }))
+    //     },
+    // }),
+]
+
+
+const sorting = ref<SortingState>([])
+const columnFilters = ref<ColumnFiltersState>([])
+const columnVisibility = ref<VisibilityState>({})
+const rowSelection = ref({})
+const expanded = ref<ExpandedState>({})
+
+
+const table = useVueTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
+    onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
+    onColumnFiltersChange: updaterOrValue => valueUpdater(updaterOrValue, columnFilters),
+    onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
+    onRowSelectionChange: updaterOrValue => valueUpdater(updaterOrValue, rowSelection),
+    onExpandedChange: updaterOrValue => valueUpdater(updaterOrValue, expanded),
+    state: {
+        get sorting() { return sorting.value },
+        get columnFilters() { return columnFilters.value },
+        get columnVisibility() { return columnVisibility.value },
+        get rowSelection() { return rowSelection.value },
+        get expanded() { return expanded.value },
+        columnPinning: {
+            left: ['id'],
+        },
+    },
+})
 
 
 onMounted(() => {
@@ -96,60 +191,8 @@ onMounted(() => {
             <section class="">
 
                 <h3 class="text-2xl mb-4 mt-2 font-medium">Nos boutiques</h3>
-                <div>
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                            <tr>
-                                <th scope="col" class="p-4">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-all-search" type="checkbox"
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                                    </div>
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    ID
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Boutique
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Action
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                            <template v-for="shop in shops.data" :key="shop.id">
-                                <tr class="bg-white border-b hover:bg-gray-50">
-                                    <td class="w-4 p-4">
-                                        <div class="flex items-center">
-                                            <input id="checkbox-table-search-3" type="checkbox"
-                                                class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
-                                            <label for="checkbox-table-search-3" class="sr-only">checkbox</label>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        #{{ shop.id }}
-                                    </td>
-
-                                    <td class="px-6 py-4">
-                                        {{ shop.name }}
-                                    </td>
-                                    <td class="px-6 py-4 space-x-4">
-                                        <button class="font-medium text-error hover:underline"
-                                            @click="disabledShop(shop.id)">Desactiver</button>
-                                        <a href="#" class="font-medium text-primary hover:underline">Voir les
-                                            informations</a>
-                                    </td>
-                                </tr>
-                            </template>
-
-                        </tbody>
-                    </table>
-
-                    <pagination :next-page-uri="shops.next_page_url" :previous-page-url="shops.prev_page_url" />
-                </div>
+                <data-table :table="table" />
 
             </section>
         </div>
