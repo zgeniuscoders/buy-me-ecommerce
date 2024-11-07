@@ -12,7 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens,HasRoles;
+    use HasFactory, Notifiable, HasApiTokens, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -71,5 +71,10 @@ class User extends Authenticatable
     public function userPostLike()
     {
         return $this->belongsToMany(Product::class, "post_likes");
+    }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class);
     }
 }
