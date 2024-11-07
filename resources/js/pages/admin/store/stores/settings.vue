@@ -14,7 +14,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { useForm, usePage } from '@inertiajs/vue3';
+import { router, useForm, usePage } from '@inertiajs/vue3';
 import { onMounted, ref } from 'vue';
 import { Shop } from '@/models/Shop';
 import { createToaster } from "@meforma/vue-toaster";
@@ -25,16 +25,19 @@ const props = usePage().props
 const state = ref<{
     shop: Shop,
     changeShopNameRoute: string,
-    changeShopImageRoute: string
+    changeShopImageRoute: string,
+    deleteShopRoute: string
 }>({
     shop: {},
     changeShopNameRoute: "",
-    changeShopImageRoute: ""
+    changeShopImageRoute: "",
+    deleteShopRoute: ""
 })
 
 state.value.shop = props.shop
 state.value.changeShopNameRoute = props.changeShopNameRoute
 state.value.changeShopImageRoute = props.changeShopImageRoute
+state.value.deleteShopRoute = props.deleteShopRoute
 
 const shopProfileForm = useForm({
     name: "",
@@ -44,6 +47,23 @@ const shopProfileForm = useForm({
 const shopCoverPhoto = useForm({
     image: null
 })
+
+const deleteShop = () => {
+    const res: boolean = confirm("voulez vraiment suprimmer votre boutique")
+
+    if (res) {
+        router.delete(state.value.deleteShopRoute, {
+            onError: (e) => {
+                toaster.error("Une erreur inatnedu se survenu lors de la supression de votre boutique")
+            },
+            onSuccess: () => {
+                router.get("/")
+            }
+        })
+    }
+
+
+}
 
 const updateShopInfo = () => {
     shopProfileForm.post(state.value.changeShopNameRoute, {
@@ -155,6 +175,25 @@ onMounted(() => {
                         </Button>
                     </form>
                 </CardContent>
+
+            </card>
+
+            <card>
+                <CardHeader>
+                    <CardTitle>Delete account</CardTitle>
+                    <CardDescription>
+                        Once your account is deleted , all of its resources and data will be permenantly
+                        deleted,
+                        Before deleting your account , please download any data or information that you wish to retain
+                    </CardDescription>
+                </CardHeader>
+
+                <CardFooter>
+                    <Button type="submit" @click.prevent="deleteShop"
+                        class="bg-red-500 text-white p-2 rounded-md hover:bg-error transition-all">
+                        Supprimer mon compte
+                    </Button>
+                </CardFooter>
 
             </card>
         </section>

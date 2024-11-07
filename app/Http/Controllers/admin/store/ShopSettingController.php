@@ -18,7 +18,8 @@ class ShopSettingController extends Controller
         return Inertia::render("admin/store/stores/settings", [
             "shop" => $shop,
             "changeShopNameRoute" => route("shop.update.name"),
-            "changeShopImageRoute" => route("shop.update.image")
+            "changeShopImageRoute" => route("shop.update.image"),
+            "deleteShopRoute" => route("shop.delete")
         ]);
     }
 }

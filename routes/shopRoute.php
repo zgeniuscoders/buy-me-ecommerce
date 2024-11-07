@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\store\ChangeShopInfoController;
+use App\Http\Controllers\admin\store\DeleteShopController;
 use App\Http\Controllers\admin\store\StoreController;
 use App\Http\Controllers\admin\store\orders\OrderController;
 use App\Http\Controllers\admin\store\products\ProductController;
@@ -24,6 +25,8 @@ Route::middleware(["has_store_middleware", "has_shop_enabled"])
             ->name("shop.update.name");
         Route::post("/changer-image-de-ma-boutique", UpdateShopImageController::class)
             ->name("shop.update.image");
+        Route::delete("/supprimer-ma-boutique", DeleteShopController::class)
+            ->name("shop.delete");
 
         Route::get('/', HomeController::class)->name("shop");
         // Route::resource("/ma-boutique/store", StoreController::class)
