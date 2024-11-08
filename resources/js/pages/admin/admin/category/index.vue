@@ -3,34 +3,88 @@
 import adminLayout from '../../layouts/adminLayout.vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { createToaster } from "@meforma/vue-toaster";
-import pagination from '@/components/pagination.vue';
-import { onMounted, ref } from 'vue';
+import { shallowRef, h } from 'vue';
+import { Category } from '@/models/ProductType';
 
-const props = usePage().props
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import dataTable from '@/components/data-table.vue'
+import { createColumnHelper } from '@tanstack/vue-table'
+import { ArrowUpDown } from 'lucide-vue-next'
+import DropdownAction from './components/categoryDropdownAction.vue';
+
+const { categories } = usePage().props
 const toaster = createToaster();
 
-const categories = ref()
+const data = shallowRef<Category[]>([])
+data.value = categories
 
-categories.value = props.categories
+const columnHelper = createColumnHelper<Category>()
 
+const columns = [
+    columnHelper.display({
+        id: 'select',
+        header: ({ table }) => h(Checkbox, {
+            'checked': table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate'),
+            'onUpdate:checked': value => table.toggleAllPageRowsSelected(!!value),
+            'ariaLabel': 'Select all',
+        }),
+        cell: ({ row }) => {
+            return h(Checkbox, {
+                'checked': row.getIsSelected(),
+                'onUpdate:checked': value => row.toggleSelected(!!value),
+                'ariaLabel': 'Select row',
+            })
+        },
+        enableSorting: false,
+        enableHiding: false,
+    }),
+    columnHelper.accessor('name', {
+        header: ({ column }) => {
+            return h(Button, {
+                variant: 'ghost',
+                onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+            }, () => ['Name', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
+        },
+        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('name')),
+    }),
+    columnHelper.accessor('slug', {
+        header: ({ column }) => {
+            return h(Button, {
+                variant: 'ghost',
+                onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+            }, () => ['Slug', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
+        },
+        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('slug')),
+    }),
+    columnHelper.accessor('category', {
+        header: ({ column }) => {
+            return h(Button, {
+                variant: 'ghost',
+                onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+            }, () => ['Category', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
+        },
+        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('category')?.name ? row.getValue('category')?.name : "pas definie"),
+    }),
+    columnHelper.accessor('status', {
+        enablePinning: true,
+        header: 'Status',
+        cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('status')),
+    }),
+    columnHelper.display({
+        id: 'actions',
+        enableHiding: false,
+        cell: ({ row }) => {
+            const category = row.original
 
-onMounted(() => {
-    categories.value = props.categories
-})
+            return h('div', { class: 'relative' }, h(DropdownAction, {
+                category,
+                onExpand: row.toggleExpanded,
+            }))
+        },
+    }),
+]
 
-const deleteCategory = (id: number) => {
-    let isDeleted = confirm("voulez-vous vraiment supprimer cette category ?")
-    if (isDeleted) {
-        useForm({}).delete("/admin/categories/" + id, {
-            onError: (e) => {
-                toaster.error("une erreur se produite lors de la suppression de la category")
-            },
-            onSuccess: () => {
-                toaster.success("la supression a ete effectuer avec success")
-            }
-        })
-    }
-}
 
 </script>
 
@@ -47,73 +101,7 @@ const deleteCategory = (id: number) => {
                 Ajouter une categorie</Link>
             </div>
 
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                    <tr>
-                        <!-- <th scope="col" class="p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-all-search" type="checkbox"
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2">
-                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                    </div>
-                </th> -->
-                        <th scope="col" class="px-6 py-3">
-                            Category
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Status
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Categorie parent
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Slug
-                        </th>
-
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <template v-for="category in categories.data" :key="category.id">
-
-                        <tr class="bg-white border-b hover:bg-gray-50">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {{ category.name }}
-                            </th>
-                            <td class="px-6 py-4">
-                                {{ category.status }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ category.category?.name ? category.category?.name : "non definie" }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ category.slug }}
-                            </td>
-                            <td class="px-6 py-4 md:flex md:items-center md:gap-4">
-
-                                <form action="" method="post">
-                                    <button type="button" @click.prevent="deleteCategory(category.id)"
-                                        class="font-medium text-error dark:text-error hover:underline">
-                                        Supprimer
-                                    </button>
-                                </form>
-
-                                <Link :href="`/admin/categories/${category.id}/edit`" class="text-primary">
-                                <span>Modifier</span>
-                                </Link>
-                            </td>
-                        </tr>
-
-                    </template>
-
-                </tbody>
-            </table>
-
-
-            <pagination :next-page-uri="categories.next_page_url" :previous-page-url="categories.prev_page_url" />
+            <data-table :data="data" :columns="columns" />
 
         </section>
 

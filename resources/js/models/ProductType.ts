@@ -1,4 +1,5 @@
 export type ProductType = {
+import { Category } from './ProductType';
     id: number
     name: string
     price: number
@@ -20,7 +21,10 @@ export interface ProductInterface{
 };
 
 
-export type Category = {
+export interface Category{
     id: number,
-    name: string
+    name: string,
+    status: string
+    slug: string,
+    category: Category
 }

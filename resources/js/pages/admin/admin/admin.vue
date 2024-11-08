@@ -91,8 +91,8 @@ const columns = [
 
 <template>
     <admin-layout>
-        <div class="space-y-4 container mx-auto px-4">
-            <section class="pt-4">
+        <div class="space-y-4">
+            <section class="p-4">
 
                 <h3 class="text-2xl mb-4 mt-2 font-medium">Overview stats</h3>
                 <div class="grid lg:grid-cols-3 lg:gap-6">
@@ -105,7 +105,7 @@ const columns = [
 
             <section class="">
 
-                <h3 class="text-2xl mb-4 mt-2 font-medium">Nos boutiques</h3>
+                <h3 class="text-2xl font-medium px-4">Nos boutiques</h3>
 
                 <data-table :data="data" :columns="columns" />
 

@@ -1,20 +1,39 @@
 <script setup lang="ts">
 
 import adminLayout from '../../layouts/adminLayout.vue';
-import card from '@/components/card.vue';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
 import inputComponent from '@/components/input-component.vue';
-import selectComponent from '@/components/select-component.vue';
 import { useForm, usePage } from '@inertiajs/vue3';
 import { onMounted } from 'vue';
 import { createToaster } from "@meforma/vue-toaster";
+import Input from '@/components/ui/input/Input.vue';
+import Label from '@/components/ui/label/Label.vue';
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 const toaster = createToaster();
 
+const { category, categories, status } = usePage().props
+
+
 const categoryForm = useForm({
-    id: Number,
     category_id: null,
-    status: String,
-    name: String,
+    status: "",
+    name: "",
     image: null
 })
 
@@ -23,10 +42,6 @@ function readFileData(file) {
 }
 
 onMounted(() => {
-    const props = usePage().props
-    const category = props.category
-    const status = props.status
-
     categoryForm.name = category.name
     categoryForm.category_id = category.category_id
     categoryForm.status = status
@@ -34,7 +49,7 @@ onMounted(() => {
 })
 
 const updateCategory = (id: Number) => {
-    categoryForm.put("/admin/categories/" + id,{
+    categoryForm.put("/admin/categories/" + id, {
         onError: (e) => {
             toaster.error("Une erreur se produite lors de la mise a jour du category " + categoryForm.name)
         },
@@ -42,31 +57,71 @@ const updateCategory = (id: Number) => {
             toaster.success(`La category ${categoryForm.name} est ete mis ajour avec success`)
         }
     })
-} 
+}
 
 </script>
 
 <template>
 
     <admin-layout>
-        <section class="p-2">
-            <h1 class="text-xl p-4">Modification de la category <strong>{{ $page.props.category.name }}</strong></h1>
+        <section class="space-y-2 p-2 mt-4">
+            <Card>
+                <CardHeader>
+                    <CardTitle>Modification de la category <strong>{{ category.name }}</strong></CardTitle>
+                </CardHeader>
+            </Card>
             <form action="" method="post" class="space-y-4">
 
                 <card>
 
-                    <inputComponent placeholder="Category" name="name" title="Nom de category"
-                        v-model="categoryForm.name" :error="categoryForm.errors.name"/>
+                    <CardHeader>
+                        <CardTitle>Information generale de la category</CardTitle>
+                    </CardHeader>
+                    <CardContent class="space-y-2">
+                        <div class="space-y-2">
+                            <Label for="name">Nom de la category</Label>
+                            <Input placeholder="Nom de la category" v-model="categoryForm.name" id="name" />
+                            <span v-if="categoryForm.errors.name" class="text-red-400 text-sm">{{
+                                categoryForm.errors.name
+                                }}</span>
+                        </div>
 
-                    <inputComponent placeholder="Category" name="category_id" title="category id" inputType="hidden"
-                        v-model="$page.props.category.id" />
+                        <div class="space-y-2">
+                            <Label for="categories">Categories</Label>
+                            <Select v-model="categoryForm.category_id" id="categories">
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Selectioner une categorie" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <template v-for="c in categories" :key="c.id">
+                                        <SelectItem :value="c.id">{{ c.name }}</SelectItem>
+                                    </template>
+                                </SelectContent>
+                            </Select>
+                            <span v-if="categoryForm.errors.category_id" class="text-red-400 text-sm">{{
+                                categoryForm.errors.category_id }}</span>
 
-                    <select-component id="category_id" name="category_id" title="Sous category"
-                        :options="$page.props.categories" v-model="categoryForm.category_id"
-                        :error="categoryForm.errors.category_id"/>
+                        </div>
 
-                    <select-component id="status" name="status" title="Status" :options="$page.props.status"
-                        v-model="categoryForm.status" :error="categoryForm.errors.status"  />
+                        <div class="space-y-2">
+                            <Label for="status">Status</Label>
+
+                            <Select v-model="categoryForm.status" id="status">
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Selectioner le status de votre categorie" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <template v-for="s in status" :key="s.id">
+                                        <SelectItem :value="s.name">{{ s.name }}</SelectItem>
+                                    </template>
+                                </SelectContent>
+                            </Select>
+                            <span v-if="categoryForm.errors.status" class="text-red-400 text-sm">{{
+                                categoryForm.errors.status }}</span>
+
+                        </div>
+
+                    </CardContent>
 
                 </card>
 
@@ -76,7 +131,7 @@ const updateCategory = (id: Number) => {
                         <div class="my-2">
                             <img :src="readFileData(categoryForm.image)"
                                 class="h-[100px] w-[150px] object-cover rounded-md"
-                                :alt="`image de la category ${$page.props.category.name}`">
+                                :alt="`image de la category ${category.name}`">
                         </div>
                     </template>
 
@@ -99,12 +154,15 @@ const updateCategory = (id: Number) => {
                 </card>
 
                 <card>
-                    <div class="flex items-end justify-end">
-                        <button type="submit" @click.prevent="updateCategory($page.props.category.id)"
-                            class="bg-primary text-white p-2 rounded-md hover:bg-primary-dark transition-all">
-                            Modifier la category
-                        </button>
-                    </div>
+                    <CardHeader></CardHeader>
+                    <CardFooter>
+                        <div class="flex items-end justify-end">
+                            <button type="submit" @click.prevent="updateCategory(category.id)"
+                                class="bg-primary text-white p-2 rounded-md hover:bg-primary-dark transition-all">
+                                Modifier la category
+                            </button>
+                        </div>
+                    </CardFooter>
                 </card>
             </form>
 
