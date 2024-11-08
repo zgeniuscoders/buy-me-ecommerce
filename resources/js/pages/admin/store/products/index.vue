@@ -5,12 +5,12 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import dataTable from '@/components/data-table.vue'
 import { createColumnHelper } from '@tanstack/vue-table'
-import { ArrowUpDown, ChevronDown } from 'lucide-vue-next'
+import { ArrowUpDown } from 'lucide-vue-next'
 import { h, shallowRef } from 'vue'
-// import DropdownAction from './DataTableDemoColumn.vue'
+import DropdownAction from './components/productDropdownAction.vue'
 
 import Layout from "../../layouts/layout.vue";
-import { usePage } from "@inertiajs/vue3";
+import { usePage,Link } from "@inertiajs/vue3";
 import { ProductInterface } from '@/models/ProductType'
 
 const props = usePage().props
@@ -83,18 +83,18 @@ const columns = [
         header: 'Status',
         cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('status')),
     }),
-    // columnHelper.display({
-    //     id: 'actions',
-    //     enableHiding: false,
-    //     cell: ({ row }) => {
-    //         const payment = row.original
+    columnHelper.display({
+        id: 'actions',
+        enableHiding: false,
+        cell: ({ row }) => {
+            const product = row.original
 
-    //         return h('div', { class: 'relative' }, h(DropdownAction, {
-    //             payment,
-    //             onExpand: row.toggleExpanded,
-    //         }))
-    //     },
-    // }),
+            return h('div', { class: 'relative' }, h(DropdownAction, {
+                product,
+                onExpand: row.toggleExpanded,
+            }))
+        },
+    }),
 ]
 
 
@@ -103,12 +103,20 @@ const columns = [
 <template>
     <Layout>
 
-        <section class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
+        <section class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
-            <h3 class="text-2xl mb-4 mt-2 font-medium">Mes articles</h3>
+            <div class="flex items-center justify-between px-4">
+                <h3 class="text-2xl font-medium">Mes articles</h3>
 
 
-            <data-table :data="data" :columns="columns"/>
+                <Link href="/ma-boutique/articles/create"
+                    class="bg-gray-800 py-2 px-4 rounded-md text-white mt-4 hover:bg-gray-900">
+                Ajoutez un produit
+                </Link>
+
+            </div>
+
+            <data-table :data="data" :columns="columns" />
 
         </section>
 
