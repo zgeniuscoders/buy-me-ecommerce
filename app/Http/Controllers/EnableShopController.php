@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin\admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Store;
 use Illuminate\Http\Request;
 
-class DisabledShopController extends Controller
+class EnableShopController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -17,9 +16,8 @@ class DisabledShopController extends Controller
 
         $store = Store::findOrFail($storeId);
         $store->update([
-            "is_disabled" => true
+            "is_disabled" => false
         ]);
-
 
     }
 }

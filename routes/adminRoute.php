@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\admin\CategoryController;
 use App\Http\Controllers\admin\admin\CustomerController;
 use App\Http\Controllers\admin\admin\DisabledShopController;
 use App\Http\Controllers\admin\admin\ShopController;
+use App\Http\Controllers\EnableShopController;
 
 // admin 
 Route::prefix("/admin")
@@ -18,6 +19,8 @@ Route::prefix("/admin")
 
 
         Route::post("/disable-shop", DisabledShopController::class)
+            ->name("admin.disabled.shop");
+        Route::post("/enable-shop", EnableShopController::class)
             ->name("admin.disabled.shop");
 
         Route::resource("/categories", CategoryController::class)

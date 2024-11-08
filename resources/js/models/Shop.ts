@@ -11,6 +11,7 @@ import { User } from "./User"
 // }
 
 export interface Shop {
+    id: number,
     name: string,
     slug: string,
     image: string,
@@ -18,5 +19,5 @@ export interface Shop {
     description: string,
     social_networks: string,
     user: User
-    is_diablabed: string
+    is_disabled: boolean
 }

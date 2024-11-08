@@ -20,7 +20,8 @@ const { hasDefineAddress, updateAddressRoute, address, user, addAddressRoute } =
         <section class="py-2 space-y-4 m-2">
 
             <section>
-                <addressComponent v-if="hasDefineAddress" :updateAddresseRoute="updateAddressRoute" :address="address"/>
+                <addressComponent v-if="hasDefineAddress" :updateAddresseRoute="updateAddressRoute"
+                    :address="address" />
                 <div class="bg-white rounded-md shadow-md p-4" v-else>
                     <div class="rounded-md bg-blue-100 p-4">
                         <h3 class="text-xl font-bold">Adresse</h3>
