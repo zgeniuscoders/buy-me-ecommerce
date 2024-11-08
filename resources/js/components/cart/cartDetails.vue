@@ -43,7 +43,7 @@ const props = defineProps({
 
             <!-- <div class="flex items-center justify-center gap-2">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> or </span>
-                <a href="/products" title=""
+                <a href="/Products" title=""
                     class="inline-flex items-center gap-2 text-sm font-medium text-primary underline hover:no-underline">
                     Continue Shopping
                     <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"

@@ -19,6 +19,6 @@ class RedirectIfHasShopMiddleware
             return $next($request);
         }
 
-        return redirect()->route("shop");
+        return redirect()->route("Shop");
     }
 }

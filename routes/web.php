@@ -1,19 +1,19 @@
 <?php
 
-use App\Http\Controllers\admin\ShopDisabledController;
+use App\Ecommerce\Checkout\Framework\Controllers\CheckoutController;
+use App\Ecommerce\Products\Framework\Controllers\cart\CartController;
+use App\Ecommerce\Products\Framework\Controllers\products\FavoriteController;
+use App\Ecommerce\Products\Framework\Controllers\products\FilterProductController;
+use App\Ecommerce\Search\Framework\Controllers\SearchController;
+use App\Ecommerce\Shop\Framework\Controllers\ShopDisabledController;
+use App\Ecommerce\Shop\Framework\Controllers\StoreController as ControllersStoreController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\FavoriteController;
-use App\Http\Controllers\FilterProductController;
-use App\Http\Controllers\StoreController as ControllersStoreController;
 
-Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
+Route::get('/', \App\Core\Framework\Controllers\HomeController::class)->name('home');
 Route::get('/search', SearchController::class)->name("search");
 
-Route::get('/articles/{products}', [\App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
-Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
+Route::get('/articles/{Products}', [\App\Ecommerce\Products\Framework\Controllers\products\ProductController::class, 'show'])->name('Products.show');
+Route::get('/Products', [\App\Ecommerce\Products\Framework\Controllers\products\ProductController::class, 'index'])->name('Products.index');
 
 Route::get('/articles-filtre', FilterProductController::class)->name("filter");
 

@@ -79,7 +79,7 @@
                             </li>
 
                             <li>
-                                <a href="{{ route('shop.index') }}"
+                                <a href="{{ route('Shop.index') }}"
                                     class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Nos
                                     boutiques</a>
                             </li>
@@ -134,7 +134,7 @@
                         </li>
 
                         <li>
-                            <a href="{{ route('shop.index') }}"
+                            <a href="{{ route('Shop.index') }}"
                                 class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Plan et
                                 abonnements</a>
                         </li>

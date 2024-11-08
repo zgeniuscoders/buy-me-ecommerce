@@ -19,7 +19,7 @@ class PostResource extends JsonResource
             "content" => $this->content,
             "image" => $this->image,
             "color" => $this->color,
-            "shop" => new ShopResource($this->whenLoaded("store")),
+            "Shop" => new ShopResource($this->whenLoaded("store")),
             "comments" => CommentResource::collection($this->whenLoaded("comments")),
             "likes" => $this->likes_count,
             "comments_count" => $this->comments_count,

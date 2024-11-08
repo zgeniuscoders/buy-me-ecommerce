@@ -135,7 +135,7 @@ onMounted(() => {
                     </div>
 
                     <div class="space-y-2">
-                        <!--                        status & category-->
+                        <!--                        status & Category-->
                         <card>
 
                             <CardHeader>

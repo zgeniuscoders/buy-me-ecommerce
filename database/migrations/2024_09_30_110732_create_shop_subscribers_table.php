@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Store;
-use App\Models\User;
+use App\Core\Domain\Models\User;
+use App\Ecommerce\Shop\Domain\Models\Store;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

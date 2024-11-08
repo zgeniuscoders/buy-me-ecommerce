@@ -1,15 +1,15 @@
 <?php
 
+use App\Admin\Framework\Controllers\AdminController;
+use App\Admin\Framework\Controllers\Category\CategoryController;
+use App\Admin\Framework\Controllers\Customer\CustomerController;
+use App\Admin\Framework\Controllers\shop\DisabledShopController;
+use App\Admin\Framework\Controllers\shop\EnableShopController;
+use App\Admin\Framework\Controllers\shop\ShopController;
+use App\Admin\Framework\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\admin\UserController;
-use App\Http\Controllers\admin\admin\AdminController;
-use App\Http\Controllers\admin\admin\CategoryController;
-use App\Http\Controllers\admin\admin\CustomerController;
-use App\Http\Controllers\admin\admin\DisabledShopController;
-use App\Http\Controllers\admin\admin\ShopController;
-use App\Http\Controllers\EnableShopController;
 
-// admin 
+// admin
 Route::prefix("/admin")
     ->middleware("can:admin-cards.*")
     ->group(function () {
@@ -18,18 +18,18 @@ Route::prefix("/admin")
             ->name("admin");
 
 
-        Route::post("/disable-shop", DisabledShopController::class)
-            ->name("admin.disabled.shop");
-        Route::post("/enable-shop", EnableShopController::class)
-            ->name("admin.disabled.shop");
+        Route::post("/disable-Shop", DisabledShopController::class)
+            ->name("admin.disabled.Shop");
+        Route::post("/enable-Shop", EnableShopController::class)
+            ->name("admin.disabled.Shop");
 
         Route::resource("/categories", CategoryController::class)
-            ->names("admin.category")
+            ->names("admin.Category")
             ->except(["show"]);
 
 
         Route::get("/boutiques", ShopController::class)
-            ->name("admin.shop");
+            ->name("admin.Shop");
 
 
         Route::get("/clients", CustomerController::class)

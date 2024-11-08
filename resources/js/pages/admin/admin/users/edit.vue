@@ -42,7 +42,7 @@ const editUser = () => {
                 <card>
 
                     <div class="grid md:grid-cols-2 gap-4">
-                        <!-- <select-component id="category_id" name="category_id" title="Sous category"
+                        <!-- <select-component id="category_id" name="category_id" title="Sous Category"
                             :options="$page.props.categories" v-model="categoryForm.category_id"
                             :error="categoryForm.errors.category_id" :idKey="true" /> -->
 

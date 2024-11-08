@@ -51,7 +51,7 @@ onMounted(() => {
 const updateCategory = (id: Number) => {
     categoryForm.put("/admin/categories/" + id, {
         onError: (e) => {
-            toaster.error("Une erreur se produite lors de la mise a jour du category " + categoryForm.name)
+            toaster.error("Une erreur se produite lors de la mise a jour du Category " + categoryForm.name)
         },
         onSuccess: () => {
             toaster.success(`La category ${categoryForm.name} est ete mis ajour avec success`)

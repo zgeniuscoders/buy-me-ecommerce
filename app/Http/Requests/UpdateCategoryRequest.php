@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\enums\CategoryStatusEnum;
+use App\Ecommerce\Category\Domain\Enums\CategoryStatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCategoryRequest extends FormRequest

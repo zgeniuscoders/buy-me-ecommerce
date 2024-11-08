@@ -20,11 +20,11 @@ defineEmits<{
 }>()
 
 const deleteCategory = (id: number) => {
-    let isDeleted = confirm("voulez-vous vraiment supprimer cette category ?")
+    let isDeleted = confirm("voulez-vous vraiment supprimer cette Category ?")
     if (isDeleted) {
         useForm({}).delete("/admin/categories/" + id, {
             onError: (e) => {
-                toaster.error("une erreur se produite lors de la suppression de la category")
+                toaster.error("une erreur se produite lors de la suppression de la Category")
             },
             onSuccess: () => {
                 toaster.success("la supression a ete effectuer avec success")

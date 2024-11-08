@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Post;
-use App\Models\User;
+use App\Core\Domain\Models\User;
+use App\Post\Domain\Models\Post;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

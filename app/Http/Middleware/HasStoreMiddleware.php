@@ -21,6 +21,6 @@ class HasStoreMiddleware
         }
 
         return  redirect()->route("home")
-            ->with("shop", "vous n'avez pas le droit d'acceder a cette page car vous n'avez pas de boutique");
+            ->with("Shop", "vous n'avez pas le droit d'acceder a cette page car vous n'avez pas de boutique");
     }
 }

@@ -1,21 +1,21 @@
 <?php
 
+use App\Authentication\Framework\Controllers\api\AuthenticationController;
+use App\Ecommerce\Category\Framework\Controllers\api\CategoryApiController;
+use App\Ecommerce\Checkout\Framework\Controllers\api\ProceedToCheckoutController;
+use App\Ecommerce\Products\Framework\Controllers\api\order\OrderProductController;
+use App\Ecommerce\Products\Framework\Controllers\api\order\OrderUserController;
+use App\Ecommerce\Products\Framework\Controllers\api\order\TotalOrderCountController;
+use App\Ecommerce\Products\Framework\Controllers\api\products\ApiProductController;
+use App\Ecommerce\Products\Framework\Controllers\api\products\ProductFavoriteController;
+use App\Ecommerce\Products\Framework\Controllers\api\products\TotalProductCount;
+use App\Ecommerce\Shop\Framework\Controllers\api\ShopController;
+use App\Ecommerce\Shop\Framework\Controllers\api\SubscribeToShopController;
+use App\Post\Framework\Controllers\api\CommentController;
+use App\Post\Framework\Controllers\api\PostController;
+use App\Post\Framework\Controllers\api\PostLikeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\api\ShopController;
-use App\Http\Controllers\api\post\PostController;
-use App\Http\Controllers\api\CategoryApiController;
-use App\Http\Controllers\SubscribeToShopController;
-use App\Http\Controllers\api\post\CommentController;
-use App\Http\Controllers\api\post\PostLikeController;
-use App\Http\Controllers\api\AuthenticationController;
-use App\Http\Controllers\api\order\OrderUserController;
-use App\Http\Controllers\api\product\TotalProductCount;
-use App\Http\Controllers\api\ProceedToCheckoutController;
-use App\Http\Controllers\api\order\OrderProductController;
-use App\Http\Controllers\api\product\ApiProductController;
-use App\Http\Controllers\api\order\TotalOrderCountController;
-use App\Http\Controllers\api\product\ProductFavoriteController;
 
 
 Route::middleware("auth")->group(function () {
@@ -35,23 +35,23 @@ Route::prefix("v1")->group(function () {
     Route::middleware("auth:sanctum")->group(function () {
         Route::delete("/logout", [AuthenticationController::class, "logout"]);
 
-        // posts 
+        // posts
         Route::apiResource("posts", PostController::class);
         Route::post("post/like", PostLikeController::class);
         Route::post("post/comment", [CommentController::class, "store"]);
 
-        // shop 
-        Route::apiResource("shop", ShopController::class);
-        Route::post("shop/subscribe", SubscribeToShopController::class);
+        // Shop
+        Route::apiResource("Shop", ShopController::class);
+        Route::post("Shop/subscribe", SubscribeToShopController::class);
 
         // productd
-        Route::apiResource("products", ApiProductController::class);
+        Route::apiResource("Products", ApiProductController::class);
         Route::apiResource("categories", CategoryApiController::class)->except(["store", "destroy", "update", "edit"]);
         Route::apiResource("product/favorite", ProductFavoriteController::class)->except(["destroy", "update", "show"]);
         Route::get("count", TotalProductCount::class);
 
 
-        // orders 
+        // orders
         Route::get("user/orders", OrderUserController::class);
         Route::get("orders-count", TotalOrderCountController::class);
         Route::post("product/orders", OrderProductController::class);

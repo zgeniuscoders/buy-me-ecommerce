@@ -7,14 +7,14 @@
                 <span class="text-sm">-{{ $product->discount }}%</span>
             </div>
         @endif
-        <a href="{{ route('products.show', ['products' => $product->id]) }}" class="overflow-hidden rounded">
+        <a href="{{ route('Products.show', ['Products' => $product->id]) }}" class="overflow-hidden rounded">
             <img class="mx-auto h-44 w-44 dark:hidden object-contain" src="{{ $product->image }}"
                 alt="{{ $product->name }} image" />
             <img class="mx-auto hidden h-44 w-44 dark:block" src="{{ $product->image }}"
                 alt="{{ $product->name }} image" />
         </a>
         <div>
-            <a href="{{ route('products.show', ['products' => $product->id]) }}"
+            <a href="{{ route('Products.show', ['Products' => $product->id]) }}"
                 class="text-lg font-semibold leading-tight text-black dark:text-white hover:underline">{{ $product->name }}</a>
             <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">{{ $product->getExcerpt(50) }}</p>
         </div>

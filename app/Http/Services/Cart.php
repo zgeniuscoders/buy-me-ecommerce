@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-use App\Models\Product;
+use App\Ecommerce\Products\Domain\Models\Product;
 
 class Cart
 {

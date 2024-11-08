@@ -22,7 +22,7 @@ class ShopResource extends JsonResource
             "description" => $this->description,
             "subscribers" => $this->subscribers_count,
             "is_subscriber" => $this->subscribers()->where("user_id", $request->user()->id)->exists(),
-            "products" => ProductResource::collection($this->whenLoaded("products"))
+            "Products" => ProductResource::collection($this->whenLoaded("Products"))
         ];
     }
 }

@@ -1,4 +1,4 @@
-<form action="{{ route("products.index") }}" method="get" class="mr-4 hidden md:block w-[600px]">
+<form action="{{ route("Products.index") }}" method="get" class="mr-4 hidden md:block w-[600px]">
     <div class="border border-gray-200 rounded-md flex items-center py-2 px-4 min-w-[300px]">
         <input type="search" name="q" class="outline-none border-none bg-transparent w-full" placeholder="Rechercher un article" value="{{ old("q") }}">
         <button type="submit">

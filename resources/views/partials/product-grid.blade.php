@@ -1,4 +1,4 @@
-{{--            products listing --}}
+{{--            Products listing --}}
 <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
 
     @forelse ($products as $product)

@@ -23,7 +23,7 @@ class ProductResource extends JsonResource
             'discount' => $this->discount,
             'description' => $this->description,
             "is_favorite" => $this->favoriteProductUser()->where("user_id", $request->user()->id)->exists(),
-            'category' => new CategoryResource($this->whenLoaded("category")),
+            'Category' => new CategoryResource($this->whenLoaded("Category")),
             'store' => new ShopResource($this->whenLoaded("store"))
         ];
     }

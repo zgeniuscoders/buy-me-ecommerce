@@ -8,7 +8,7 @@
     <main class="container">
 
         @include('partials.banner')
-        
+
         {{--        categories --}}
         <section class="border-t mt-4">
             <div class="mt-8">
@@ -18,7 +18,7 @@
                 {{--                categories listing --}}
                 <div class="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-4 mt-8">
                     @foreach ($categories as $category)
-                        <a href="{{ route('products.index') }}?category={{ $category->name }}"
+                        <a href="{{ route('Products.index') }}?category={{ $category->name }}"
                             class="bg-white dark:bg-secondary-container-dark border dark:border-outline-dark h-[150px] rounded-md flex flex-col items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px"
                                 fill="#5f6368">
@@ -41,11 +41,11 @@
             @include('partials.product-grid')
 
             <div class="w-full text-center mt-6">
-                <x-button-component :link="route('products.index')" title="Voir plus" />
+                <x-button-component :link="route('Products.index')" title="Voir plus" />
             </div>
         </section>
 
-        {{--        recommanded products --}}
+        {{--        recommanded Products --}}
         <section class="border-t mt-4 mb-6">
             <div class="mt-8">
 
@@ -68,7 +68,7 @@
 
         </section>
 
-        {{--        explore products --}}
+        {{--        explore Products --}}
         <section class="mt-4 mb-8">
             <div class="mt-8">
 

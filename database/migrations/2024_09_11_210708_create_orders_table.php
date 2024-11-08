@@ -1,8 +1,8 @@
 <?php
 
-use App\enums\OrderStatusEnum;
-use App\Models\Product;
-use App\Models\User;
+use App\Core\Domain\Models\User;
+use App\Ecommerce\Products\Domain\Enums\OrderStatusEnum;
+use App\Ecommerce\Products\Domain\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

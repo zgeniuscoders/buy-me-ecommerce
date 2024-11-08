@@ -107,7 +107,7 @@
 
                     <div>
 
-                        <!--                        status & category-->
+                        <!--                        status & Category-->
                         <card>
 
                             <CardHeader>

@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Ecommerce\Shop\Framework\Controllers\sellers;
+
+
+use App\Core\Framework\Controllers\Controller;
+use App\Ecommerce\Shop\Domain\Models\Store;
+use App\Http\Requests\StoreRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Inertia\Inertia;
+
+class StoreController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): \Inertia\Response {}
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(): \Inertia\Response
+    {
+        return Inertia::render("admin/store/stores/create");
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreRequest $request)
+    {
+
+        $imagePath = "";
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('shops/images', 'public');
+        }
+
+        Store::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'image' => $imagePath,
+            'cover_image' => null,
+            'description' => $request->description,
+            'user_id' => auth()->id()
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}

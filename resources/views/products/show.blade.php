@@ -7,9 +7,9 @@
 @section('content')
     <main class="container">
 
-        
+
         <product-detail :product="{{ $product }}"/>
-        
+
         {{-- <section class="text-gray-700 body-font overflow-hidden bg-white">
             <div class="py-10">
                 <div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -17,7 +17,7 @@
                         src="{{ $product->image }}">
 
                     <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                        <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ $product->category->name }}</h2>
+                        <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ $product->Category->name }}</h2>
                         <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $product->name }}</h1>
                         <div class="flex mb-4">
                             <span class="flex items-center">
@@ -124,13 +124,13 @@
             </div>
         </section> --}}
 
-        {{--        explore products --}}
+        {{--        explore Products --}}
         <section class="mt-4 my-8">
             <div class="mt-8">
 
                 <x-section-title-component title="Related products" />
 
-                {{--            products listing --}}
+                {{--            Products listing --}}
                 <div class="grid lg:grid-cols-4 gap-4 mt-8">
 
                     @foreach ($products as $product)

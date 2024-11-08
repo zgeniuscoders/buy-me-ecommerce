@@ -1,14 +1,14 @@
 <?php
 
+use App\Profile\Framework\Controllers\AccountController;
+use App\Profile\Framework\Controllers\AddressController;
+use App\Profile\Framework\Controllers\ChangeEmailOrNameController;
+use App\Profile\Framework\Controllers\ChangePasswordController;
+use App\Profile\Framework\Controllers\FavoriteController as AccountFavoriteController;
+use App\Profile\Framework\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AddressController;
-use App\Http\Controllers\Account\AccountController;
-use App\Http\Controllers\Account\ProfileController;
-use App\Http\Controllers\Account\ChangePasswordController;
-use App\Http\Controllers\Account\ChangeEmailOrNameController;
-use App\Http\Controllers\Account\FavoriteController as AccountFavoriteController;
 
-// account 
+// account
 Route::prefix("/mon-compte")->group(function () {
     Route::get("/", AccountController::class)->name("account.index");
     Route::resource("/profile", ProfileController::class)

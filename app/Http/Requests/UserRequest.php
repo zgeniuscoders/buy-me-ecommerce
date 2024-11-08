@@ -2,8 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\enums\AccountStatusEnum;
-use App\Http\Controllers\Account\AccountController;
+use App\Profile\Domain\Enums\AccountStatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
