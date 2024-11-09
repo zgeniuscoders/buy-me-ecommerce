@@ -21,7 +21,7 @@ class FavoriteController extends Controller
             ->firstOrFail()
             ->favoriteProducts;
 
-        return Inertia::render("profile/favorite/favorite", ["Products" => $products]);
+        return Inertia::render("profile/favorite/favorite", ["products" => $products]);
     }
 
 

@@ -3,10 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Ecommerce\Products\Domain\Models\Order;
 use App\Ecommerce\Products\Domain\Models\Product;
 use App\Ecommerce\Shop\Domain\Models\Store;
 use App\Profile\Domain\Models\Address;
+use App\Profile\Domain\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;

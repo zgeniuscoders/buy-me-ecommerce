@@ -3,8 +3,8 @@
 namespace App\Ecommerce\Checkout\Framework\Controllers;
 
 use App\Core\Framework\Controllers\Controller;
-use App\Ecommerce\Products\Domain\Models\Order;
 use App\Ecommerce\Products\Domain\Models\Product;
+use App\Profile\Domain\Models\Order;
 use Exception;
 use Illuminate\Http\Request;
 

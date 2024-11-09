@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Ecommerce\Products\Domain\Models;
+namespace App\Profile\Domain\Models;
 
+use App\Ecommerce\Products\Domain\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,8 @@ class Order extends Model
     protected $fillable = [
         "product_id",
         "user_id",
-        "quantity"
+        "quantity",
+        "status"
     ];
 
     public function product(): BelongsTo

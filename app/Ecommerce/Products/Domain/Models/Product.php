@@ -5,6 +5,7 @@ namespace App\Ecommerce\Products\Domain\Models;
 use App\Core\Domain\Models\Category;
 use App\Ecommerce\Shop\Domain\Models\Store;
 use App\Models\User;
+use App\Profile\Domain\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

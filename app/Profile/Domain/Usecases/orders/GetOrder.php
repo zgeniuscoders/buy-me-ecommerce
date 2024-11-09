@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Ecommerce\Products\Domain\Usecases\orders;
+namespace App\Profile\Domain\Usecases\orders;
 
-use App\Ecommerce\Products\Domain\Models\Order;
-use App\Ecommerce\Products\Domain\Repository\OrderRepository;
+use App\Profile\Domain\Models\Order;
+use App\Profile\Domain\Repository\OrderRepository;
 
-class GetOrder
+readonly class GetOrder
 {
 
     public function __construct(private OrderRepository $repository)

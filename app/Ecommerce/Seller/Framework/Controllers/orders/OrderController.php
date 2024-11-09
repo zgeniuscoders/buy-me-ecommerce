@@ -3,7 +3,7 @@
 namespace App\Ecommerce\Seller\Framework\Controllers\orders;
 
 use App\Core\Framework\Controllers\Controller;
-use App\Ecommerce\Products\Domain\Models\Order;
+use App\Profile\Domain\Models\Order;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 

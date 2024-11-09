@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Ecommerce\Products\Domain\Enums;
+namespace App\Profile\Domain\Enums;
 
 enum OrderStatusEnum: string
 {

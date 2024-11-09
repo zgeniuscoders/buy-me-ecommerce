@@ -5,12 +5,13 @@ import dataTable from "@/components/data-table.vue";
 import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import { Link } from "@inertiajs/vue3";
+import DropdownAction from "../components/orderDropdownAction.vue"
 
 import { usePage } from '@inertiajs/vue3';
 import { createColumnHelper } from '@tanstack/vue-table'
 
 import { ArrowUpDown } from 'lucide-vue-next'
-import { h, ref, shallowRef } from 'vue'
+import { h, shallowRef } from 'vue'
 
 import { Order } from "@/models/Order";
 
@@ -75,18 +76,18 @@ const columns = [
         header: 'Status',
         cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('status')),
     }),
-    // columnHelper.display({
-    //     id: 'actions',
-    //     enableHiding: false,
-    //     cell: ({ row }) => {
-    //         const payment = row.original
+    columnHelper.display({
+        id: 'actions',
+        enableHiding: false,
+        cell: ({ row }) => {
+            const order = row.original
 
-    //         return h('div', { class: 'relative' }, h(DropdownAction, {
-    //             payment,
-    //             onExpand: row.toggleExpanded,
-    //         }))
-    //     },
-    // }),
+            return h('div', { class: 'relative' }, h(DropdownAction, {
+                order,
+                onExpand: row.toggleExpanded,
+            }))
+        },
+    }),
 ]
 
 </script>
