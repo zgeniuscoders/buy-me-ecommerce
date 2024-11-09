@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 // admin
 Route::prefix("/admin")
-    ->middleware("can:admin-cards.*")
+//    ->middleware("can:admin-cards.*")
     ->group(function () {
 
         Route::get("/", AdminController::class)

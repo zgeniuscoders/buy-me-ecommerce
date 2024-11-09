@@ -3,9 +3,9 @@
 namespace App\Post\Framework\Controllers\api;
 
 use App\Core\Framework\Controllers\Controller;
-use App\Http\Requests\PostApiRequest;
 use App\Http\Resources\PostResource;
 use App\Post\Domain\Models\Post;
+use App\Post\Framework\Requests\PostApiRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller

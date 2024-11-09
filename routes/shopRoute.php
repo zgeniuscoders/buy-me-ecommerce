@@ -1,13 +1,13 @@
 <?php
 
-use App\Ecommerce\Products\Framework\Controllers\sellers\orders\OrderController;
-use App\Ecommerce\Products\Framework\Controllers\sellers\products\ProductController;
-use App\Ecommerce\Shop\Framework\AdminController;
-use App\Ecommerce\Shop\Framework\Controllers\sellers\ChangeShopInfoController;
-use App\Ecommerce\Shop\Framework\Controllers\sellers\DeleteShopController;
-use App\Ecommerce\Shop\Framework\Controllers\sellers\ShopSettingController;
-use App\Ecommerce\Shop\Framework\Controllers\sellers\StoreController;
-use App\Ecommerce\Shop\Framework\Controllers\sellers\UpdateShopImageController;
+use App\Ecommerce\Seller\Framework\Controllers\AdminController;
+use App\Ecommerce\Seller\Framework\Controllers\ChangeShopInfoController;
+use App\Ecommerce\Seller\Framework\Controllers\DeleteShopController;
+use App\Ecommerce\Seller\Framework\Controllers\orders\OrderController;
+use App\Ecommerce\Seller\Framework\Controllers\products\ProductController;
+use App\Ecommerce\Seller\Framework\Controllers\ShopSettingController;
+use App\Ecommerce\Seller\Framework\Controllers\StoreController;
+use App\Ecommerce\Seller\Framework\Controllers\UpdateShopImageController;
 use Illuminate\Support\Facades\Route;
 
 // Shop

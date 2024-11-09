@@ -3,7 +3,7 @@
 namespace App\Profile\Framework\Controllers;
 
 use App\Core\Framework\Controllers\Controller;
-use App\Http\Requests\PasswordChangeRequest;
+use App\Profile\Framework\Requests\PasswordChangeRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;

@@ -3,7 +3,7 @@
 namespace App\Profile\Framework\Controllers;
 
 use App\Core\Framework\Controllers\Controller;
-use App\Http\Requests\EmailOrPasswordChangeRequest;
+use App\Profile\Framework\Requests\EmailOrPasswordChangeRequest;
 use Illuminate\Support\Facades\Auth;
 
 class ChangeEmailOrNameController extends Controller

@@ -2,8 +2,8 @@
 
 namespace App\Ecommerce\Products\Domain\Models;
 
+use App\Core\Domain\Models\Category;
 use App\Core\Domain\Models\User;
-use App\Ecommerce\Category\Domain\Models\Category;
 use App\Ecommerce\Shop\Domain\Models\Store;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

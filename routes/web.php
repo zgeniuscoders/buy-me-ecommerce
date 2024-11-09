@@ -5,7 +5,7 @@ use App\Ecommerce\Products\Framework\Controllers\cart\CartController;
 use App\Ecommerce\Products\Framework\Controllers\products\FavoriteController;
 use App\Ecommerce\Products\Framework\Controllers\products\FilterProductController;
 use App\Ecommerce\Search\Framework\Controllers\SearchController;
-use App\Ecommerce\Shop\Framework\Controllers\ShopDisabledController;
+use App\Ecommerce\Seller\Framework\Controllers\ShopDisabledController;
 use App\Ecommerce\Shop\Framework\Controllers\StoreController as ControllersStoreController;
 use Illuminate\Support\Facades\Route;
 

@@ -9,7 +9,7 @@ use App\Ecommerce\Products\Framework\Controllers\api\order\TotalOrderCountContro
 use App\Ecommerce\Products\Framework\Controllers\api\products\ApiProductController;
 use App\Ecommerce\Products\Framework\Controllers\api\products\ProductFavoriteController;
 use App\Ecommerce\Products\Framework\Controllers\api\products\TotalProductCount;
-use App\Ecommerce\Shop\Framework\Controllers\api\ShopController;
+use App\Ecommerce\Seller\Framework\Controllers\api\ShopController;
 use App\Ecommerce\Shop\Framework\Controllers\api\SubscribeToShopController;
 use App\Post\Framework\Controllers\api\CommentController;
 use App\Post\Framework\Controllers\api\PostController;

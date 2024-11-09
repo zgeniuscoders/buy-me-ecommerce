@@ -2,39 +2,46 @@
 
 namespace App\Admin\Framework\Controllers\Category;
 
+use App\Admin\Domain\Usecases\Category\CategoryInteractor;
+use App\Admin\Framework\Requests\AddCategoryRequest;
+use App\Admin\Framework\Requests\UpdateCategoryRequest;
+use App\Core\Domain\Enums\CategoryStatusEnum;
+use App\Core\Domain\Models\Category;
 use App\Core\Framework\Controllers\Controller;
-use App\Ecommerce\Category\Domain\Enums\CategoryStatusEnum;
-use App\Ecommerce\Category\Domain\Models\Category;
-use App\Http\Requests\AddCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class CategoryController extends Controller
 {
+
+    public function __construct(private readonly CategoryInteractor $categoryInteractor)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Response
     {
-        $categories = Category::with("Category")->get();
-
-        return Inertia::render("admin/admin/Category/index", ["categories" => $categories]);
+        $categories = $this->categoryInteractor->getCategories->run();
+        return Inertia::render("admin/admin/category/index", ["categories" => $categories]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
-        $categories = Category::all();
+        $categories = $this->categoryInteractor->getCategories->run();
 
         $status = [
             ['id' => 1, 'name' => CategoryStatusEnum::AVAILABLE->value],
             ['id' => 2, 'name' => CategoryStatusEnum::UNAVAILABLE->value]
         ];
 
-        return Inertia::render("admin/admin/Category/create", [
+        return Inertia::render("admin/admin/category/create", [
             "categories" => $categories,
             "status" => $status
         ]);
@@ -51,7 +58,7 @@ class CategoryController extends Controller
             $imagePath = $request->file('image')->store('categories/images', 'public');
         }
 
-        $category = Category::create(array_merge(
+        $this->categoryInteractor->addCategory->run(array_merge(
             $request->all(),
             [
                 'slug' => Str::slug($request->name),
@@ -67,15 +74,15 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        $category = Category::findOrFail($id);
-        $categories = Category::all();
+        $category = $this->categoryInteractor->getCategory->run($id);
+        $categories = $this->categoryInteractor->getCategories->run();
 
         $status = [
             ['id' => CategoryStatusEnum::AVAILABLE->value, 'name' => CategoryStatusEnum::AVAILABLE->value],
             ['id' => CategoryStatusEnum::UNAVAILABLE->value, 'name' => CategoryStatusEnum::UNAVAILABLE->value]
         ];
 
-        return Inertia::render("admin/admin/Category/edit", [
+        return Inertia::render("admin/admin/category/edit", [
             "Category" => $category,
             "categories" => $categories,
             "status" => $status
@@ -85,7 +92,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, string $id)
+    public function update(UpdateCategoryRequest $request, string $id): RedirectResponse
     {
 
         $category = Category::findOrFail($id);
@@ -97,11 +104,9 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
-
+        $this->categoryInteractor->removeCategory->run($id);
         return redirect()->back();
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Profile\Framework\Controllers;
 
 use App\Core\Framework\Controllers\Controller;
-use App\Http\Requests\AddressRequest;
 use App\Profile\Domain\Models\Address;
+use App\Profile\Framework\Requests\AddressRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 

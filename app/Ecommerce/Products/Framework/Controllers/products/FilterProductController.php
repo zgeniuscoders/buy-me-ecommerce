@@ -3,8 +3,8 @@
 namespace App\Ecommerce\Products\Framework\Controllers\products;
 
 
+use App\Core\Domain\Models\Category;
 use App\Core\Framework\Controllers\Controller;
-use App\Ecommerce\Category\Domain\Models\Category;
 use App\Ecommerce\Products\Domain\Models\Product;
 use Illuminate\Http\Request;
 

@@ -4,7 +4,7 @@ namespace App\Ecommerce\Products\Framework\Controllers\api\products;
 
 use App\Core\Framework\Controllers\Controller;
 use App\Ecommerce\Products\Domain\Models\Product;
-use App\Http\Requests\ProductApiRequest;
+use App\Ecommerce\Products\Framework\Requests\ProductApiRequest;
 use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;

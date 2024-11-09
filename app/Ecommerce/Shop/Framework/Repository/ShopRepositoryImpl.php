@@ -2,10 +2,10 @@
 
 namespace App\Ecommerce\Shop\Framework\Repository;
 
+use App\Ecommerce\Seller\Domain\Repository\ShopRepository;
+use App\Ecommerce\Seller\Framework\Requests\ShopRequest;
+use App\Ecommerce\Seller\Framework\Requests\UpdateShopImageRequest;
 use App\Ecommerce\Shop\Domain\Models\Store;
-use App\Ecommerce\Shop\Domain\Repository\ShopRepository;
-use App\Http\Requests\StoreRequest;
-use App\Http\Requests\UpdateShopImageRequest;
 use Illuminate\Http\Request;
 
 class ShopRepositoryImpl implements ShopRepository
@@ -21,7 +21,7 @@ class ShopRepositoryImpl implements ShopRepository
         // TODO: Implement getShop() method.
     }
 
-    public function addShop(StoreRequest $request): Store
+    public function addShop(ShopRequest $request): Store
     {
         // TODO: Implement addShop() method.
     }

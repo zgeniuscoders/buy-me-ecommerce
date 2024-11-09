@@ -2,8 +2,8 @@
 
 namespace App\Ecommerce\Category\Framework\Controllers\api;
 
+use App\Core\Domain\Models\Category;
 use App\Core\Framework\Controllers\Controller;
-use App\Ecommerce\Category\Domain\Models\Category;
 use App\Http\Resources\CategoryResource;
 use Illuminate\Http\Request;
 

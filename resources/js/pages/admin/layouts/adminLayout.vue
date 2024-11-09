@@ -12,7 +12,7 @@ const menus = ref([
         logo: "grid-outline"
     },
     {
-        name: "Categories",
+        name: "Category",
         url: "/admin/categories",
         logo: "albums-outline"
     },

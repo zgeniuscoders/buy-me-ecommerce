@@ -1,6 +1,6 @@
 <?php
 
-use App\Ecommerce\Category\Domain\Models\Category;
+use App\Core\Domain\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

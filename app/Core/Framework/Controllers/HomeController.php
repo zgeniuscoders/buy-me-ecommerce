@@ -2,7 +2,7 @@
 
 namespace App\Core\Framework\Controllers;
 
-use App\Ecommerce\Category\Domain\Models\Category;
+use App\Core\Domain\Models\Category;
 use App\Ecommerce\Products\Domain\Models\Product;
 use Illuminate\Http\Request;
 
