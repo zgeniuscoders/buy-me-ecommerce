@@ -3,9 +3,9 @@
 namespace App\Ecommerce\Products\Framework\Controllers\api\order;
 
 
-use App\Core\Domain\Models\User;
 use App\Core\Framework\Controllers\Controller;
 use App\Http\Resources\OrderResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OrderUserController extends Controller

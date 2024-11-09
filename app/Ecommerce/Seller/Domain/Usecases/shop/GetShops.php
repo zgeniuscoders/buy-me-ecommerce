@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Ecommerce\Seller\Domain\Usecases;
+namespace App\Ecommerce\Seller\Domain\Usecases\shop;
 
 use App\Ecommerce\Seller\Domain\Repository\ShopRepository;
 
-class RemoveShop
+class GetShops
 {
 
     public function __construct(private ShopRepository $repository)
     {
     }
 
-    public function run(int $shopId): void
+    public function run()
     {
-        $this->repository->removeShop($shopId);
+        return $this->repository->getShops();
     }
 
 }

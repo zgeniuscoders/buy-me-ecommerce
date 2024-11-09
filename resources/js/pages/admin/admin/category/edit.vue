@@ -4,12 +4,10 @@ import adminLayout from '../../layouts/adminLayout.vue';
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import inputComponent from '@/components/input-component.vue';
 import { useForm, usePage } from '@inertiajs/vue3';
 import { onMounted } from 'vue';
 import { createToaster } from "@meforma/vue-toaster";
@@ -18,9 +16,7 @@ import Label from '@/components/ui/label/Label.vue';
 import {
     Select,
     SelectContent,
-    SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
@@ -50,7 +46,7 @@ onMounted(() => {
 
 const updateCategory = (id: Number) => {
     categoryForm.put("/admin/categories/" + id, {
-        onError: (e) => {
+        onError: () => {
             toaster.error("Une erreur se produite lors de la mise a jour du Category " + categoryForm.name)
         },
         onSuccess: () => {

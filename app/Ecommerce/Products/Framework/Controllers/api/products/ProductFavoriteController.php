@@ -3,11 +3,11 @@
 namespace App\Ecommerce\Products\Framework\Controllers\api\products;
 
 
-use App\Core\Domain\Models\User;
 use App\Core\Framework\Controllers\Controller;
 use App\Ecommerce\Products\Domain\Models\Product;
 use App\Http\Resources\ProductFavoriteResource;
 use App\Http\Resources\ProductResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductFavoriteController extends Controller

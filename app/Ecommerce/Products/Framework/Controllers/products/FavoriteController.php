@@ -3,9 +3,9 @@
 namespace App\Ecommerce\Products\Framework\Controllers\products;
 
 
-use App\Core\Domain\Models\User;
 use App\Core\Framework\Controllers\Controller;
 use App\Ecommerce\Products\Domain\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FavoriteController extends Controller

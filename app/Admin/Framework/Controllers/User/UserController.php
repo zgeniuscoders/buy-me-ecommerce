@@ -2,9 +2,9 @@
 
 namespace App\Admin\Framework\Controllers\User;
 
-use App\Core\Domain\Models\User;
 use App\Core\Framework\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Models\User;
 use App\Profile\Domain\Enums\AccountStatusEnum;
 use Illuminate\Http\Request;
 use Inertia\Inertia;

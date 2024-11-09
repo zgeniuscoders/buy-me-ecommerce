@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Admin\Domain\Enums\RoleEnum;
-use App\Core\Domain\Models\User;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;

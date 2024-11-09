@@ -2,10 +2,10 @@
 
 namespace App\Ecommerce\Seller\Framework\Controllers;
 
-use App\Core\Domain\Models\User;
 use App\Core\Framework\Controllers\Controller;
 use App\Ecommerce\Products\Domain\Models\Order;
 use App\Ecommerce\Products\Domain\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 

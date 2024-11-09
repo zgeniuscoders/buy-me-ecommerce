@@ -2,9 +2,9 @@
 
 namespace App\Ecommerce\Shop\Domain\Models;
 
-use App\Core\Domain\Models\User;
 use App\Ecommerce\Products\Domain\Models\Product;
 use App\Ecommerce\Products\Domain\Models\Rate;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

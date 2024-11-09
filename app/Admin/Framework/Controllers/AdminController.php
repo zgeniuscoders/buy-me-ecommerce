@@ -2,9 +2,9 @@
 
 namespace App\Admin\Framework\Controllers;
 
-use App\Core\Domain\Models\User;
 use App\Core\Framework\Controllers\Controller;
 use App\Ecommerce\Shop\Domain\Models\Store;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 

@@ -10,7 +10,7 @@ class GetProducts
     {
     }
 
-    public  function getProducts(){
+    public  function run(){
         return $this->repository->getProducts();
     }
 

@@ -2,8 +2,8 @@
 
 namespace App\Admin\Framework\Controllers\Customer;
 
-use App\Core\Domain\Models\User;
 use App\Core\Framework\Controllers\Controller;
+use App\Models\User;
 use Inertia\Inertia;
 
 class CustomerController extends Controller

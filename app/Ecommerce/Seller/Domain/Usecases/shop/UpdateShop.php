@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Ecommerce\Seller\Domain\Usecases;
+namespace App\Ecommerce\Seller\Domain\Usecases\shop;
 
 use App\Ecommerce\Seller\Domain\Repository\ShopRepository;
 use App\Ecommerce\Seller\Framework\Requests\UpdateShopInfoRequest;

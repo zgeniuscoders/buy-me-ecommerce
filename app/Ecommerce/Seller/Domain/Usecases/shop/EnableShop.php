@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Ecommerce\Seller\Domain\Usecases;
+namespace App\Ecommerce\Seller\Domain\Usecases\shop;
 
 use App\Ecommerce\Seller\Domain\Repository\ShopRepository;
 
-class GetShops
+class EnableShop
 {
-
     public function __construct(private ShopRepository $repository)
     {
     }
 
-    public function run()
+    public function run(int $shopId): void
     {
-        return $this->repository->getShops();
+        $this->repository->enableShop($shopId);
     }
-
 }

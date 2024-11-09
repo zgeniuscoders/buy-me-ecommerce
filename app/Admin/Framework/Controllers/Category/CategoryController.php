@@ -6,7 +6,6 @@ use App\Admin\Domain\Usecases\Category\CategoryInteractor;
 use App\Admin\Framework\Requests\AddCategoryRequest;
 use App\Admin\Framework\Requests\UpdateCategoryRequest;
 use App\Core\Domain\Enums\CategoryStatusEnum;
-use App\Core\Domain\Models\Category;
 use App\Core\Framework\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
@@ -50,7 +49,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AddCategoryRequest $request)
+    public function store(AddCategoryRequest $request): RedirectResponse
     {
 
         $imagePath = "";
@@ -72,7 +71,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): Response
     {
         $category = $this->categoryInteractor->getCategory->run($id);
         $categories = $this->categoryInteractor->getCategories->run();
@@ -83,7 +82,7 @@ class CategoryController extends Controller
         ];
 
         return Inertia::render("admin/admin/category/edit", [
-            "Category" => $category,
+            "category" => $category,
             "categories" => $categories,
             "status" => $status
         ]);
@@ -95,8 +94,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, string $id): RedirectResponse
     {
 
-        $category = Category::findOrFail($id);
-        $category->update($request->all());
+        $this->categoryInteractor->updateCategory->run($request,$id);
 
         return redirect()->back();
     }

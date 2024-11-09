@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Domain\Models;
+namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Ecommerce\Products\Domain\Models\Order;
