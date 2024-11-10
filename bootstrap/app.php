@@ -1,8 +1,8 @@
 <?php
 
-use App\Authentication\Framework\Controllers\Middleware\HandleInertiaRequests;
-use App\Authentication\Framework\Controllers\Middleware\RedirectIfHasShopMiddleware;
-use App\Authentication\Framework\Controllers\Middleware\RedirectIfShopDisabled;
+use App\Http\Middleware\HandleInertiaRequests;
+use App\Http\Middleware\RedirectIfHasShopMiddleware;
+use App\Http\Middleware\RedirectIfShopDisabled;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -20,7 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
             HandleInertiaRequests::class,
         ]);
         $middleware->alias([
-            "has_store_middleware" => \App\Authentication\Framework\Controllers\Middleware\HasStoreMiddleware::class,
+            "has_store_middleware" => \App\Http\Middleware\HasStoreMiddleware::class,
             "dont_has_shop_middleware" => RedirectIfHasShopMiddleware::class,
             "has_shop_enabled" => RedirectIfShopDisabled::class
         ]);

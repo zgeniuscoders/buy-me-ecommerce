@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Authentication\Framework\Controllers\Middleware;
+namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class HasStoreMiddleware
+class RedirectIfShopDisabled
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,10 @@ class HasStoreMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
-        if ($request->user()->store()->exists()) {
-            return $next($request);
+        if($request->user()->store->is_disabled){
+            return redirect()->route("disabled");
         }
 
-        return  redirect()->route("home")
-            ->with("Shop", "vous n'avez pas le droit d'acceder a cette page car vous n'avez pas de boutique");
+        return $next($request);
     }
 }

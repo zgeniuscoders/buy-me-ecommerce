@@ -11,7 +11,7 @@
                 </path>
             </svg>
         </button>
-        <!-- Dropdown menu -->
+<!--         Dropdown menu -->
         <div class="z-20 z-50 hidden max-w-sm my-4 overflow-hidden text-base list-none bg-white divide-y divide-gray-100 rounded shadow-lg"
             id="apps-dropdown">
             <div
@@ -109,4 +109,9 @@
     </div>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+
+import {logout} from "@/services/Logout.ts";
+
+
+</script>

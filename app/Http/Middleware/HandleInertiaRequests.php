@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Authentication\Framework\Controllers\Middleware;
+namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;

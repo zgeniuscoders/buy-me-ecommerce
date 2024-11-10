@@ -5,10 +5,12 @@ namespace App\Ecommerce\Seller\Framework\Controllers\products;
 use App\Admin\Domain\Usecases\Category\CategoryInteractor;
 use App\Core\Domain\Models\Category;
 use App\Core\Framework\Controllers\Controller;
+use App\Ecommerce\Products\Domain\Models\Product;
 use App\Ecommerce\Products\Framework\Requests\ProductRequest;
 use App\Ecommerce\Products\Framework\Requests\UpdateProductRequest;
 use App\Ecommerce\Seller\Domain\Usecases\Product\ShopProductInteractor;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
@@ -26,6 +28,10 @@ class ProductController extends Controller
      */
     public function index(): Response
     {
+        if (Auth::user()->cannot('viewAny', Product::class)) {
+            abort(403);
+        }
+
         $storeId = auth()->user()->store->id;
         $products = $this->productInteractor->getShopProducts->run($storeId);
 
@@ -37,6 +43,11 @@ class ProductController extends Controller
 
     public function create(): Response
     {
+
+        if (Auth::user()->cannot('create', Product::class)) {
+            abort(403);
+        }
+
         $categories = Category::all();
         $status = [['id' => 1, 'name' => 'available'], ['id' => 2, 'name' => 'valid']];
 
@@ -51,6 +62,11 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request): void
     {
+
+        if (Auth::user()->cannot('create', Product::class)) {
+            abort(403);
+        }
+
         $storeId = auth()->user()->store->id;
 
         $imagePaths = [];
@@ -78,17 +94,16 @@ class ProductController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     public function edit(string $id): Response
     {
+
         $product = $this->productInteractor->getProduct->run($id);
+
+        if (Auth::user()->cannot('update', $product)) {
+            abort(403);
+        }
+
         $categories = $this->categoryInteractor->getCategories->run();
 
         $status = [['id' => 1, 'name' => 'available'], ['id' => 2, 'name' => 'valid']];
@@ -105,7 +120,10 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, string $id): RedirectResponse
     {
-        $this->productInteractor->updateProduct->run($request->all(), $id);
+        $product = $this->productInteractor->updateProduct->run($request->all(), $id);
+        if (Auth::user()->cannot('update', $product)) {
+            abort(403);
+        }
         return redirect()->route("admin.Products.index");
     }
 
@@ -116,6 +134,11 @@ class ProductController extends Controller
     {
 
         $product = $this->productInteractor->getProduct->run($id);
+
+        if (Auth::user()->cannot('delete', $product)) {
+            abort(403);
+        }
+
         if (Storage::exists($product->image)) {
             Storage::delete($product->image);
         }

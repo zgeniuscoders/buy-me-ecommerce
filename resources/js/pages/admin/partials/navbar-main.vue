@@ -41,10 +41,9 @@
             </svg>
           </button>
 
-          <notification-dropdown />
-          <app-dropdown />
+<!--          <notification-dropdown />-->
+<!--          <app-dropdown />-->
 
-      
           <profile-dropsown :user="user" />
         </div>
       </div>
@@ -60,7 +59,6 @@ import SearchBar from '../../partials/search-bar.vue';
 import { onMounted, ref } from 'vue';
 import { router } from '@inertiajs/vue3';
 import axios from 'axios';
-
 
 const user = ref({})
 

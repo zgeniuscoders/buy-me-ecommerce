@@ -189,7 +189,7 @@
                             </CardHeader>
                             <CardContent>
                                 <div className="flex items-center space-x-2">
-                                    <Checkbox id="has_delivered" v-model="form.has_delivered" />
+                                    <Checkbox id="has_delivered" :checked="form.has_delivered" @update:checked="handleCheckboxChange" />
                                     <label for="has_delivered"
                                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                                         Livraison a domicile
@@ -252,9 +252,6 @@ import {
     SelectTrigger,
 } from "@/components/ui/select"
 
-
-
-
 const toaster = createToaster();
 
 const files = (event) => {
@@ -275,6 +272,11 @@ const form = useForm({
     discount: null,
     has_delivered: false
 })
+
+
+const handleCheckboxChange = (value) =>{
+    form.has_delivered = value
+}
 
 const submit = () => {
     form.post('/ma-boutique/articles', {

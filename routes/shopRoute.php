@@ -20,23 +20,20 @@ Route::middleware(["has_store_middleware", "has_shop_enabled"])
     ->prefix("ma-boutique")
     ->group(function () {
 
-        Route::get("/parametres", ShopSettingController::class)->name("Shop.settings");
+        Route::get("/parametres", ShopSettingController::class)->name("shop.settings");
 
         Route::post("/changer-les-information-de-ma-boutique/{store}", [StoreController::class, "update"])
-            ->name("Shop.update.name");
+            ->name("shop.update.name");
 
         Route::post("/changer-image-de-ma-boutique", UpdateShopImageController::class)
-            ->name("Shop.update.image");
+            ->name("shop.update.image");
 
         Route::delete("/supprimer-ma-boutique/{store}", [StoreController::class, "destroy"])
-            ->name("Shop.delete");
+            ->name("shop.delete");
 
         Route::get('/', AdminController::class)->name("Shop");
-        // Route::resource("/ma-boutique/store", StoreController::class)
-        //     ->except("create", "store")
-        //     ->names("admin.store");
 
         Route::resource('/articles', ProductController::class)->names("admin.Products");
 
-        Route::resource('/commandes', OrderController::class)->only(['index', 'update']);
+        Route::get('/commandes', OrderController::class)->name("shop.orders");
     });

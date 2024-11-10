@@ -1,5 +1,6 @@
-export type ProductType = {
 import { Category } from './ProductType';
+
+export type ProductType = {
     id: number
     name: string
     price: number
@@ -17,7 +18,8 @@ export interface ProductInterface{
     image: string,
     qty: number,
     category: Category,
-    status: string
+    status: string,
+    has_delivered: boolean
 };
 
 

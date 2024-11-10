@@ -78,10 +78,15 @@ const columns = [
             return h('div', { class: 'text-right font-medium' }, formatted)
         },
     }),
+    columnHelper.accessor('has_delivered', {
+        enablePinning: true,
+        header: 'Livraison a domicille',
+        cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('has_delivered')),
+    }),
     columnHelper.accessor('status', {
         enablePinning: true,
         header: 'Status',
-        cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('status')),
+        cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('status') ? 'disponible' : 'indisponible'),
     }),
     columnHelper.display({
         id: 'actions',
