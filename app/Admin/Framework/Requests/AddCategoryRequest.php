@@ -3,6 +3,7 @@
 namespace App\Admin\Framework\Requests;
 
 use App\Core\Domain\Enums\CategoryStatusEnum;
+use App\Core\Domain\Enums\StatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AddCategoryRequest extends FormRequest
@@ -26,7 +27,7 @@ class AddCategoryRequest extends FormRequest
             "name" => ["required", "string"],
             "category_id" => ["nullable", "exists:categories,id"],
             "image" => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:5120'],
-            "status" => ["required", "in:" . implode(',', array_column(CategoryStatusEnum::cases(),'value'))]
+            "status" => ["required", "in:" . implode(',', array_column(StatusEnum::cases(),'value'))]
         ];
     }
 }

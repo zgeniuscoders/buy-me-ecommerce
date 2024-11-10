@@ -96,7 +96,7 @@
 
                                 <Label for="qty">Quantite en stock</Label>
                                 <Input name="qty" v-model="form.qty" placeholder="2" />
-                                <span v-if="form.errors.qty" class="text-red-400 text-sm" pla>{{
+                                <span v-if="form.errors.qty" class="text-red-400 text-sm">{{
                                     form.errors.qty
                                     }}</span>
 

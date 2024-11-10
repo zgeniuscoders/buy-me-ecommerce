@@ -7,6 +7,7 @@ use App\Ecommerce\Seller\Framework\Requests\ShopRequest;
 use App\Ecommerce\Seller\Framework\Requests\UpdateShopImageRequest;
 use App\Ecommerce\Seller\Framework\Requests\UpdateShopInfoRequest;
 use App\Ecommerce\Shop\Domain\Models\Store;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class EloquentShopRepository implements ShopRepository

@@ -84,7 +84,7 @@ function copy(id: string) {
                 Expand
             </DropdownMenuItem> -->
             <!-- <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
+            <DropdownMenuItem>View Customer</DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem> -->
         </DropdownMenuContent>
     </DropdownMenu>

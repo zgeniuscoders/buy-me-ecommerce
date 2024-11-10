@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 class ButtonComponent extends Component
 {
     /**
-     * Create a new component instance.
+     * Create a new components instance.
      */
     public function __construct(public string $link,public string $title)
     {
@@ -17,10 +17,10 @@ class ButtonComponent extends Component
     }
 
     /**
-     * Get the view / contents that represent the component.
+     * Get the view / contents that represent the components.
      */
     public function render(): View|Closure|string
     {
-        return view('components.button-component');
+        return view('components.button-components');
     }
 }

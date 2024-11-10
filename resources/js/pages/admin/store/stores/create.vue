@@ -57,7 +57,7 @@ const steps = ref([
     title: "Logo de la boutique"
   },
   {
-    title: "Condition d'utilisation"
+    title: "Condition d.tsx'utilisation"
   }
 ])
 

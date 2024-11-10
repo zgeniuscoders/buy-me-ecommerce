@@ -96,9 +96,9 @@ const columns = [
 
                 <h3 class="text-2xl mb-4 mt-2 font-medium">Overview stats</h3>
                 <div class="grid lg:grid-cols-3 lg:gap-6">
-                    <card-stats bg-color="bg-primary" text="Utilisateurs" :count="userCounts" />
-                    <card-stats bg-color="bg-indigo-400" text="Clients" count="10" />
-                    <card-stats bg-color="bg-pink-400" text="Vendeurs" count="10" />
+                    <card-stats bg-color="bg-primary" text="Utilisateurs" :count="userCounts" icon="people-outline"/>
+                    <card-stats bg-color="bg-indigo-400" text="Clients" count="10" icon="people-outline"/>
+                    <card-stats bg-color="bg-pink-400" text="Vendeurs" count="10" icon="people-outline"/>
                 </div>
 
             </section>

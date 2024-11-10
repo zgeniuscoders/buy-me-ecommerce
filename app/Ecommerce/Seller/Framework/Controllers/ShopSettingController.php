@@ -5,6 +5,7 @@ namespace App\Ecommerce\Seller\Framework\Controllers;
 
 use App\Core\Framework\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ShopSettingController extends Controller
@@ -15,6 +16,10 @@ class ShopSettingController extends Controller
     public function __invoke(Request $request): \Inertia\Response
     {
         $shop = $request->user()->store;
+
+        if (Auth::user()->cannot('update', $shop)) {
+            abort(403);
+        }
 
         return Inertia::render("admin/store/stores/settings", [
             "shop" => $shop,

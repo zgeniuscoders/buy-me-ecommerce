@@ -1,7 +1,7 @@
 <template>
 
-    <button type="submit"
-        class="flex w-full items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-secondary-container-dark focus:outline-none focus:ring-4 focus:ring-primary-300">Commander</button>
+    <Button type="submit"
+            size="lg" class="w-full">Commander</Button>
 
 </template>
 
@@ -10,7 +10,7 @@
 import useOrder from "@/services"
 import { useCartStore } from "@/stores/cart";
 import { createToaster } from "@meforma/vue-toaster";
-
+import { Button } from "@/components/ui/button"
 
 const toaster = createToaster();
 

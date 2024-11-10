@@ -22,8 +22,8 @@ const menus = ref([
         logo: "people-outline"
     },
     {
-        name: "Boutiques",
-        url: "/admin/boutiques",
+        name: "Publicités",
+        url: "/admin/ads",
         logo: "storefront-outline"
     },
     {
@@ -48,7 +48,7 @@ const menus = ref([
             <sidebar :menus="menus" />
             <div id="main-content"
                 class="relative w-full h-full overflow-y-auto bg-background dark:bg-background-dark lg:ml-64">
-                <main>
+                <main class="min-h-full p-4">
                     <slot />
                 </main>
             </div>

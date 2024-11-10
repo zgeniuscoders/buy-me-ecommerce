@@ -1,5 +1,6 @@
 <?php
 
+use App\Core\Domain\Enums\StatusEnum;
 use App\Core\Domain\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Category::class)->nullable();
             $table->string("name");
             $table->string("slug");
-            $table->string("status");
+            $table->string("status")->default(StatusEnum::DRAFT->value);
             $table->string("image")->nullable();
             $table->timestamps();
         });

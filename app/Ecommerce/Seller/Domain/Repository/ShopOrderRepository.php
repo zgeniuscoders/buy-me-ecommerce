@@ -9,4 +9,6 @@ interface ShopOrderRepository
 
     public function getShopOrders(int $shopId): Collection;
 
+    public function getShopTotalOrderPrice(int $shopId): int;
+
 }

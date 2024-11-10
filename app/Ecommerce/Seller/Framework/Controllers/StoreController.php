@@ -9,6 +9,7 @@ use App\Ecommerce\Seller\Framework\Requests\ShopRequest;
 use App\Ecommerce\Seller\Framework\Requests\UpdateShopInfoRequest;
 use App\Ecommerce\Shop\Domain\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
@@ -24,6 +25,9 @@ class StoreController extends Controller
      */
     public function create(): \Inertia\Response
     {
+        if (Auth::user()->cannot('create', Store::class)) {
+            abort(403);
+        }
         return Inertia::render("admin/store/stores/create");
     }
 
@@ -32,6 +36,10 @@ class StoreController extends Controller
      */
     public function store(ShopRequest $request): void
     {
+
+        if (Auth::user()->cannot('create', Store::class)) {
+            abort(403);
+        }
 
         $imagePath = "";
         if ($request->hasFile('image')) {
@@ -54,6 +62,12 @@ class StoreController extends Controller
      */
     public function update(UpdateShopInfoRequest $request, string $id): void
     {
+        $shop = $this->shopInteractor->getShop->run($id);
+
+        if (Auth::user()->cannot('update', $shop)) {
+            abort(403);
+        }
+
         $this->shopInteractor->updateShop->run($request->all(), $id);
     }
 
@@ -63,6 +77,11 @@ class StoreController extends Controller
     public function destroy(string $id): void
     {
         $shop = $this->shopInteractor->getShop->run($id);
+
+        if (Auth::user()->cannot('delete', $shop)) {
+            abort(403);
+        }
+
         if (Storage::exists($shop->image)) {
             Storage::delete($shop->image);
         }

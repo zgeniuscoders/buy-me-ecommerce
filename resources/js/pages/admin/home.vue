@@ -74,9 +74,9 @@ onMounted(() => {
 
                 <h3 class="text-2xl mb-4 mt-2 font-medium">Statistiques générales</h3>
                 <div class="grid lg:grid-cols-3 lg:gap-6">
-                    <card-stats text="Total ventes" bg-color="bg-primaty" :count="`$${stats.totalOrdersPrice}`" />
-                    <card-stats text="Commandes" bg-color="bg-indigo-400" :count="`${stats.totalOrders}`" />
-                    <card-stats text="Clients" bg-color="bg-pink-400" :count="`${stats.totalCustomers}`" />
+                    <card-stats text="Total ventes" bg-color="bg-primary" :count="`$${stats.totalOrdersPrice}`" icon="wallet-outline"/>
+                    <card-stats text="Commandes" bg-color="bg-indigo-400" :count="`${stats.totalOrders}`" icon="pricetags-outline"/>
+                    <card-stats text="Clients" bg-color="bg-pink-400" :count="`${stats.totalCustomers}`" icon="people-outline"/>
                 </div>
 
             </section>

@@ -1,18 +1,24 @@
 <?php
 
 use App\Admin\Framework\Controllers\AdminController;
+use App\Admin\Framework\Controllers\Ads\AdsController;
 use App\Admin\Framework\Controllers\Category\CategoryController;
 use App\Admin\Framework\Controllers\Customer\CustomerController;
 use App\Admin\Framework\Controllers\shop\DisabledShopController;
 use App\Admin\Framework\Controllers\shop\EnableShopController;
 use App\Admin\Framework\Controllers\shop\ShopController;
 use App\Admin\Framework\Controllers\User\UserController;
+use App\Http\Controllers\AddAdsToDraftController;
 use Illuminate\Support\Facades\Route;
 
 // admin
 Route::prefix("/admin")
     ->middleware("can:admin-cards.*")
     ->group(function () {
+
+        Route::resource("ads", AdsController::class);
+        Route::post("ads/draft", AddAdsToDraftController::class)
+            ->name("admin.ads.draft");
 
         Route::get("/", AdminController::class)
             ->name("admin");
@@ -33,7 +39,7 @@ Route::prefix("/admin")
 
 
         Route::get("/clients", CustomerController::class)
-            ->name("admin.customer");
+            ->name("admin.Customer");
 
 
         Route::resource("/utilisateurs", UserController::class)

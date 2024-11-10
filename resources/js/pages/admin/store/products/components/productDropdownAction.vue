@@ -27,14 +27,14 @@ const deleteProduct = (id: number) => {
         const form = useForm({ id: id })
         form.delete(`/ma-boutique/articles/${id}`, {
             onError: () => {
-                toaster.error("une erreur se survenu lors de la pression de l'article " + product.name + " veuillez reeseyer plustard")
+                toaster.error("Nous avons rencontré un problème lors du traitement de votre demande. Veuillez réessayer plus tard. Si le problème persiste, contactez notre support technique.")
             },
             onSuccess: () => {
-                toaster.success("success")
+                toaster.success("L'article a été ajouté avec succès. Vous pouvez le consulter dans votre liste d'articles.")
             }
         })
         // router.delete(`/ma-boutique/articles/${id}`, {
-            
+
         // }
         // )
     }
@@ -64,7 +64,7 @@ const deleteProduct = (id: number) => {
                 Expand
             </DropdownMenuItem> -->
             <!-- <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
+            <DropdownMenuItem>View Customer</DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem> -->
         </DropdownMenuContent>
     </DropdownMenu>

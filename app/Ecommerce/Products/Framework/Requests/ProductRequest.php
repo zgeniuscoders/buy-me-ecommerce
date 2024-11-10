@@ -2,6 +2,7 @@
 
 namespace App\Ecommerce\Products\Framework\Requests;
 
+use App\Core\Domain\Enums\StatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductRequest extends FormRequest
@@ -30,7 +31,7 @@ class ProductRequest extends FormRequest
             'image' => ['required', 'image', 'mimes:jpeg,jpg,png', 'max:5120'],
             'images.*' => ['required', 'image', 'mimes:jpeg,jpg,png', 'max:5120'],
             'discount' => ['required', 'integer'],
-            'status' => ['required', 'integer'],
+            "status" => ["required", "in:" . implode(',', array_column(StatusEnum::cases(),'value'))],
             'has_delivered' => ["boolean"]
         ];
     }

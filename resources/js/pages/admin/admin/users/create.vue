@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import adminLayout from '../../layouts/adminLayout.vue';
 import card from '@/components/card.vue';
-import inputComponent from '@/components/input-component.vue';
-import selectComponent from '@/components/select-component.vue';
+import inputComponent from '@/components/input-components.vue';
+import selectComponent from '@/components/select-components.vue';
 import { useForm } from '@inertiajs/vue3';
 import { createToaster } from "@meforma/vue-toaster";
 
@@ -65,7 +65,7 @@ const addUser = () => {
                 <card>
 
                     <div class="grid md:grid-cols-2 gap-4">
-                        <!-- <select-component id="category_id" name="category_id" title="Sous Category"
+                        <!-- <select-components id="category_id" name="category_id" title="Sous Category"
                             :options="$page.props.categories" v-model="categoryForm.category_id"
                             :error="categoryForm.errors.category_id" :idKey="true" /> -->
 

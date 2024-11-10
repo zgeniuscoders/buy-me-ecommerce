@@ -1,5 +1,6 @@
 <?php
 
+use App\Core\Domain\Enums\StatusEnum;
 use App\Core\Domain\Models\Category;
 use App\Ecommerce\Shop\Domain\Models\Store;
 use Illuminate\Database\Migrations\Migration;
@@ -24,7 +25,7 @@ return new class extends Migration
             $table->text("description");
             $table->integer("price");
             $table->integer("discount")->default(0);
-            $table->integer("status");
+            $table->string("status")->default(StatusEnum::DRAFT->value);
             $table->integer("qty");
             $table->boolean("has_delivered")->default(false);
             $table->timestamps();

@@ -13,6 +13,15 @@ class EloquentShopOrderRepository implements ShopOrderRepository
     {
         return Order::whereHas('product', function ($query) use ($shopId) {
             $query->where('store_id', $shopId);
-        })->with(["product", "customer"])->get();
+        })->with(["product", "Customer"])->get();
+    }
+
+    public function getShopTotalOrderPrice(int $shopId): int
+    {
+        return Order::whereHas('product', function ($query) use ($shopId) {
+            $query->where('store_id', $shopId);
+        })->with('product')->get()->sum(function ($order) {
+            return $order->product->price * $order->quantity;
+        });
     }
 }
