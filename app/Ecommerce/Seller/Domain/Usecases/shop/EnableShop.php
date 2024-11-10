@@ -4,7 +4,7 @@ namespace App\Ecommerce\Seller\Domain\Usecases\shop;
 
 use App\Ecommerce\Seller\Domain\Repository\ShopRepository;
 
-class EnableShop
+readonly class EnableShop
 {
     public function __construct(private ShopRepository $repository)
     {

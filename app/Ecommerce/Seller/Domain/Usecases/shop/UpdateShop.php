@@ -6,16 +6,16 @@ use App\Ecommerce\Seller\Domain\Repository\ShopRepository;
 use App\Ecommerce\Seller\Framework\Requests\UpdateShopInfoRequest;
 use App\Ecommerce\Shop\Domain\Models\Store;
 
-class UpdateShop
+readonly class UpdateShop
 {
 
     public function __construct(private ShopRepository $repository)
     {
     }
 
-    public function run(UpdateShopInfoRequest $request,int $shopId): Store
+    public function run(array $data,int $shopId): Store
     {
-        return $this->repository->updateShop($request,$shopId);
+        return $this->repository->updateShop($data,$shopId);
     }
 
 }

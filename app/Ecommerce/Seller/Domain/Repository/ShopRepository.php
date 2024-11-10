@@ -10,15 +10,13 @@ use App\Ecommerce\Shop\Domain\Models\Store;
 interface ShopRepository
 {
 
-    public function getShops();
-
     public function getShop(int $shopId): Store;
 
-    public function addShop(ShopRequest $request): Store;
+    public function addShop(array $data): Store;
 
-    public function updateShop(UpdateShopInfoRequest $request,int $shopId): Store;
+    public function updateShop(array $data,int $shopId): Store;
 
-    public function updateShopImage(UpdateShopImageRequest $request,int $shopId): Store;
+    public function updateShopImage(array $data,int $shopId): Store;
 
     public function removeShop(int $shopId);
 

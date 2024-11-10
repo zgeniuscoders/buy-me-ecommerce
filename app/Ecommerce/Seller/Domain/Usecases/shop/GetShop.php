@@ -5,7 +5,7 @@ namespace App\Ecommerce\Seller\Domain\Usecases\shop;
 use App\Ecommerce\Seller\Domain\Repository\ShopRepository;
 use App\Ecommerce\Shop\Domain\Models\Store;
 
-class GetShop
+readonly class GetShop
 {
 
     public function __construct(private ShopRepository $repository)

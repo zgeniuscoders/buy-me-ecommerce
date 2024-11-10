@@ -6,16 +6,16 @@ use App\Ecommerce\Seller\Domain\Repository\ShopRepository;
 use App\Ecommerce\Seller\Framework\Requests\ShopRequest;
 use App\Ecommerce\Shop\Domain\Models\Store;
 
-class AddShop
+readonly class AddShop
 {
 
     public function __construct(private ShopRepository $repository)
     {
     }
 
-    public function run(ShopRequest $request): Store
+    public function run(array $data): Store
     {
-        return $this->repository->addShop($request);
+        return $this->repository->addShop($data);
     }
 
 }

@@ -4,18 +4,20 @@ namespace App\Ecommerce\Seller\Framework\Controllers;
 
 
 use App\Core\Framework\Controllers\Controller;
+use App\Ecommerce\Seller\Domain\Usecases\shop\ShopInteractor;
 use App\Ecommerce\Seller\Framework\Requests\ShopRequest;
+use App\Ecommerce\Seller\Framework\Requests\UpdateShopInfoRequest;
 use App\Ecommerce\Shop\Domain\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class StoreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): \Inertia\Response {}
+    public function __construct(private readonly ShopInteractor $shopInteractor)
+    {
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +30,7 @@ class StoreController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ShopRequest $request)
+    public function store(ShopRequest $request): void
     {
 
         $imagePath = "";
@@ -36,7 +38,7 @@ class StoreController extends Controller
             $imagePath = $request->file('image')->store('shops/images', 'public');
         }
 
-        Store::create([
+        $this->shopInteractor->addShop->run([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'image' => $imagePath,
@@ -44,37 +46,26 @@ class StoreController extends Controller
             'description' => $request->description,
             'user_id' => auth()->id()
         ]);
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateShopInfoRequest $request, string $id): void
     {
-        //
+        $this->shopInteractor->updateShop->run($request->all(), $id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): void
     {
-        //
+        $shop = $this->shopInteractor->getShop->run($id);
+        if (Storage::exists($shop->image)) {
+            Storage::delete($shop->image);
+        }
+        $this->shopInteractor->removeShop->run($shop->id);
     }
 }

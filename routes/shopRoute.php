@@ -19,13 +19,16 @@ Route::middleware("dont_has_shop_middleware")->group(function () {
 Route::middleware(["has_store_middleware", "has_shop_enabled"])
     ->prefix("ma-boutique")
     ->group(function () {
+
         Route::get("/parametres", ShopSettingController::class)->name("Shop.settings");
 
-        Route::post("/changer-les-information-de-ma-boutique", ChangeShopInfoController::class)
+        Route::post("/changer-les-information-de-ma-boutique/{store}", [StoreController::class, "update"])
             ->name("Shop.update.name");
+
         Route::post("/changer-image-de-ma-boutique", UpdateShopImageController::class)
             ->name("Shop.update.image");
-        Route::delete("/supprimer-ma-boutique", DeleteShopController::class)
+
+        Route::delete("/supprimer-ma-boutique/{store}", [StoreController::class, "destroy"])
             ->name("Shop.delete");
 
         Route::get('/', AdminController::class)->name("Shop");
