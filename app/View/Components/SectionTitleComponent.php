@@ -21,6 +21,6 @@ class SectionTitleComponent extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section-title-components');
+        return view("components.section-title-component");
     }
 }

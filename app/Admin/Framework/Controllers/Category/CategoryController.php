@@ -6,6 +6,7 @@ use App\Admin\Domain\Usecases\Category\CategoryInteractor;
 use App\Admin\Framework\Requests\AddCategoryRequest;
 use App\Admin\Framework\Requests\UpdateCategoryRequest;
 use App\Core\Domain\Enums\CategoryStatusEnum;
+use App\Core\Domain\Enums\StatusEnum;
 use App\Core\Framework\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
@@ -36,8 +37,8 @@ class CategoryController extends Controller
         $categories = $this->categoryInteractor->getCategories->run();
 
         $status = [
-            ['id' => 1, 'name' => CategoryStatusEnum::AVAILABLE->value],
-            ['id' => 2, 'name' => CategoryStatusEnum::UNAVAILABLE->value]
+            ['id' => 1, 'name' => StatusEnum::DRAFT->value],
+            ['id' => 2, 'name' => StatusEnum::PUBLISH->value]
         ];
 
         return Inertia::render("admin/admin/category/create", [

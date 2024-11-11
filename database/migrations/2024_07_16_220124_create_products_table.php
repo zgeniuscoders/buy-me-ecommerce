@@ -7,8 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -26,7 +25,7 @@ return new class extends Migration
             $table->integer("price");
             $table->integer("discount")->default(0);
             $table->string("status")->default(StatusEnum::DRAFT->value);
-            $table->integer("qty");
+            $table->boolean("in_stock")->default(false);
             $table->boolean("has_delivered")->default(false);
             $table->timestamps();
         });

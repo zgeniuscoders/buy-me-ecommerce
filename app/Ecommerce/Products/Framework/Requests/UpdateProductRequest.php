@@ -2,6 +2,7 @@
 
 namespace App\Ecommerce\Products\Framework\Requests;
 
+use App\Core\Domain\Enums\StatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProductRequest extends FormRequest
@@ -26,9 +27,9 @@ class UpdateProductRequest extends FormRequest
             'description' => ['required', 'string', 'min:20'],
             'category_id' => ['required', 'integer'],
             'price' => ['required', 'numeric'],
-            'qty' => ['required', 'integer'],
+            'in_stock' => ['boolean'],
             'discount' => ['required', 'integer'],
-            'status' => ['required', 'integer'],
+            "status" => ["required", "in:" . implode(',', array_column(StatusEnum::cases(),'value'))],
             'has_delivered' => ["boolean"]
         ];
     }

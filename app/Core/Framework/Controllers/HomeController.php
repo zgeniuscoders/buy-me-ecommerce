@@ -20,6 +20,6 @@ class HomeController extends Controller
         $ads = $adsInteractor->getAds->run();
         $randomAds = $adsInteractor->getRandomAds->run();
 
-        return response()->view("Products.home", compact("products", "categories","ads","randomAds"));
+        return response()->view("products.home", compact("products", "categories","ads","randomAds"));
     }
 }

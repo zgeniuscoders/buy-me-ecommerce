@@ -1,29 +1,27 @@
-import { Category } from './ProductType';
-
 export type ProductType = {
     id: number
     name: string
     price: number
     image: string,
-    qty: number,
+    in_stock: boolean,
     category: Category,
     status: string
 };
 
 
-export interface ProductInterface{
+export interface ProductInterface {
     id: number
     name: string
     price: number
     image: string,
-    qty: number,
+    in_stock: boolean,
     category: Category,
     status: string,
     has_delivered: boolean
 };
 
 
-export interface Category{
+export interface Category {
     id: number,
     name: string,
     status: string

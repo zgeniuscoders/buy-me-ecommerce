@@ -5,7 +5,7 @@
             <sidebar :menus="menus" :toggleSidebarMobile="state.toggleSidebarMobile" />
             <div id="main-content"
                 class="relative w-full h-full overflow-y-auto bg-background dark:bg-background-dark lg:ml-64">
-                <main>
+                <main class="min-h-full p-4">
                     <slot />
                 </main>
             </div>

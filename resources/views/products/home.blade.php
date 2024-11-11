@@ -18,7 +18,7 @@
                 {{--                categories listing --}}
                 <div class="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-4 my-4">
                     @foreach ($categories as $category)
-                        <a href="{{ route('Products.index') }}?category={{ $category->name }}"
+                        <a href="{{ route('products.index') }}?category={{ $category->name }}"
                            class="flex flex-col items-center justify-center">
                             <img src="{{$category->image}}" alt="image de la categorie {{$category->image}}"
                                  class="w-12 h-12 rounded-full object-cover">
@@ -38,7 +38,7 @@
             @include('partials.product-grid')
 
             <div class="w-full text-center mt-6">
-                <x-button-component :link="route('Products.index')" title="Voir plus"/>
+                <x-button-component :link="route('products.index')" title="Voir plus"/>
             </div>
         </section>
 
@@ -48,7 +48,7 @@
 
                 <x-section-title-component title="Ce mois-ci"/>
                 <div class=" mt-4 flex items-center justify-between">
-                    <h3 class="lg:text-2xl text-xl font-medium dark:text-white">Produits recommandés</h3>
+                    <h3 class="lg:text-2xl text-xl font-medium dark:text-white">Articles recommandés</h3>
                     <x-button-component link="#" title="Voir plus"/>
                 </div>
 

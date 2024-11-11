@@ -17,7 +17,6 @@ import DropdownAction from './components/shopDropdownAction.vue';
 
 import { Shop } from '@/models/Shop';
 
-
 const data = ref()
 
 const { shops,userCounts } = usePage().props
@@ -108,6 +107,12 @@ const columns = [
                 <h3 class="text-2xl font-medium px-4">Nos boutiques</h3>
 
                 <data-table :data="data" :columns="columns" />
+
+
+<!--                <div class="gap-8 lg:flex">-->
+<!--                    <user-list/>-->
+<!--                    <chat-messages/>-->
+<!--                </div>-->
 
             </section>
         </div>

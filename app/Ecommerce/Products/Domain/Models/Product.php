@@ -29,7 +29,8 @@ class Product extends Model
         'description',
         'category_id',
         'store_id',
-        'has_delivered'
+        'has_delivered',
+        'in_stock'
     ];
 
     protected function casts(): array
@@ -80,6 +81,14 @@ class Product extends Model
         return false;
     }
 
+    public function getInStockAttribute($value)
+    {
+        if ($value) {
+            return true;
+        }
+        return false;
+    }
+
     public function getExcerpt($size = 100)
     {
         return Str::limit($this->description, $size) . (Str::length($this->description) < $size ? "" : "...");
@@ -98,14 +107,5 @@ class Product extends Model
     public function rates(): MorphToMany
     {
         return $this->morphToMany(Rate::class, "rateble");
-    }
-
-    public function getHasDeliveredAttribute($value)
-    {
-        if ($value) {
-            return "Oui";
-        } else {
-            return "Non";
-        }
     }
 }

@@ -55,14 +55,14 @@ const columns = [
         },
         cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('category')?.name),
     }),
-    columnHelper.accessor('qty', {
+    columnHelper.accessor('in_stock', {
         header: ({ column }) => {
             return h(Button, {
                 variant: 'ghost',
                 onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-            }, () => ['Quantite en stock', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
+            }, () => ['En stock', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
         },
-        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('qty')),
+        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('in_stock') ? "Oui" : "Non"),
     }),
     columnHelper.accessor('price', {
         header: () => h('div', { class: 'text-right' }, 'Price'),

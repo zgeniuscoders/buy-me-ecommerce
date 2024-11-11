@@ -3,6 +3,7 @@
 namespace App\Ecommerce\Seller\Framework\Controllers\products;
 
 use App\Admin\Domain\Usecases\Category\CategoryInteractor;
+use App\Core\Domain\Enums\StatusEnum;
 use App\Core\Domain\Models\Category;
 use App\Core\Framework\Controllers\Controller;
 use App\Ecommerce\Products\Domain\Models\Product;
@@ -49,7 +50,7 @@ class ProductController extends Controller
         }
 
         $categories = Category::all();
-        $status = [['id' => 1, 'name' => 'available'], ['id' => 2, 'name' => 'valid']];
+        $status = [['id' => 1, 'name' => StatusEnum::DRAFT->value], ['id' => 2, 'name' => StatusEnum::PUBLISH->value]];
 
         return Inertia::render('admin/store/products/create', [
             'categories' => $categories,
@@ -106,7 +107,7 @@ class ProductController extends Controller
 
         $categories = $this->categoryInteractor->getCategories->run();
 
-        $status = [['id' => 1, 'name' => 'available'], ['id' => 2, 'name' => 'valid']];
+        $status = [['id' => 1, 'name' => StatusEnum::DRAFT->value], ['id' => 2, 'name' => StatusEnum::PUBLISH->value]];
 
         return Inertia::render('admin/store/products/edit', [
             'product' => $product,
