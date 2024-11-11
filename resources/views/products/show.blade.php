@@ -1,5 +1,9 @@
 @extends('layouts.default')
 
+@section("meta-description")
+{{ $product->description }}
+@endsection
+
 @section('title')
     {{ $product->name }} {{ $product->price }}$
 @endsection

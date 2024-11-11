@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Profile\Domain\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\URL;
@@ -57,7 +58,7 @@ class Product extends Model
     //     );
     // }
 
-    public function favoriteProductUser()
+    public function favoriteProductUser(): BelongsToMany
     {
         return $this->belongsToMany(User::class, "favorite_products");
     }
@@ -68,12 +69,12 @@ class Product extends Model
         return $this->hasMany(Order::class);
     }
 
-    public function getImageAttribute($value)
+    public function getImageAttribute($value): string
     {
         return URL::to("storage/$value");
     }
 
-    public function getStatusAttribute($value)
+    public function getStatusAttribute($value): bool
     {
         if ($value) {
             return true;
@@ -81,7 +82,7 @@ class Product extends Model
         return false;
     }
 
-    public function getInStockAttribute($value)
+    public function getInStockAttribute($value): bool
     {
         if ($value) {
             return true;
@@ -89,12 +90,12 @@ class Product extends Model
         return false;
     }
 
-    public function getExcerpt($size = 100)
+    public function getExcerpt($size = 100): string
     {
         return Str::limit($this->description, $size) . (Str::length($this->description) < $size ? "" : "...");
     }
 
-    public function getImagesAttribute($value)
+    public function getImagesAttribute($value): array
     {
         $images = [];
         foreach (json_decode($value) as $image) {

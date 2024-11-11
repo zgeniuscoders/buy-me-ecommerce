@@ -2,7 +2,7 @@
 
 import {readFileData} from "@/lib/utils";
 
-import Layout from "../../layouts/layout.vue";
+import Layout from "../layouts/layout.vue";
 import {useForm} from "@inertiajs/vue3";
 import {createToaster} from "@meforma/vue-toaster";
 import Input from '@/components/ui/input/Input.vue';

@@ -7,7 +7,7 @@
 
             <x-nav-link :href="route('home')" name="Accueil" :isActive="request()->routeIs('home')" />
 
-            <x-nav-link :href="route('Products.index')" name="Articles" :isActive="request()->routeIs('Products.index')" />
+            <x-nav-link :href="route('products.index')" name="Articles" :isActive="request()->routeIs('products.index')" />
 
 
             <li class="menu-category">
@@ -156,10 +156,6 @@
                     </ul>
 
                 </div>
-            </li>
-
-            <li class="menu-category">
-                <router-link :to="{ name: 'store.index' }" class="menu-title">Boutiques</router-link>
             </li>
 
             @auth

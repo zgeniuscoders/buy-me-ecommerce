@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Layout from "../../layouts/layout.vue";
+import Layout from "../layouts/layout.vue";
 import dataTable from "@/components/data-table.vue";
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'

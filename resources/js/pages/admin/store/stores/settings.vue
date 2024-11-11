@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import layout from '../../layouts/layout.vue';
+import layout from '../layouts/layout.vue';
 
 import Input from '@/components/ui/input/Input.vue';
 import Textarea from '@/components/ui/textarea/Textarea.vue';

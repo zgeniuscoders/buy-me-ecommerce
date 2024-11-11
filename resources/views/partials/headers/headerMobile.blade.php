@@ -21,7 +21,7 @@
 
     </a>
 
-    <a class="action-btn" data-mobile-menu-open-btn href="{{ route("Products.index") }}">
+    <a class="action-btn" data-mobile-menu-open-btn href="{{ route("products.index") }}">
         <ion-icon name="grid-outline"></ion-icon>
     </a>
 

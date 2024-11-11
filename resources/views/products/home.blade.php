@@ -1,5 +1,9 @@
 @extends('layouts.default')
 
+@section("meta-description")
+Découvrez des fabricants, fournisseurs, exportateurs, importateurs, acheteurs, grossistes, produits et opportunités commerciales de notre site de commerce international primé. Importez et exportez sur matrixt-e-commerce.top.
+@endsection
+
 @section('title')
     Page d'accueil
 @endsection

@@ -1,6 +1,6 @@
 <script setup>
 
-import Layout from "../../layouts/layout.vue";
+import Layout from "../layouts/layout.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 import { onMounted, ref } from "vue";
 import { createToaster } from "@meforma/vue-toaster";

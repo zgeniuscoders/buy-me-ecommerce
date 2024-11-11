@@ -9,6 +9,7 @@
     <title>@yield('title')</title>
 
     <link rel="stylesheet" href="{{ asset('main.css') }}">
+    <meta name="description" content="@yield("meta-description")">
 
     @vite(['resources/css/app.css', 'resources/js/app.ts'])
 

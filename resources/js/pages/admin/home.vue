@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Layout from './layouts/layout.vue';
+import Layout from './store/layouts/layout.vue';
 import Chart from 'chart.js/auto';
 import { Link } from "@inertiajs/vue3";
 import cardStats from '@/components/card-stats.vue';

@@ -9,7 +9,7 @@ import { ArrowUpDown } from 'lucide-vue-next'
 import { h, shallowRef } from 'vue'
 import DropdownAction from './components/productDropdownAction.vue'
 
-import Layout from "../../layouts/layout.vue";
+import Layout from "../layouts/layout.vue";
 import { usePage,Link } from "@inertiajs/vue3";
 import { ProductInterface } from '@/models/ProductType'
 
