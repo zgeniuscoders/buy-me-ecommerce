@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import adminLayout from '../layouts/adminLayout.vue';
+import adminLayout from './layouts/adminLayout.vue';
 import cardStats from '@/components/card-stats.vue';
 import { usePage } from '@inertiajs/vue3';
 

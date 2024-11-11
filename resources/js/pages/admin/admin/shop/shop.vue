@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import adminLayout from '../../layouts/adminLayout.vue';
+import adminLayout from '../layouts/adminLayout.vue';
 import { usePage } from '@inertiajs/vue3';
 import dataTable from '@/components/data-table.vue';
 import { Button } from '@/components/ui/button'

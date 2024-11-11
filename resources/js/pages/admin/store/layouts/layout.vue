@@ -10,6 +10,9 @@
                 <template v-slot:apps>
                     <apps/>
                 </template>
+                <template v-slot:pages>
+                    <pages/>
+                </template>
             </sidebar>
 
             <div class="w-full">
@@ -22,30 +25,16 @@
             </div>
         </div>
     </div>
-    <!--    <div>-->
-    <!--        <navbar-main @toggleSidebarMobile="toggleSidebarMobile" />-->
-    <!--        <div class="flex pt-16 overflow-hidden bg-background dark:bg-background-dark">-->
-    <!--&lt;!&ndash;            <sidebar :menus="menus" :toggleSidebarMobile="state.toggleSidebarMobile" />&ndash;&gt;-->
-    <!--            <sidebar/>-->
-    <!--            <div id="main-content"-->
-    <!--                class="relative w-full h-full overflow-y-auto bg-background dark:bg-background-dark lg:ml-64">-->
-    <!--                <main class="min-h-full p-4">-->
-    <!--                    <slot />-->
-    <!--                </main>-->
-    <!--            </div>-->
-
-    <!--        </div>-->
-    <!--    </div>-->
 </template>
 
 <script setup>
-import navbarMain from '../../partials/navbar-main.vue';
 
 import {ref} from 'vue';
-import TopBar from "@/pages/admin/partials/top-bar.vue";
-import Sidebar from "@/pages/admin/layouts/sidebar.vue";
+import TopBar from "@/pages/partials/top-bar.vue";
+import Sidebar from "@/pages/partials/sidebar.vue";
 import Dashboard from "@/pages/admin/store/layouts/menu/dashboard.vue";
 import Apps from "@/pages/admin/store/layouts/menu/apps.vue";
+import Pages from "@/pages/admin/store/layouts/menu/pages.vue";
 
 const menus = ref([
     {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import adminLayout from '../../layouts/adminLayout.vue';
+import adminLayout from '../layouts/adminLayout.vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { createToaster } from "@meforma/vue-toaster";
 import { shallowRef, h } from 'vue';

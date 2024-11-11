@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import adminLayout from '../../layouts/adminLayout.vue';
+import adminLayout from '../layouts/adminLayout.vue';
 import {CardContent, Card, CardTitle, CardHeader, CardDescription} from "@/components/ui/card"
 import {useForm} from '@inertiajs/vue3';
 import {createToaster} from "@meforma/vue-toaster";

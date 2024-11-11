@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import adminLayout from '../../layouts/adminLayout.vue';
+import adminLayout from '../layouts/adminLayout.vue';
 import card from '@/components/card.vue';
 import inputComponent from '@/components/input-components.vue';
 import selectComponent from '@/components/select-components.vue';

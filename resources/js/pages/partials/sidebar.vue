@@ -1,75 +1,77 @@
+<script setup lang="ts">
+
+</script>
+
 <template>
-    <div>
-        <aside id="sidebar"
-            class="fixed top-0 left-0 z-20 flex-col flex-shrink-0 w-64 h-full pt-16 font-normal duration-75 lg:flex transition-width"
-            :class="props.toggleSidebarMobile ? 'flex' : 'hidden'" aria-label="Sidebar">
-            <div
-                class="relative flex flex-col flex-1 min-h-0 pt-0 bg-background dark:bg-background-dark border-r border-gray-200">
-                <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
-                    <div class="flex-1 px-3 space-y-1 bg-background divide-y divide-gray-200">
-<!--                        <ul class="pb-2 space-y-2">-->
-<!--                            <li>-->
-<!--                                <form action="#" method="GET" class="">-->
-<!--                                    <label for="mobile-search" class="sr-only">Recherche</label>-->
-<!--                                    <div class="relative">-->
-<!--                                        <div-->
-<!--                                            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">-->
-<!--                                            <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"-->
-<!--                                                xmlns="http://www.w3.org/2000/svg">-->
-<!--                                                <path fill-rule="evenodd"-->
-<!--                                                    d.tsx="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"-->
-<!--                                                    clip-rule="evenodd"></path>-->
-<!--                                            </svg>-->
-<!--                                        </div>-->
-<!--                                        <input type="text" name="email" id="mobile-search"-->
-<!--                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5"-->
-<!--                                            placeholder="Search">-->
-<!--                                    </div>-->
-<!--                                </form>-->
-<!--                            </li>-->
+    <div class="text-sidebar-foreground group peer hidden md:block" data-state="expanded" data-collapsible=""
+         data-variant="sidebar" data-side="left">
+        <div
+            class="relative h-svh w-[--sidebar-width] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[--sidebar-width-icon]"></div>
+        <div
+            class="fixed inset-y-0 z-10 hidden h-svh w-[--sidebar-width] transition-[left,right,width] duration-200 ease-linear md:flex left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l">
+            <div data-sidebar="sidebar"
+                 class="bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow">
+                <div data-sidebar="header" class="flex flex-col gap-2 p-2 h-16 items-center justify-center">
+                    <ul data-sidebar="menu" class="flex w-full min-w-0 flex-col gap-1">
+                        <li data-sidebar="menu-item" class="group/menu-item relative">
+                            <button data-sidebar="menu-button" data-size="default" data-active="false"
+                                    class="peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent-hover active:text-sidebar-accent-foreground-hover disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent-hover data-[state=open]:hover:text-sidebar-accent-foreground-hover group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2 [&amp;>span:last-child]:truncate [&amp;>svg]:size-4 [&amp;>svg]:shrink-0 hover:bg-sidebar-accent-hover hover:text-sidebar-accent-foreground-hover h-8 text-sm"
+                                    type="button" id="radix-:R1j7rqba:" aria-haspopup="menu" aria-expanded="false"
+                                    data-state="closed"><a class="me-2 group-data-[collapsible=icon]:me-0" href="/public"><img
+                                src="" class="hidden w-6 dark:block" alt="shadcn ui kit light logo"><img
+                                src="" class="block w-6 dark:hidden" alt="shadcn ui kit logo"></a>
+                                <div class="truncate font-semibold group-data-[collapsible=icon]:hidden">Matrixt</div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     class="lucide lucide-chevrons-up-down ml-auto group-data-[collapsible=icon]:hidden">
+                                    <path d="m7 15 5 5 5-5"></path>
+                                    <path d="m7 9 5-5 5 5"></path>
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div data-sidebar="content"
+                     class="flex min-h-0 flex-1 flex-col gap-2 group-data-[collapsible=icon]:overflow-hidden overflow-hidden">
+                    <div dir="ltr" class="relative overflow-hidden"
+                         style="position:relative;--radix-scroll-area-corner-width:0px;--radix-scroll-area-corner-height:0px">
 
-<!--                        </ul>-->
-
-                        <nav-links :menus="props.menus" />
+                        <div data-radix-scroll-area-viewport="" class="h-full w-full rounded-[inherit]"
+                             style="overflow: hidden scroll;">
+                            <div data-radix-scroll-area-content="">
+                                <slot name="dashboard"/>
+                                <slot name="apps"/>
+                                <slot name="pages"/>
+                                <slot name="others"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="absolute bottom-0 left-0 hidden w-full p-4 space-x-4 bg-background lg:flex"
-                    sidebar-bottom-menu>
-                    <button type="button" @click="logout"
-                        class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 group">
-                        <ion-icon name="log-out-outline"></ion-icon>
-                        <span class="ml-3" sidebar-toggle-item>Se deconnecter</span>
-                    </button>
-                </div>
+                <slot name="upgrade-to-pro"/>
             </div>
-        </aside>
-
-        <div class="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/90" id="sidebarBackdrop"></div>
+        </div>
     </div>
 </template>
 
-<script setup lang="ts">
-import { MenuItemProps } from '@/utils/MenuItemProps';
-import navLinks from './nav-links.vue';
-import { useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
-
-const props = defineProps<{
-    menus: MenuItemProps,
-    toggleSidebarMobile: boolean
-}>()
-const route = useForm({})
-
-
-const logout = () => {
-    route.post('/logout', {
-        onError: () => {
-            console.log("logout error");
-        }, onSuccess: () => {
-            location.reload();
-        }
-    })
+<style scoped>
+[data-radix-scroll-area-viewport] {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
 }
 
-</script>
+[data-radix-scroll-area-viewport]::-webkit-scrollbar {
+    display: none;
+}
+
+:where([data-radix-scroll-area-viewport]) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+:where([data-radix-scroll-area-content]) {
+    flex-grow: 1;
+}
+</style>

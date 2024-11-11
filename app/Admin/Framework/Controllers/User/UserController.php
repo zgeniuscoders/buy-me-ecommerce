@@ -14,10 +14,10 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Inertia\Response
     {
         $users = User::paginate(10);
-        return Inertia::render("admin/admin/users/users", [
+        return Inertia::render("admin/admin/users/index", [
             "users" => $users
         ]);
     }

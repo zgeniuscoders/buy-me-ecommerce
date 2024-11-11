@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import adminLayout from '../../layouts/adminLayout.vue';
+import adminLayout from '../layouts/adminLayout.vue';
 import {
     Card,
     CardContent,
