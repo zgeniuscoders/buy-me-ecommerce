@@ -10,6 +10,9 @@
             <x-nav-link :href="route('products.index')" name="Articles"
                         :isActive="request()->routeIs('products.index')"/>
 
+            <x-nav-link :href="route('products.new-arrivals')" name="Nouveaux Arrivages"
+                        :isActive="request()->routeIs('products.new-arrivals')"/>
+
             @auth
                 <x-nav-link :href="route('account.index')" name="Mon compte"
                             :isActive="request()->routeIs('store.index')"/>

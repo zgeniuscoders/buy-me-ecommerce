@@ -4,7 +4,7 @@ namespace App\Ecommerce\Products\Domain\Usecases\products;
 
 use App\Ecommerce\Products\Domain\Repository\ProductRepository;
 
-class GetProduct
+readonly class GetProduct
 {
 
     public function __construct(private ProductRepository $repository)

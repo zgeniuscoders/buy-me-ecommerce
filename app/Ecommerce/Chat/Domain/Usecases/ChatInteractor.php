@@ -7,7 +7,11 @@ use App\Ecommerce\Chat\Domain\Repository\ChatRepository;
 class ChatInteractor
 {
 
-    public function __construct(public GetMessages $getMessages, public RemoveMessage $removeMessage, public SendMessage $sendMessage)
+    public function __construct(
+        public GetMessages          $getMessages,
+        public RemoveMessage        $removeMessage,
+        public SendMessage          $sendMessage
+    )
     {
     }
 
@@ -16,7 +20,7 @@ class ChatInteractor
         return new ChatInteractor(
             new GetMessages($repository),
             new RemoveMessage($repository),
-            new SendMessage($repository)
+            new SendMessage($repository),
         );
     }
 

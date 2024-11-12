@@ -119,8 +119,8 @@ const columns = [
             </section>
 
 
-            <section class="grid lg:grid-cols-2 gap-4">
-                <ChatCard/>
+            <section class="grid  gap-4">
+<!--                <ChatCard/>-->
                 <!-- sales stats info  -->
                 <!--                <div class="bg-white p-4 rounded-md shadow-md">-->
                 <!--                    <h3 class="font-medium text-xl">Total Sales</h3>-->
@@ -159,28 +159,39 @@ const columns = [
 
             </section>
 
-            <section class="grid md:grid-cols-6 gap-4">
-                <div class="md:col-span-4 space-y-4">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Commandes récentes</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <data-table :data="data" :columns="columns"/>
-                        </CardContent>
-                    </Card>
-                </div>
-<!--                <div class="md:col-span-2 space-y-4">-->
+            <section>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Commandes récentes</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <data-table :data="data" :columns="columns"/>
+                    </CardContent>
+                </Card>
+            </section>
+
+<!--            <section class="grid md:grid-cols-6 gap-4">-->
+<!--                <div class="md:col-span-4 space-y-4">-->
 <!--                    <Card>-->
 <!--                        <CardHeader>-->
-<!--                            <CardTitle>Produits les plus vendus</CardTitle>-->
+<!--                            <CardTitle>Commandes récentes</CardTitle>-->
 <!--                        </CardHeader>-->
 <!--                        <CardContent>-->
 <!--                            <data-table :data="data" :columns="columns"/>-->
 <!--                        </CardContent>-->
 <!--                    </Card>-->
 <!--                </div>-->
-            </section>
+<!--&lt;!&ndash;                <div class="md:col-span-2 space-y-4">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <Card>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <CardHeader>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <CardTitle>Produits les plus vendus</CardTitle>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </CardHeader>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <CardContent>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <data-table :data="data" :columns="columns"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </CardContent>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </Card>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </section>-->
 
         </div>
     </Layout>

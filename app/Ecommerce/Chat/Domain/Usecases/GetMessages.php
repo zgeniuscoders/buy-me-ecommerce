@@ -3,6 +3,7 @@
 namespace App\Ecommerce\Chat\Domain\Usecases;
 
 use App\Ecommerce\Chat\Domain\Repository\ChatRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 readonly class GetMessages
 {
@@ -11,9 +12,9 @@ readonly class GetMessages
     {
     }
 
-    public function run(int $userId): \Ramsey\Collection\Collection
+    public function run(int $shopId, int $userId):Collection
     {
-        return $this->repository->getMessages($userId);
+        return $this->repository->getMessages($shopId, $userId);
     }
 
 }

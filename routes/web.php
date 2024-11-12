@@ -5,6 +5,7 @@ use App\Ecommerce\Checkout\Framework\Controllers\CheckoutController;
 use App\Ecommerce\Products\Framework\Controllers\cart\CartController;
 use App\Ecommerce\Products\Framework\Controllers\products\FavoriteController;
 use App\Ecommerce\Products\Framework\Controllers\products\FilterProductController;
+use App\Ecommerce\Products\Framework\Controllers\products\NewArrivalsController;
 use App\Ecommerce\Products\Framework\Controllers\products\ProductController;
 use App\Ecommerce\Search\Framework\Controllers\SearchController;
 use App\Ecommerce\Seller\Framework\Controllers\ShopDisabledController;
@@ -16,6 +17,9 @@ Route::get('/search', SearchController::class)->name("search");
 
 Route::get('/articles/{products}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/articles', [ProductController::class, 'index'])->name('products.index');
+
+Route::get('/nouveautes', NewArrivalsController::class)
+    ->name("products.new-arrivals");
 
 Route::get('/articles-filtre', FilterProductController::class)->name("filter");
 

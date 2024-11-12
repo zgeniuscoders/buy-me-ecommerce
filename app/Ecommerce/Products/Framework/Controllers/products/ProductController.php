@@ -5,56 +5,45 @@ namespace App\Ecommerce\Products\Framework\Controllers\products;
 use App\Core\Domain\Models\Category;
 use App\Core\Framework\Controllers\Controller;
 use App\Ecommerce\Products\Domain\Models\Product;
+use App\Ecommerce\Products\Domain\Usecases\products\ProductInteractor;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
+    public function __construct(private ProductInteractor $productInteractor)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\Http\Response
     {
 
-        $products = Product::with("favoriteProductUser")->paginate(12);
         $user = auth()->user();
 
-        // Vérification des favoris pour l'utilisateur
-        if ($user) {
-            $products->getCollection()->transform(function ($product) use ($user) {
-                $product->isFavorited = $product->favoriteProductUser->contains('id', $user->id);
-                return $product;
-            });
-        } else {
-            // Si l'utilisateur n'est pas connecté, on définit isFavorited à false
-            $products->getCollection()->transform(function ($product) {
-                $product->isFavorited = false;
-                return $product;
-            });
+        $category = null;
+        if ($request->has("category")) {
+            $category = $request->input("category");
         }
 
-        if ($request->has("Category")) {
-            $category = Category::where("name", $request->input("Category"))->firstOrFail();
-            $products = $products->where("category_id", $category->id);
-        }
+        $products = $this->productInteractor->getProducts->run($user, $category);
 
-
-        return view("Products.index", compact("products"));
+        return response()->view("products.index", compact("products"));
     }
 
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): \Illuminate\Http\Response
     {
-        $product = Product::findOrFail($id);
+        $product = $this->productInteractor->getProduct->run($id);
+        $user = auth()->user();
 
-        $products = Product::where("category_id", $product->category_id)
-            ->take(8)
-            ->get();
-
-
-        return view("Products.show", compact("product","products"));
+        $products = $this->productInteractor->getProductsByCategory->run($product->category_id, $user);
+        return response()->view("products.show", compact("product", "products"));
     }
 
 }

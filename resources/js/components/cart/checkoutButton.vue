@@ -19,11 +19,11 @@ const { items, clearCart } = useCartStore()
 
 const checkout = async () => {
     proceedToCheckout(items).then(res => {
-        toaster.success('Commande passer avec success')
+        toaster.success('Commande passée avec succès.')
 
         clearCart()
     }).catch(e => {
-        toaster.error('an excepted error occured')
+        toaster.error('Une erreur s\'est produite lors du traitement de votre commande. Veuillez réessayer plus tard.')
 
         console.error(e);
     })

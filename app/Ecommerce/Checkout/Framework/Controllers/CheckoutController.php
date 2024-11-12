@@ -13,7 +13,7 @@ class CheckoutController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): \Illuminate\Http\RedirectResponse
     {
         try {
 
@@ -28,9 +28,9 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            return redirect()->back()->with("success", "commander passer avec succes");
+            return redirect()->back()->with("success", "Commande passée avec succès.");
         } catch (Exception $e) {
-            return redirect()->back()->with("error", "error");
+            return redirect()->back()->with("error", "Une erreur s'est produite lors du traitement de votre commande. Veuillez réessayer plus tard.");
         }
     }
 }

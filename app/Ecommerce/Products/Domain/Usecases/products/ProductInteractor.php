@@ -11,8 +11,10 @@ class ProductInteractor
 {
 
     public function __construct(
-        private GetProducts $getProducts,
-        private GetProduct $getProduct,
+        public GetProducts    $getProducts,
+        public GetProduct     $getProduct,
+        public GetNewArrivals $getNewArrivals,
+        public GetProductsByCategory $getProductsByCategory
     )
     {
     }
@@ -22,6 +24,8 @@ class ProductInteractor
         return new ProductInteractor(
             new GetProducts($repository),
             new GetProduct($repository),
+            new GetNewArrivals($repository),
+            new GetProductsByCategory($repository)
         );
     }
 }

@@ -3,12 +3,14 @@
 namespace App\Ecommerce\Chat\Framework\Repository;
 
 use App\Ecommerce\Chat\Domain\Repository\ChatRepository;
-use Ramsey\Collection\Collection;
+use App\Models\Chat;
+use Illuminate\Database\Eloquent\Collection;
+
 
 class EloquentChatRepository implements ChatRepository
 {
 
-    public function getMessages(int $userId): Collection
+    public function getMessages(int $shopId, int $userId): Collection
     {
         // TODO: Implement getMessages() method.
     }
@@ -18,8 +20,10 @@ class EloquentChatRepository implements ChatRepository
         // TODO: Implement sendMessage() method.
     }
 
-    public function removeMessages(int $messageId): Collection
+    public function removeMessages(int $messageId): void
     {
-        // TODO: Implement removeMessages() method.
+        $chat = Chat::findOrFail($messageId);
+        $chat->delete();
     }
+
 }

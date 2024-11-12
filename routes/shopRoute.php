@@ -21,7 +21,7 @@ Route::middleware(["has_store_middleware", "has_shop_enabled"])
     ->prefix("ma-boutique")
     ->group(function () {
 
-        Route::get("/chat", ShopChatController::class)->name("shop.chat");
+//        Route::get("/chat", ShopChatController::class)->name("shop.chat");
         Route::get("/parametres", ShopSettingController::class)->name("shop.settings");
 
         Route::post("/changer-les-information-de-ma-boutique/{store}", [StoreController::class, "update"])
