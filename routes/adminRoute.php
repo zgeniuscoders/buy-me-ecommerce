@@ -4,6 +4,7 @@ use App\Admin\Framework\Controllers\AdminController;
 use App\Admin\Framework\Controllers\Ads\AdsController;
 use App\Admin\Framework\Controllers\Category\CategoryController;
 use App\Admin\Framework\Controllers\Customer\CustomerController;
+use App\Admin\Framework\Controllers\Permission\PermissionController;
 use App\Admin\Framework\Controllers\Role\RoleController;
 use App\Admin\Framework\Controllers\shop\DisabledShopController;
 use App\Admin\Framework\Controllers\shop\EnableShopController;
@@ -25,22 +26,22 @@ Route::prefix("/admin")
             ->name("admin");
 
 
-        Route::post("/disable-Shop", DisabledShopController::class)
-            ->name("admin.disabled.Shop");
-        Route::post("/enable-Shop", EnableShopController::class)
-            ->name("admin.disabled.Shop");
+        Route::post("/disable-shop", DisabledShopController::class)
+            ->name("admin.disabled.shop");
+        Route::post("/enable-shop", EnableShopController::class)
+            ->name("admin.disabled.shop");
 
         Route::resource("/categories", CategoryController::class)
-            ->names("admin.Category")
+            ->names("admin.category")
             ->except(["show"]);
 
 
         Route::get("/boutiques", ShopController::class)
-            ->name("admin.Shop");
+            ->name("admin.shop");
 
 
         Route::get("/clients", CustomerController::class)
-            ->name("admin.Customer");
+            ->name("admin.customer");
 
 
         Route::resource("/utilisateurs", UserController::class)
@@ -51,5 +52,10 @@ Route::prefix("/admin")
         Route::resource("/roles", RoleController::class)
             ->middleware("can:super-admin-cards.*")
             ->names("admin.roles")
+            ->except(["show"]);
+
+        Route::resource("/permissions", PermissionController::class)
+            ->middleware("can:super-admin-cards.*")
+            ->names("admin.permissions")
             ->except(["show"]);
     });

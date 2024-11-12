@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section("meta-description")
-Découvrez des fabricants, fournisseurs, exportateurs, importateurs, acheteurs, grossistes, produits et opportunités commerciales de notre site de commerce international primé. Importez et exportez sur matrixt-e-commerce.top.
+    Découvrez des fabricants, fournisseurs, exportateurs, importateurs, acheteurs, grossistes, produits et opportunités commerciales de notre site de commerce international primé. Importez et exportez sur matrixt-e-commerce.top.
 @endsection
 
 @section('title')
@@ -13,26 +13,27 @@ Découvrez des fabricants, fournisseurs, exportateurs, importateurs, acheteurs, 
 
         @include('partials.banner')
 
-        {{--        categories --}}
-        <section class="border-t mt-4">
-            <div class="mt-8">
+        @if ($categories->isNotEmpty())
+            {{--        categories --}}
+            <section class="border-t mt-4">
+                <div class="mt-8">
 
-                <x-section-title-component title="Categories"/>
+                    <x-section-title-component title="Categories"/>
 
-                {{--                categories listing --}}
-                <div class="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-4 my-4">
-                    @foreach ($categories as $category)
-                        <a href="{{ route('products.index') }}?category={{ $category->name }}"
-                           class="flex flex-col items-center justify-center">
-                            <img src="{{$category->image}}" alt="image de la categorie {{$category->image}}"
-                                 class="w-12 h-12 rounded-full object-cover">
-                            <span>{{ $category->name }}</span>
-                        </a>
-                    @endforeach
+                    {{--                categories listing --}}
+                    <div class="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-4 my-4">
+                        @foreach ($categories as $category)
+                            <a href="{{ route('products.index') }}?category={{ $category->name }}"
+                               class="flex flex-col items-center justify-center">
+                                <img src="{{$category->image}}" alt="image de la categorie {{$category->image}}"
+                                     class="w-12 h-12 rounded-full object-cover">
+                                <span>{{ $category->name }}</span>
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-        </section>
-
+            </section>
+        @endif
         {{-- flash sales --}}
         <section class="my-6">
             <div class="">
@@ -47,20 +48,20 @@ Découvrez des fabricants, fournisseurs, exportateurs, importateurs, acheteurs, 
         </section>
 
         {{--        recommanded Products --}}
-        <section class="border-t mt-4 mb-6">
-            <div class="mt-8">
+{{--        <section class="border-t mt-4 mb-6">--}}
+{{--            <div class="mt-8">--}}
 
-                <x-section-title-component title="Ce mois-ci"/>
-                <div class=" mt-4 flex items-center justify-between">
-                    <h3 class="lg:text-2xl text-xl font-medium dark:text-white">Articles recommandés</h3>
-                    <x-button-component link="#" title="Voir plus"/>
-                </div>
+{{--                <x-section-title-component title="Ce mois-ci"/>--}}
+{{--                <div class=" mt-4 flex items-center justify-between">--}}
+{{--                    <h3 class="lg:text-2xl text-xl font-medium dark:text-white">Articles recommandés</h3>--}}
+{{--                    <x-button-component link="#" title="Voir plus"/>--}}
+{{--                </div>--}}
 
 
-                @include('partials.product-grid')
+{{--                @include('partials.product-grid')--}}
 
-            </div>
-        </section>
+{{--            </div>--}}
+{{--        </section>--}}
 
 
         @if($randomAds)

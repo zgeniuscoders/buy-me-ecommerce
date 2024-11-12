@@ -26,6 +26,7 @@ class UserRequest extends FormRequest
             "name" => ["required", "string", "min:3"],
             "email" => ["required", "email"],
             "password" => ["required", "min:6", "confirmed"],
+            "roles" => ["required", "integer", "exists:roles,id"],
             "status" => ["required", "in:" . implode(',', array_column(AccountStatusEnum::cases(), 'value'))]
         ];
     }

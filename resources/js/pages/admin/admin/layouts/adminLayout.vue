@@ -9,6 +9,7 @@ import Dashboard from "@/pages/admin/admin/layouts/menu/dashboard.vue";
 import Apps from "@/pages/admin/admin/layouts/menu/apps.vue";
 import Pages from "@/pages/admin/admin/layouts/menu/pages.vue";
 import Others from "@/pages/admin/admin/layouts/menu/others.vue";
+import ProfileDropdown from "@/pages/admin/admin/layouts/profile-dropdown.vue";
 
 
 </script>
@@ -29,7 +30,11 @@ import Others from "@/pages/admin/admin/layouts/menu/others.vue";
                 </template>
             </sidebar>
             <div class="w-full">
-                <top-bar/>
+                <top-bar>
+                    <template v-slot:profile-dropdown>
+                        <profile-dropdown/>
+                    </template>
+                </top-bar>
                 <main class="min-h-full p-4">
                     <div class="space-y-4">
                         <slot/>

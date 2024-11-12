@@ -1,5 +1,30 @@
 <script setup lang="ts">
 
+import ProfileDropdown from "@/pages/partials/profile-dropdown.vue";
+import {onMounted, ref} from "vue";
+import {User} from "@/models/User.ts";
+import axios from "axios";
+
+const showProfileDown = ref(false)
+
+const toggleProfileDropdown = () => {
+    showProfileDown.value = !showProfileDown.value;
+}
+
+const state = ref<{
+    user: User
+}>({
+    user: {} as User
+})
+
+axios.get("/user").then(res => {
+    state.value.user = res.data as User
+})
+
+onMounted(() => {
+
+})
+
 </script>
 
 <template>
@@ -15,6 +40,8 @@
                     <path d="M9 3v18"></path>
                 </svg>
                 <span class="sr-only">Toggle Sidebar</span></button>
+
+            <!--            search -->
             <div class="w-full flex-1">
                 <div>
                     <div class="relative max-w-sm flex-1">
@@ -41,6 +68,8 @@
                     </div>
                 </div>
             </div>
+
+            <!--            messages -->
             <button
                 class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 hover:underline h-9 rounded-md px-3 relative text-foreground"
                 type="button" id="radix-:R3d7rqba:" aria-haspopup="menu" aria-expanded="false"
@@ -56,6 +85,8 @@
                     3
                 </div>
             </button>
+
+            <!--            notification-->
             <button
                 class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 hover:underline h-9 rounded-md px-3 relative text-foreground"
                 type="button" id="radix-:R4d7rqba:" aria-haspopup="menu" aria-expanded="false"
@@ -71,27 +102,27 @@
                     2
                 </div>
             </button>
-            <button
-                class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 hover:underline h-9 rounded-md px-3 text-foreground">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                     stroke-linejoin="round" class="lucide lucide-sun h-4 w-4">
-                    <circle cx="12" cy="12" r="4"></circle>
-                    <path d="M12 2v2"></path>
-                    <path d="M12 20v2"></path>
-                    <path d="m4.93 4.93 1.41 1.41"></path>
-                    <path d="m17.66 17.66 1.41 1.41"></path>
-                    <path d="M2 12h2"></path>
-                    <path d="M20 12h2"></path>
-                    <path d="m6.34 17.66-1.41 1.41"></path>
-                    <path d="m19.07 4.93-1.41 1.41"></path>
-                </svg>
-                <span class="sr-only">Toggle theme</span></button>
-            <div class="ms-4"><span class="relative flex shrink-0 overflow-hidden size-8 rounded-full"
-                                    type="button" id="radix-:R6d7rqba:" aria-haspopup="menu"
-                                    aria-expanded="false" data-state="closed"><img
-                class="aspect-square h-full w-full" alt="shadcn ui kit"
-                src="https://dashboard.shadcnuikit.com/images/avatars/1.png"></span></div>
+
+
+            <div class="ms-4">
+                <span class="relative flex shrink-0 overflow-hidden size-8 rounded-full" type="button"
+                      @click="toggleProfileDropdown"
+                      id="radix-:R6d7rqba:" aria-haspopup="menu" aria-expanded="false" data-state="closed">
+                   <img class="aspect-square h-full w-full" :alt="`photo profile de  ${state.user.name}`"
+                        :src="state.user.profile" v-if="state.user.profile">
+
+                    <div v-else class="aspect-square h-full w-full bg-primary text-white">
+                        <span class="font-bold flex items-center justify-center h-full w-full capitalize">{{
+                                state.user?.name?.charAt(0)
+                            }}</span>
+                    </div>
+                </span>
+
+                <profile-dropdown :show-profile-dropdown="showProfileDown" :user="state.user">
+                    <slot name="profile-dropdown"/>
+                </profile-dropdown>
+
+            </div>
         </header>
     </div>
 </template>

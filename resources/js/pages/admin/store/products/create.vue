@@ -22,7 +22,7 @@ import {
     Select,
     SelectContent,
     SelectItem,
-    SelectTrigger,
+    SelectTrigger, SelectValue,
 } from "@/components/ui/select"
 import {Button} from "@/components/ui/button";
 
@@ -239,8 +239,7 @@ const submit = () => {
 
                                 <CardContent>
                                     <div class="space-y-2">
-                                        <Label for="status">Status</Label>
-                                        <Select v-model="form.status" name="status">
+                                        <Select v-model="form.status">
                                             <SelectTrigger>
                                                 <SelectValue placeholder="Selectioner le status de votre categorie"/>
                                             </SelectTrigger>
@@ -270,24 +269,20 @@ const submit = () => {
 
 
                                 <CardContent>
-                                    <div class="space-y-4">
-                                        <Label for="categorie">Categorie</Label>
+
+                                    <div class="space-y-2">
                                         <Select v-model="form.category_id">
                                             <SelectTrigger>
                                                 <SelectValue placeholder="Selectioner une categorie"/>
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <template v-for="category in $page.props.categories"
-                                                          :key="category.id">
-                                                    <SelectItem :value="category.id">{{
-                                                            category.name
-                                                        }}
-                                                    </SelectItem>
+                                                <template v-for="category in $page.props.categories" :key="category.id">
+                                                    <SelectItem :value="category.id">{{ category.name }}</SelectItem>
                                                 </template>
                                             </SelectContent>
                                         </Select>
                                         <span v-if="form.errors.category_id" class="text-red-400 text-sm">{{
-                                                from.errors.category_id
+                                                form.errors.category_id
                                             }}</span>
 
                                     </div>
