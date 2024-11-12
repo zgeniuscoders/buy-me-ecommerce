@@ -1,15 +1,15 @@
 <script setup lang="ts">
 
-import { cn } from '@/lib/utils'
-import { Input } from "@/components/ui/input";
+import {cn} from '@/lib/utils'
+import {Input} from "@/components/ui/input";
 
-import { Button } from '@/components/ui/button'
+import {Button} from '@/components/ui/button'
 
-import { ChevronDown } from 'lucide-vue-next'
-import { FlexRender } from '@tanstack/vue-table'
-import { ref } from 'vue';
+import {ChevronDown} from 'lucide-vue-next'
+import {FlexRender} from '@tanstack/vue-table'
+import {ref} from 'vue';
 
-import { valueUpdater } from '@/lib/utils'
+import {valueUpdater} from '@/lib/utils'
 import {
     getCoreRowModel,
     getExpandedRowModel,
@@ -42,7 +42,7 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-const { data, columns } = defineProps<{
+const {data, columns} = defineProps<{
     data: {},
     columns: {}
 }>()
@@ -69,11 +69,21 @@ const table = useVueTable({
     onRowSelectionChange: updaterOrValue => valueUpdater(updaterOrValue, rowSelection),
     onExpandedChange: updaterOrValue => valueUpdater(updaterOrValue, expanded),
     state: {
-        get sorting() { return sorting.value },
-        get columnFilters() { return columnFilters.value },
-        get columnVisibility() { return columnVisibility.value },
-        get rowSelection() { return rowSelection.value },
-        get expanded() { return expanded.value },
+        get sorting() {
+            return sorting.value
+        },
+        get columnFilters() {
+            return columnFilters.value
+        },
+        get columnVisibility() {
+            return columnVisibility.value
+        },
+        get rowSelection() {
+            return rowSelection.value
+        },
+        get expanded() {
+            return expanded.value
+        },
         columnPinning: {
             left: ['id'],
         },
@@ -85,13 +95,13 @@ const table = useVueTable({
     <div class="w-full">
         <div class="flex gap-2 items-center py-4">
             <Input class="max-w-sm" placeholder="Filtrer par nom"
-                :model-value="table.getColumn('name')?.getFilterValue() as string"
-                @update:model-value=" table.getColumn('name')?.setFilterValue($event)" />
+                   :model-value="table.getColumn('name')?.getFilterValue() as string"
+                   @update:model-value=" table.getColumn('name')?.setFilterValue($event)"/>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
                     <Button variant="outline" class="ml-auto">
-                        Columns
-                        <ChevronDown class="ml-2 h-4 w-4" />
+                        triée par colonnes
+                        <ChevronDown class="ml-2 h-4 w-4"/>
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
@@ -112,7 +122,7 @@ const table = useVueTable({
                     <TableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
                         <TableHead v-for="header in headerGroup.headers" :key="header.id">
                             <FlexRender v-if="!header.isPlaceholder" :render="header.column.columnDef.header"
-                                :props="header.getContext()" />
+                                        :props="header.getContext()"/>
                         </TableHead>
                     </TableRow>
                 </TableHeader>
@@ -121,11 +131,11 @@ const table = useVueTable({
                         <template v-for="row in table.getRowModel().rows" :key="row.id">
                             <TableRow :data-state="row.getIsSelected() && 'selected'">
                                 <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id"
-                                    :data-pinned="cell.column.getIsPinned()" :class="cn(
+                                           :data-pinned="cell.column.getIsPinned()" :class="cn(
                                         { 'sticky bg-background/95': cell.column.getIsPinned() },
                                         cell.column.getIsPinned() === 'left' ? 'left-0' : 'right-0',
                                     )">
-                                    <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
+                                    <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()"/>
                                 </TableCell>
                             </TableRow>
                             <TableRow v-if="row.getIsExpanded()">
@@ -138,27 +148,23 @@ const table = useVueTable({
 
                     <TableRow v-else>
                         <TableCell :colspan="columns.length" class="h-24 text-center">
-                            No results.
+                            Aucun résultat
                         </TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
         </div>
 
-        <div class="flex items-center justify-end space-x-2 py-4">
-            <div class="flex-1 text-sm text-muted-foreground">
-                {{ table.getFilteredSelectedRowModel().rows.length }} sur
-                {{ table.getFilteredRowModel().rows.length }} ligne(s) sélectionnée(s).
-            </div>
-            <div class="space-x-2">
-                <Button variant="outline" size="sm" :disabled="!table.getCanPreviousPage()"
+        <div class="flex items-center justify-between space-x-2 py-4">
+
+            <Button variant="outline" size="sm" :disabled="!table.getCanPreviousPage()"
                     @click="table.previousPage()">
-                    Previous
-                </Button>
-                <Button variant="outline" size="sm" :disabled="!table.getCanNextPage()" @click="table.nextPage()">
-                    Next
-                </Button>
-            </div>
+                Précédent
+            </Button>
+            <Button variant="outline" size="sm" :disabled="!table.getCanNextPage()" @click="table.nextPage()">
+                Suivant
+            </Button>
+
         </div>
     </div>
 
