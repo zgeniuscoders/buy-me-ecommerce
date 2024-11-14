@@ -1,49 +1,54 @@
 <?php
 
-use App\Http\Controllers\Acount\AcountController;
+use App\Core\Framework\Controllers\HomeController;
+use App\Ecommerce\Checkout\Framework\Controllers\CheckoutController;
+use App\Ecommerce\Products\Framework\Controllers\cart\CartController;
+use App\Ecommerce\Products\Framework\Controllers\products\FavoriteController;
+use App\Ecommerce\Products\Framework\Controllers\products\FilterProductController;
+use App\Ecommerce\Products\Framework\Controllers\products\NewArrivalsController;
+use App\Ecommerce\Products\Framework\Controllers\products\ProductController;
+use App\Ecommerce\Search\Framework\Controllers\SearchController;
+use App\Ecommerce\Seller\Framework\Controllers\ShopDisabledController;
+use App\Ecommerce\Shop\Framework\Controllers\StoreController as ControllersStoreController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\admin\HomeController;
-use App\Http\Controllers\admin\store\StoreController;
-use App\Http\Controllers\admin\store\orders\OrderController;
-use App\Http\Controllers\admin\store\products\ProductController;
-use App\Http\Controllers\api\product\ProductFavoriteController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\FavoriteController;
-use App\Http\Controllers\StoreController as ControllersStoreController;
 
-Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
+Route::get('/', HomeController::class)->name('home');
+Route::get('/search', SearchController::class)->name("search");
 
-Route::get('/products/{products}', [\App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
-Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
+Route::get('/articles/{products}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/articles', [ProductController::class, 'index'])->name('products.index');
+
+Route::get('/nouveautes', NewArrivalsController::class)
+    ->name("products.new-arrivals");
+
+Route::get('/articles-filtre', FilterProductController::class)->name("filter");
 
 Route::resource("store", ControllersStoreController::class)
-    ->only(["index", "show"]);
+    ->only(["show"]);
+
 
 Route::middleware("auth")->group(function () {
 
-    Route::get('cart', [CartController::class, 'getCart'])->name('cart.index');
-    Route::post('/checkout', CheckoutController::class)->name("checkout");
+    include "adminRoute.php";
 
-    Route::get("/ma-boutique/store/create", [StoreController::class, "create"])->name("admin.store.create");
-    Route::post("/ma-boutique/store", [StoreController::class, "store"])->name("admin.store.store");
+    Route::get('/user', function () {
+        return request()->user();
+    });
 
+    Route::get("/disabled", ShopDisabledController::class)->name("disabled");
 
-    Route::resource("articles/favorite", FavoriteController::class)
-        ->names("product.favorite")
-        ->except(["create", "edit", "update"]);
+    Route::middleware("can:user-cards.*")->group(function () {
 
-    // account 
-    Route::resource("mon-compte", AcountController::class)->names("account");
+        Route::get('cart', [CartController::class, 'getCart'])->name('cart.index');
+        Route::post('/checkout', CheckoutController::class)->name("checkout");
 
-    Route::middleware("has_store_middleware")->group(function () {
-        Route::get('/ma-boutique', HomeController::class)->name("admin");
-        Route::resource("/ma-boutique/store", StoreController::class)
-            ->except("create", "store")
-            ->names("admin.store");
+        //favorite
+        Route::resource("articles/favorite", FavoriteController::class)
+            ->names("product.favorite")
+            ->except(["create", "edit", "update", "show", "index"]);
 
-        Route::resource('/ma-boutique/articles', ProductController::class)->names("admin.products");
+        include "accountRoute.php";
 
-        Route::resource('/ma-boutique/commandes', OrderController::class)->only(['index', 'update']);
+        include "shopRoute.php";
     });
 });

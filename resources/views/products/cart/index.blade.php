@@ -22,7 +22,7 @@
                     </div>
                 @endif
 
-                <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Shopping Cart</h2>
+                <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Panier</h2>
                 <form action="{{ route('checkout') }}" method="post">
                     @csrf
                     <cart />

@@ -15,8 +15,8 @@ class ProductFavoriteResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "products" => ProductResource::collection($this->whenLoaded("favoriteProducts"))
-            // "products" => $this->favoriteProducts
+            "Products" => ProductResource::collection($this->whenLoaded("favoriteProducts"))
+            // "Products" => $this->favoriteProducts
         ];
     }
 }

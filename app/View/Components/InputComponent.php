@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 class InputComponent extends Component
 {
     /**
-     * Create a new component instance.
+     * Create a new components instance.
      */
     public function __construct(public string $name, public string $placeholder, public string $title, public string $type = 'text', public string $value = '', public bool $isLogin = false)
     {
@@ -17,7 +17,7 @@ class InputComponent extends Component
     }
 
     /**
-     * Get the view / contents that represent the component.
+     * Get the view / contents that represent the components.
      */
     public function render(): View|Closure|string
     {

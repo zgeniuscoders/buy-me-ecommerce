@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\Product;
+use App\Ecommerce\Products\Domain\Models\Product;
 use App\Models\User;
+use App\Profile\Domain\Enums\OrderStatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->integer("quantity")->default(1);
-            $table->integer("status")->default(0);
+            $table->enum("status", array_column(OrderStatusEnum::cases(), 'value'))->default('panding');
             $table->timestamps();
         });
     }

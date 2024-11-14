@@ -33,9 +33,9 @@
                             <div class="w-full min-w-0 flex-1 space-y-4 md:order-2  flex items-center justify-between">
 
                                 <div class="">
-                                    <a href="{{ route('products.show', ['products' => $product->id]) }}"
+                                    <a href="{{ route('Products.show', ['Products' => $product->id]) }}"
                                         class="text-base font-medium text-gray-900 dark:text-white hover:underline">{{ $product->name }}</a>
-                                    <p href="{{ route('products.show', ['products' => $product->id]) }}"
+                                    <p href="{{ route('Products.show', ['Products' => $product->id]) }}"
                                         class="text-sm font-medium text-gray-900 dark:text-white">
                                         {{ $product->getExcerpt() }}
                                     </p>

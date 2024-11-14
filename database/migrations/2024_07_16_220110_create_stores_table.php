@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string("cover_image")->nullable();
             $table->text("description");
             $table->string("social_networks")->nullable();
+            $table->boolean("is_disabled")->default(false);
             $table->timestamps();
         });
     }
