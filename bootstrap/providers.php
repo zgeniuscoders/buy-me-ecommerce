@@ -1,6 +1,7 @@
 <?php
 
 return [
+    App\Providers\AddressServiceProvider::class,
     App\Providers\AdsServiceProvider::class,
     App\Providers\AppServiceProvider::class,
     App\Providers\CategoryServiceProvider::class,
@@ -9,6 +10,7 @@ return [
     App\Providers\FortifyServiceProvider::class,
     App\Providers\GetAdsServiceProvider::class,
     App\Providers\OrderProvider::class,
+    App\Providers\OrderServiceProvider::class,
     App\Providers\PermissionServiceProvider::class,
     App\Providers\ProductServiceProvider::class,
     App\Providers\RoleServiceProvider::class,

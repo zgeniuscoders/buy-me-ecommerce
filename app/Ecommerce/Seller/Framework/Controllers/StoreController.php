@@ -28,7 +28,7 @@ class StoreController extends Controller
         if (Auth::user()->cannot('create', Store::class)) {
             abort(403);
         }
-        return Inertia::render("admin/store/stores/create");
+        return Inertia::render("store/stores/create");
     }
 
     /**

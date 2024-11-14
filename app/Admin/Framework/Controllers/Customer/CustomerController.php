@@ -14,7 +14,7 @@ class CustomerController extends Controller
     public function __invoke()
     {
         $users = User::all();
-        return Inertia::render("admin/admin/customers/customers", [
+        return Inertia::render("admin/customers/customers", [
             "customers" => $users
         ]);
     }

@@ -12,6 +12,7 @@
     <meta name="description" content="@yield("meta-description")">
 
     @vite(['resources/css/app.css', 'resources/js/app.ts'])
+    @yield("header")
 
 </head>
 
@@ -22,7 +23,6 @@
     @yield('content')
 
     @include('partials.footer')
-
 
     @yield("script")
 

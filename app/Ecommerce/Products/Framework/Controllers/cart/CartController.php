@@ -7,11 +7,12 @@ use App\Ecommerce\Products\Domain\Models\Product;
 use App\Http\Services\Cart;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CartController extends Controller
 {
 
-    public function getCart(): \Illuminate\Http\Response
+    public function getCart(): \Inertia\Response
     {
         $cart = session('cart');
 
@@ -22,7 +23,7 @@ class CartController extends Controller
         $items = $cart->getItems();
         $totalPrice = $cart->getTotalPrice();
 
-        return response()->view('Products.cart.index', ['cart' => $items, 'totalPrice' => $totalPrice]);
+        return Inertia::render("cart/index", ['cart' => $items, 'totalPrice' => $totalPrice]);
 
     }
 

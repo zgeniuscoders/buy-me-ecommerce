@@ -25,7 +25,7 @@ readonly class AdsController
         $ads = $this->adsInteractor->getAds->run();
         $createAdsRoute = route("ads.create");
 
-        return Inertia::render("admin/admin/ads/index", compact("ads", "createAdsRoute"));
+        return Inertia::render("admin/ads/index", compact("ads", "createAdsRoute"));
     }
 
     /**
@@ -35,7 +35,7 @@ readonly class AdsController
     {
         $addAdsRoute = route("ads.store");
         $addAdsToDraftRoute = route("admin.ads.draft");
-        return Inertia::render("admin/admin/ads/create", compact("addAdsRoute", "addAdsToDraftRoute"));
+        return Inertia::render("admin/ads/create", compact("addAdsRoute", "addAdsToDraftRoute"));
     }
 
     /**
@@ -72,7 +72,7 @@ readonly class AdsController
     {
         $ads = $this->adsInteractor->getAdsById->run($id);
         $updateAdsRoute = route("ads.update", ["ad" => $ads->id]);
-        return Inertia::render("admin/admin/ads/edit", compact("updateAdsRoute", "ads"));
+        return Inertia::render("admin/ads/edit", compact("updateAdsRoute", "ads"));
     }
 
     /**

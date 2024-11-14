@@ -21,7 +21,7 @@ class ShopSettingController extends Controller
             abort(403);
         }
 
-        return Inertia::render("admin/store/stores/settings", [
+        return Inertia::render("store/stores/settings", [
             "shop" => $shop,
             "changeShopNameRoute" => route("shop.update.name", ["store" => $shop->id]),
             "changeShopImageRoute" => route("shop.update.image"),

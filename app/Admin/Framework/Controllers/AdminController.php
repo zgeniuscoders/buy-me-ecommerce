@@ -19,7 +19,7 @@ class AdminController extends Controller
         $userCounts = User::all()->count();
         $shops = Store::get();
 
-        return Inertia::render("admin/admin/admin",[
+        return Inertia::render("admin/admin",[
             "userCounts" => $userCounts,
             "shops" => $shops
         ]);

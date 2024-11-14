@@ -2,14 +2,11 @@
 import emit from "tiny-emitter/instance.js"
 
 import Quantity from "./quantity.vue";
-import {ref} from "vue";
 import {useCartStore} from "@/stores/cart";
 import {ProductProps} from "@/models/ProductProps";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 
 const {updateQuantity, removeItem} = useCartStore()
 const {product} = defineProps<ProductProps>()
-const storagePath = ref('storage')
 
 const decrementItemQty = () => {
     let qty = product.quantity
@@ -50,7 +47,7 @@ const removeFromCart = () => {
             class="rounded-md object-cover"
         />
         <div class="grid gap-1">
-            <h3 class="font-medium">{{product.name}}</h3>
+            <h3 class="font-medium">{{ product.name }}</h3>
             <p class="text-gray-500 dark:text-gray-400 text-sm">
                 <button type="button" @click.prevent="removeFromCart"
                         class="inline-flex items-center text-sm font-medium text-red-600 hover:underline">
@@ -64,7 +61,7 @@ const removeFromCart = () => {
             </p>
         </div>
         <div class="flex items-center justify-end gap-2">
-            <span class="font-medium">{{product.price}}$</span>
+            <span class="font-medium">{{ product.price }}$</span>
             <div class="flex items-center">
 
                 <!-- <decrement-button :productId="props.product.id" :qty="props.product.quantity" /> -->

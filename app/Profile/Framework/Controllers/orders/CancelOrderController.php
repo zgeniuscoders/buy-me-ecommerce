@@ -2,7 +2,7 @@
 
 namespace App\Profile\Framework\Controllers\orders;
 
-use App\Profile\Domain\Usecases\orders\OrderInteractor;
+use App\Ecommerce\Products\Domain\Usecases\orders\OrderInteractor;
 use Illuminate\Http\Request;
 
 class CancelOrderController

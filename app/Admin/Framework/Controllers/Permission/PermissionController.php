@@ -20,7 +20,7 @@ class PermissionController
     public function index(): \Inertia\Response
     {
         $permissions = $this->permissionInteractor->getPermissions->run();
-        return Inertia::render("admin/admin/permission/index", [
+        return Inertia::render("admin/permission/index", [
             "permissions" => $permissions
         ]);
     }
@@ -33,7 +33,7 @@ class PermissionController
         $roles = $this->roleInteractor->getRoles->run();
         $addPermissionRoute = route("admin.permissions.store");
 
-        return Inertia::render("admin/admin/permission/create", [
+        return Inertia::render("admin/permission/create", [
             "roles" => $roles,
             "addPermissionRoute" => $addPermissionRoute
         ]);
@@ -67,7 +67,7 @@ class PermissionController
         $roles = $this->roleInteractor->getRoles->run();
         $updatePermissionRoute = route("admin.permissions.update", ["permission" => $perms->id]);
 
-        return Inertia::render("admin/admin/permission/edit", [
+        return Inertia::render("admin/permission/edit", [
             "permission" => $perms,
             "roles" => $roles,
             "updatePermissionRoute" => $updatePermissionRoute

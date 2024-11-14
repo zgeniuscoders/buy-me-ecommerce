@@ -16,6 +16,6 @@ class ShopChatController
     public function __invoke(Request $request, ChatListInteractor $chatListInteractor)
     {
         $chatList = $chatListInteractor->getUsersListMessages->run(1);
-        return Inertia::render("admin/store/chat/index", compact("chatList"));
+        return Inertia::render("store/chat/index", compact("chatList"));
     }
 }

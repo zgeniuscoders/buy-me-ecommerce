@@ -36,7 +36,7 @@ class ProductController extends Controller
         $storeId = auth()->user()->store->id;
         $products = $this->productInteractor->getShopProducts->run($storeId);
 
-        return Inertia::render('admin/store/products/index', [
+        return Inertia::render('store/products/index', [
             'products' => $products
         ]);
     }
@@ -52,7 +52,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $status = [['id' => 1, 'name' => StatusEnum::DRAFT->value], ['id' => 2, 'name' => StatusEnum::PUBLISH->value]];
 
-        return Inertia::render('admin/store/products/create', [
+        return Inertia::render('store/products/create', [
             'categories' => $categories,
             'status' => $status
         ]);
@@ -109,7 +109,7 @@ class ProductController extends Controller
 
         $status = [['id' => 1, 'name' => StatusEnum::DRAFT->value], ['id' => 2, 'name' => StatusEnum::PUBLISH->value]];
 
-        return Inertia::render('admin/store/products/edit', [
+        return Inertia::render('store/products/edit', [
             'product' => $product,
             'categories' => $categories,
             'status' => $status
