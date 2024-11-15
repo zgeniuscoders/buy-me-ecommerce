@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import AdminLayout from "@/pages/admin/admin/layouts/adminLayout.vue";
+import AdminLayout from "@/pages/admin/layouts/adminLayout.vue";
 import {usePage} from "@inertiajs/vue3";
 import {h, shallowRef} from "vue";
 import {createColumnHelper} from "@tanstack/vue-table";
@@ -8,7 +8,7 @@ import {Checkbox} from "@/components/ui/checkbox";
 import {Button} from "@/components/ui/button";
 import {ArrowUpDown} from "lucide-vue-next";
 import DataTable from "@/components/data-table.vue";
-import DropdownAction from "@/pages/admin/admin/role/components/roleDropdownAction.vue";
+import DropdownAction from "@/pages/admin/role/components/roleDropdownAction.vue";
 import {Role} from "@/models/Role.ts";
 
 const {roles} = usePage().props

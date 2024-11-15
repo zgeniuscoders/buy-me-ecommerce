@@ -69,10 +69,6 @@ class Product extends Model
         return $this->hasMany(Order::class);
     }
 
-    public function getImageAttribute($value): string
-    {
-        return URL::to("storage/$value");
-    }
 
     public function getStatusAttribute($value): bool
     {
@@ -99,7 +95,7 @@ class Product extends Model
     {
         $images = [];
         foreach (json_decode($value) as $image) {
-            $images[] = URL::to("storage/$image");
+            $images[] = $image;
         }
 
         return $images;

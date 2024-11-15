@@ -9,6 +9,7 @@ use App\Core\Domain\Enums\CategoryStatusEnum;
 use App\Core\Domain\Enums\StatusEnum;
 use App\Core\Framework\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -62,7 +63,7 @@ class CategoryController extends Controller
             $request->all(),
             [
                 'slug' => Str::slug($request->name),
-                'image' => $imagePath,
+                'image' => URL::to("storage/$imagePath")
             ]
         ));
 
@@ -95,7 +96,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, string $id): RedirectResponse
     {
 
-        $this->categoryInteractor->updateCategory->run($request,$id);
+        $this->categoryInteractor->updateCategory->run($request, $id);
 
         return redirect()->back();
     }

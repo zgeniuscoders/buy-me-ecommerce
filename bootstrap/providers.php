@@ -7,6 +7,7 @@ return [
     App\Providers\CategoryServiceProvider::class,
     App\Providers\ChatListServiceProvider::class,
     App\Providers\ChatServiceProvider::class,
+    App\Providers\CustomerServiceProvider::class,
     App\Providers\FortifyServiceProvider::class,
     App\Providers\GetAdsServiceProvider::class,
     App\Providers\OrderProvider::class,

@@ -7,7 +7,7 @@ import {h, shallowRef} from "vue";
 import {createColumnHelper} from "@tanstack/vue-table";
 import {Checkbox} from "@/components/ui/checkbox";
 import {ArrowUpDown} from "lucide-vue-next";
-import DropdownAction from "@/pages/admin/admin/users/components/userDropdownAction.vue";
+import DropdownAction from "@/pages/admin/users/components/userDropdownAction.vue";
 import {User} from "@/models/User.ts";
 import DataTable from "@/components/data-table.vue";
 

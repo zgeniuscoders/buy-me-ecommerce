@@ -13,6 +13,7 @@ use App\Ecommerce\Seller\Domain\Usecases\Product\ShopProductInteractor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -79,7 +80,7 @@ class ProductController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $path = $image->store('products/images', 'public');
-                $imagePaths[] = $path;
+                $imagePaths[] = URL::to("storage/$path");
             }
         }
 
@@ -88,7 +89,7 @@ class ProductController extends Controller
             [
                 'store_id' => $storeId,
                 'slug' => Str::slug($request->name),
-                'image' => $imagePath,
+                'image' => URL::to("storage/$imagePath"),
                 'images' => json_encode($imagePaths)
             ]
         ));

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Layout from "@/pages/admin/store/layouts/layout.vue";
+import Layout from "@/pages/store/layouts/layout.vue";
 import UserList from "@/components/chat/user-list.vue";
 import ChatFigure from "@/components/chat/chat-figure.vue";
 import {usePage} from "@inertiajs/vue3";
