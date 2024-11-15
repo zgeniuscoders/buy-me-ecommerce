@@ -19,5 +19,6 @@ return [
     App\Providers\ShopOrderServiceProvider::class,
     App\Providers\ShopProductProvider::class,
     App\Providers\ShopServiceProvider::class,
+    App\Providers\SocialNetworkServiceProvider::class,
     App\Providers\UserServiceProvider::class,
 ];

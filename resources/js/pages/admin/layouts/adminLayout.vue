@@ -28,6 +28,9 @@ import ProfileDropdown from "@/pages/admin/layouts/profile-dropdown.vue";
                 <template v-slot:pages>
                     <pages/>
                 </template>
+                <template v-slot:others>
+                    <others/>
+                </template>
             </sidebar>
             <div class="w-full">
                 <top-bar>

@@ -38,10 +38,9 @@ const removeFromCart = () => {
     <div
         class="grid grid-cols-[100px_1fr_100px] items-center gap-4 px-4 py-3 border-t dark:border-gray-700">
         <input type="hidden" :value="product.id" name="productId[]">
-
         <img
             :src="product.image"
-            alt="Product Image"
+            :alt="`image de l'article ${product.name}`"
             width={100}
             height={100}
             class="rounded-md object-cover"
