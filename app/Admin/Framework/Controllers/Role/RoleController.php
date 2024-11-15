@@ -17,7 +17,7 @@ class RoleController
     public function index(): Response
     {
         $roles = $this->roleInteractor->getRoles->run();
-        return Inertia::render("admin/admin/role/index", [
+        return Inertia::render("admin/role/index", [
             "roles" => $roles
         ]);
     }
@@ -25,7 +25,7 @@ class RoleController
     public function create(): Response
     {
         $createRoleRoute = route("admin.roles.store");
-        return Inertia::render("admin/admin/role/create", compact("createRoleRoute"));
+        return Inertia::render("admin/role/create", compact("createRoleRoute"));
     }
 
     public function store(RoleRequest $request): RedirectResponse
@@ -39,7 +39,7 @@ class RoleController
         $role = $this->roleInteractor->getRole->run($id);
         $updateRoleRoute = route("admin.roles.update", ["role" => $role->id]);
 
-        return Inertia::render("admin/admin/role/edit", compact("updateRoleRoute", "role"));
+        return Inertia::render("admin/role/edit", compact("updateRoleRoute", "role"));
     }
 
     public function update(RoleRequest $request, int $id): RedirectResponse

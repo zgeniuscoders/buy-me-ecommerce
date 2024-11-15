@@ -13,7 +13,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('Products', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Store::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Category::class)->nullable()->constrained()->nullOnDelete();

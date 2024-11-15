@@ -18,6 +18,9 @@ Route::prefix("/admin")
     ->middleware("can:admin-cards.*")
     ->group(function () {
 
+        Route::resource("social-network", \App\Admin\Framework\Controllers\SocialNetwork\SocialNetworkController::class)
+            ->names("admin.social-network");
+
         Route::resource("ads", AdsController::class);
         Route::post("ads/draft", AddAdsToDraftController::class)
             ->name("admin.ads.draft");

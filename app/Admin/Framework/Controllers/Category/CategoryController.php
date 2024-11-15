@@ -9,6 +9,7 @@ use App\Core\Domain\Enums\CategoryStatusEnum;
 use App\Core\Domain\Enums\StatusEnum;
 use App\Core\Framework\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -26,7 +27,7 @@ class CategoryController extends Controller
     public function index(): Response
     {
         $categories = $this->categoryInteractor->getCategories->run();
-        return Inertia::render("admin/admin/category/index", ["categories" => $categories]);
+        return Inertia::render("admin/category/index", ["categories" => $categories]);
     }
 
     /**
@@ -41,7 +42,7 @@ class CategoryController extends Controller
             ['id' => 2, 'name' => StatusEnum::PUBLISH->value]
         ];
 
-        return Inertia::render("admin/admin/category/create", [
+        return Inertia::render("admin/category/create", [
             "categories" => $categories,
             "status" => $status
         ]);
@@ -62,7 +63,7 @@ class CategoryController extends Controller
             $request->all(),
             [
                 'slug' => Str::slug($request->name),
-                'image' => $imagePath,
+                'image' => URL::to("storage/$imagePath")
             ]
         ));
 
@@ -82,7 +83,7 @@ class CategoryController extends Controller
             ['id' => CategoryStatusEnum::UNAVAILABLE->value, 'name' => CategoryStatusEnum::UNAVAILABLE->value]
         ];
 
-        return Inertia::render("admin/admin/category/edit", [
+        return Inertia::render("admin/category/edit", [
             "category" => $category,
             "categories" => $categories,
             "status" => $status
@@ -95,7 +96,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, string $id): RedirectResponse
     {
 
-        $this->categoryInteractor->updateCategory->run($request,$id);
+        $this->categoryInteractor->updateCategory->run($request, $id);
 
         return redirect()->back();
     }

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
 class ProductRepositoryImpl implements ProductRepository
 {
 
-    public function getProducts(Authenticatable $user, string|null $sortedCategory = null): LengthAwarePaginator
+    public function getProducts(Authenticatable|null $user, string|null $sortedCategory = null): LengthAwarePaginator
     {
         $products = Product::with("favoriteProductUser")->paginate(20);
         return $this->userProductFavorite($products, $user);
@@ -41,7 +41,7 @@ class ProductRepositoryImpl implements ProductRepository
         $product->delete();
     }
 
-    public function getNewArrivals(Authenticatable $user, string|null $sortedCategory = null): LengthAwarePaginator
+    public function getNewArrivals(Authenticatable|null $user, string|null $sortedCategory = null): LengthAwarePaginator
     {
         $products = Product::orderBy('created_at', 'desc')->paginate(20);
         return $this->userProductFavorite($products, $user);
@@ -49,15 +49,11 @@ class ProductRepositoryImpl implements ProductRepository
 
     /**
      * @param LengthAwarePaginator $products
-     * @param Authenticatable $user
+     * @param Authenticatable|null $user
      * @return mixed
      */
-    public function userProductFavorite(LengthAwarePaginator $products, Authenticatable $user)
+    public function userProductFavorite(LengthAwarePaginator $products, Authenticatable|null $user)
     {
-        $products->getCollection()->transform(function ($product) use ($user) {
-            $product->isFavorited = $product->favoriteProductUser->contains('id', $user->id);
-            return $product;
-        });
 
         // Vérification des favoris pour l'utilisateur
         if ($user) {
@@ -76,7 +72,7 @@ class ProductRepositoryImpl implements ProductRepository
         return $products;
     }
 
-    public function getProductsByCategory(int $categoryId, Authenticatable $user): Collection
+    public function getProductsByCategory(int $categoryId, Authenticatable|null $user): Collection
     {
         return Product::where("category_id", $categoryId)
             ->take(8)

@@ -17,11 +17,11 @@ interface ProductRepository
 
     public function removeProduct(int $productId): void;
 
-    public function getProductsByCategory(int $categoryId, Authenticatable $user): Collection;
+    public function getProductsByCategory(int $categoryId, Authenticatable|null $user): Collection;
 
-    public function getNewArrivals(Authenticatable $user, string|null $sortedCategory = null): LengthAwarePaginator;
+    public function getNewArrivals(Authenticatable|null $user, string|null $sortedCategory = null): LengthAwarePaginator;
 
-    public function getProducts(Authenticatable $user, string|null $sortedCategory = null): LengthAwarePaginator;
+    public function getProducts(Authenticatable|null $user, string|null $sortedCategory = null): LengthAwarePaginator;
 
     public function getProduct(int $productId): Product;
 

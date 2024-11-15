@@ -12,7 +12,7 @@ readonly class GetProductsByCategory
     {
     }
 
-    public function run(int $categoryId, Authenticatable $user): \Illuminate\Database\Eloquent\Collection
+    public function run(int $categoryId, Authenticatable|null $user): \Illuminate\Database\Eloquent\Collection
     {
         return $this->repository->getProductsByCategory($categoryId, $user);
     }

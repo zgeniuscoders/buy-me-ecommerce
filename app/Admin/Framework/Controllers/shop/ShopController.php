@@ -14,7 +14,7 @@ class ShopController extends Controller
     public function __invoke()
     {
         $shops = Store::get();
-        return Inertia::render("admin/admin/Shop/Shop", [
+        return Inertia::render("admin/Shop/Shop", [
             "shops" => $shops
         ]);
     }

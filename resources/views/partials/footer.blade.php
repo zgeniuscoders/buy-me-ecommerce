@@ -6,10 +6,10 @@
         <div class="xl:grid xl:grid-cols-3 xl:gap-8">
 
             <div class="space-y-8 xl:col-span-1">
-                <img class="h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=600"
-                     alt="Company name">
-                <p class="text-base text-gray-500">Making the world a better place through constructing
-                    elegant hierarchies.</p>
+{{--                <img class="h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=600"--}}
+{{--                     alt="Company name">--}}
+{{--                <p class="text-base text-gray-500">Making the world a better place through constructing--}}
+{{--                    elegant hierarchies.</p>--}}
                 <div class="flex space-x-6">
 
                     <a href="#" class="text-gray-400 hover:text-gray-500 dark:hover:text-emerald-400">
@@ -94,27 +94,27 @@
 
                         </ul>
                     </div>
-                    <div class="mt-12 md:mt-0">
-                        <h3 class="text-base font-medium text-white">Legal</h3>
-                        <ul role="list" class="mt-4 space-y-4">
+{{--                    <div class="mt-12 md:mt-0">--}}
+{{--                        <h3 class="text-base font-medium text-white">Legal</h3>--}}
+{{--                        <ul role="list" class="mt-4 space-y-4">--}}
 
-                            <li>
-                                <a href="#"
-                                   class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Claim</a>
-                            </li>
+{{--                            <li>--}}
+{{--                                <a href="#"--}}
+{{--                                   class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Claim</a>--}}
+{{--                            </li>--}}
 
-                            <li>
-                                <a href="#"
-                                   class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Privacy</a>
-                            </li>
+{{--                            <li>--}}
+{{--                                <a href="#"--}}
+{{--                                   class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Privacy</a>--}}
+{{--                            </li>--}}
 
-                            <li>
-                                <a href="#"
-                                   class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Terms</a>
-                            </li>
+{{--                            <li>--}}
+{{--                                <a href="#"--}}
+{{--                                   class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-emerald-400">Terms</a>--}}
+{{--                            </li>--}}
 
-                        </ul>
-                    </div>
+{{--                        </ul>--}}
+{{--                    </div>--}}
 
                 </div>
 

@@ -17,7 +17,7 @@ class OrderController extends Controller
     {
         $shopId = $request->user()->store->id;
         $orders = $orderInteractor->getShopOrders->run($shopId);
-        return Inertia::render("admin/store/orders/index", compact("orders"));
+        return Inertia::render("store/orders/index", compact("orders"));
     }
 
 }

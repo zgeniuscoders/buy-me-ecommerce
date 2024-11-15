@@ -11,6 +11,7 @@ use App\Ecommerce\Shop\Domain\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
@@ -28,7 +29,7 @@ class StoreController extends Controller
         if (Auth::user()->cannot('create', Store::class)) {
             abort(403);
         }
-        return Inertia::render("admin/store/stores/create");
+        return Inertia::render("store/stores/create");
     }
 
     /**
@@ -49,7 +50,7 @@ class StoreController extends Controller
         $this->shopInteractor->addShop->run([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
-            'image' => $imagePath,
+            'image' => URL::to("storage/$imagePath"),
             'cover_image' => null,
             'description' => $request->description,
             'user_id' => auth()->id()

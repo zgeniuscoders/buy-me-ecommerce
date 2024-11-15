@@ -10,7 +10,8 @@
         <div class="container">
 
             <a href="#" class="header-logo">
-                <img src="" alt="Anon's logo" width="120" height="36">
+{{--                <img src="" alt="Anon's logo" width="120" height="36">--}}
+                <h3>Matrixt</h3>
             </a>
 
             <form method="get" action="{{ route('search') }}" class="header-search-container">

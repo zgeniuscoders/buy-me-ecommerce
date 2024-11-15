@@ -29,7 +29,7 @@ class UserController extends Controller
         $users = $this->userInteractor->getUsers->run();
         $createUserRoute = route("admin.users.create");
 
-        return Inertia::render("admin/admin/users/index", [
+        return Inertia::render("admin/users/index", [
             "users" => $users,
             "createUserRoute" => $createUserRoute
         ]);
@@ -45,7 +45,7 @@ class UserController extends Controller
         $createUserRoute = route("admin.users.store");
         $roles = $this->roleInteractor->getRoles->run();
 
-        return Inertia::render("admin/admin/users/create", [
+        return Inertia::render("admin/users/create", [
             "status" => $status,
             "createUserRoute" => $createUserRoute,
             "roles" => $roles
@@ -63,7 +63,7 @@ class UserController extends Controller
         ];
 
         $updateUserRoute = route("admin.users.update", ["utilisateur" => $user->id]);
-        return Inertia::render("admin/admin/users/edit", [
+        return Inertia::render("admin/users/edit", [
             "status" => $status,
             "user" => $user,
             "roles" => $roles,

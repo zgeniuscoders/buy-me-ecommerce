@@ -4,7 +4,11 @@ namespace App\Ecommerce\Checkout\Framework\Controllers;
 
 use App\Core\Framework\Controllers\Controller;
 use App\Ecommerce\Products\Domain\Models\Product;
+use App\Ecommerce\Products\Domain\Usecases\orders\OrderInteractor;
+use App\Ecommerce\Products\Domain\Usecases\products\ProductInteractor;
+use App\Http\Requests\CheckoutRequest;
 use App\Profile\Domain\Models\Order;
+use App\Profile\Domain\Usecases\AddressInteractor;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -13,19 +17,30 @@ class CheckoutController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request): \Illuminate\Http\RedirectResponse
+    public function __invoke(
+        CheckoutRequest   $request,
+        ProductInteractor $productInteractor,
+        OrderInteractor   $orderInteractor,
+        AddressInteractor $addressInteractor
+    ): \Illuminate\Http\RedirectResponse
     {
         try {
 
-            foreach ($request->all()["productId"] as $k => $product) {
-                $product = Product::find($product)->firstOrFail();
-                $qty = $request->all()["qty"][$k];
+            $userId = auth()->user()->id;
 
-                Order::create([
-                    "product_id" => $product->id,
-                    "user_id" => auth()->user()->id,
-                    "quantity" => $qty
+            foreach ($request->all()["products"] as $product) {
+                $productModel = $productInteractor->getProduct->run($product["productId"]);
+                $address = $addressInteractor->addAddress->run(array_merge($request->input("address"), [
+                    "user_id" => $userId
+                ]));
+
+                $order = $orderInteractor->addOrder->run([
+                    "user_id" => $userId,
+                    "address_id" => $address->id,
+                    "product_id" => $productModel->id,
+                    "quantity" => $product["productQty"]
                 ]);
+
             }
 
             return redirect()->back()->with("success", "Commande passée avec succès.");

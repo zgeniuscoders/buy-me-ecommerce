@@ -38,7 +38,7 @@ class AdminController extends Controller
         $totalCustomers = $customerInteractor->getShopCustomersCount->run($shopId);
 
 
-        return Inertia::render("admin/home", [
+        return Inertia::render("store/home", [
             "totalOrdersPrice" => number_format($totalOrdersPrice, 2, ','),
             "products" => $products,
             "totalCustomers" => $totalCustomers,

@@ -13,6 +13,7 @@ use App\Ecommerce\Seller\Domain\Usecases\Product\ShopProductInteractor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -36,7 +37,7 @@ class ProductController extends Controller
         $storeId = auth()->user()->store->id;
         $products = $this->productInteractor->getShopProducts->run($storeId);
 
-        return Inertia::render('admin/store/products/index', [
+        return Inertia::render('store/products/index', [
             'products' => $products
         ]);
     }
@@ -52,7 +53,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $status = [['id' => 1, 'name' => StatusEnum::DRAFT->value], ['id' => 2, 'name' => StatusEnum::PUBLISH->value]];
 
-        return Inertia::render('admin/store/products/create', [
+        return Inertia::render('store/products/create', [
             'categories' => $categories,
             'status' => $status
         ]);
@@ -79,7 +80,7 @@ class ProductController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $path = $image->store('products/images', 'public');
-                $imagePaths[] = $path;
+                $imagePaths[] = URL::to("storage/$path");
             }
         }
 
@@ -88,7 +89,7 @@ class ProductController extends Controller
             [
                 'store_id' => $storeId,
                 'slug' => Str::slug($request->name),
-                'image' => $imagePath,
+                'image' => URL::to("storage/$imagePath"),
                 'images' => json_encode($imagePaths)
             ]
         ));
@@ -109,7 +110,7 @@ class ProductController extends Controller
 
         $status = [['id' => 1, 'name' => StatusEnum::DRAFT->value], ['id' => 2, 'name' => StatusEnum::PUBLISH->value]];
 
-        return Inertia::render('admin/store/products/edit', [
+        return Inertia::render('store/products/edit', [
             'product' => $product,
             'categories' => $categories,
             'status' => $status

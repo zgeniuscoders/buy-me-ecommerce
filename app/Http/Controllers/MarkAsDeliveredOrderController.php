@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Profile\Domain\Usecases\orders\OrderInteractor;
+use App\Ecommerce\Products\Domain\Usecases\orders\OrderInteractor;
 use Illuminate\Http\Request;
 
 class MarkAsDeliveredOrderController

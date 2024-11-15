@@ -3,8 +3,7 @@
 namespace App\Profile\Framework\Controllers;
 
 use App\Core\Framework\Controllers\Controller;
-use App\Profile\Domain\Models\Order;
-use App\Profile\Domain\Usecases\orders\OrderInteractor;
+use App\Ecommerce\Products\Domain\Usecases\orders\OrderInteractor;
 use Inertia\Inertia;
 use Inertia\Response;
 

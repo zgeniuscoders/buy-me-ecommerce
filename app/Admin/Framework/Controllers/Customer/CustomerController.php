@@ -2,8 +2,8 @@
 
 namespace App\Admin\Framework\Controllers\Customer;
 
+use App\Admin\Domain\Usecases\Customer\CustomerInteractor;
 use App\Core\Framework\Controllers\Controller;
-use App\Models\User;
 use Inertia\Inertia;
 
 class CustomerController extends Controller
@@ -11,11 +11,11 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function __invoke()
+    public function __invoke(CustomerInteractor $customerInteractor)
     {
-        $users = User::all();
-        return Inertia::render("admin/admin/customers/customers", [
-            "customers" => $users
+        $customers = $customerInteractor->getCustomers->run();
+        return Inertia::render("admin/customers/index", [
+            "customers" => $customers
         ]);
     }
 }

@@ -1,6 +1,6 @@
 <template>
 
-    <Button type="submit"
+    <Button type="button"
             size="lg" class="w-full">Commander</Button>
 
 </template>
@@ -18,15 +18,15 @@ const { proceedToCheckout } = useOrder()
 const { items, clearCart } = useCartStore()
 
 const checkout = async () => {
-    proceedToCheckout(items).then(res => {
-        toaster.success('Commande passée avec succès.')
-
-        clearCart()
-    }).catch(e => {
-        toaster.error('Une erreur s\'est produite lors du traitement de votre commande. Veuillez réessayer plus tard.')
-
-        console.error(e);
-    })
+    // proceedToCheckout(items).then(res => {
+    //     toaster.success('Commande passée avec succès.')
+    //
+    //     clearCart()
+    // }).catch(e => {
+    //     toaster.error('Une erreur s\'est produite lors du traitement de votre commande. Veuillez réessayer plus tard.')
+    //
+    //     console.error(e);
+    // })
 }
 
 </script>

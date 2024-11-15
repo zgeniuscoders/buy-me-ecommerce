@@ -13,7 +13,7 @@ readonly class GetNewArrivals
     {
     }
 
-    public function run(Authenticatable $user, string|null $sortedCategory = null): LengthAwarePaginator
+    public function run(Authenticatable|null $user, string|null $sortedCategory = null): LengthAwarePaginator
     {
         return $this->repository->getNewArrivals($user, $sortedCategory);
     }

@@ -13,7 +13,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["status", "name", "image", "category_id","slug"];
+    protected $fillable = ["status", "name", "image", "category_id", "slug"];
 
     public function category(): BelongsTo
     {
@@ -25,8 +25,4 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function getImageAttribute($value): string
-    {
-        return URL::to("storage/$value");
-    }
 }
