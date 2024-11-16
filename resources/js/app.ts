@@ -11,7 +11,7 @@ import addToCartComponent from "./components/cart/addToCartButton.vue"
 import cartCountIndicator from "./components/cart/cartCountIndicator.vue"
 import clearCartButton from './components/cart/clearCartButton.vue';
 import productDetail from './components/product/productDetail.vue';
-import productFilter from './components/product/productFilter.vue';
+import categoryDropdown from './components/category/categoryDropdown.vue'
 
 import { createPinia } from 'pinia';
 
@@ -23,6 +23,7 @@ createApp()
     .component('add-to-cart-button', addToCartComponent)
     .component("clearCartButton", clearCartButton)
     .component("product-detail", productDetail)
+    .component("category-dropdown", categoryDropdown)
     .mount("#app-client")
 
     createInertiaApp({

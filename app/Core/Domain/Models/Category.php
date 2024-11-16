@@ -15,9 +15,9 @@ class Category extends Model
 
     protected $fillable = ["status", "name", "image", "category_id", "slug"];
 
-    public function category(): BelongsTo
+    public function categories(): HasMany
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->hasMany(Category::class, 'category_id');
     }
 
     public function products(): HasMany

@@ -1041,7 +1041,7 @@ body::-webkit-scrollbar-thumb:hover {
 \*-----------------------------------*/
 
 .sidebar {
-    background: var(--white);
+    /*background: var(--white);*/
     position: fixed;
     top: 0;
     left: -100%;

@@ -26,5 +26,5 @@ export interface Category {
     name: string,
     status: string
     slug: string,
-    category: Category
+    categories: Category[]
 }

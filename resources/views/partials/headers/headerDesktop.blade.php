@@ -13,10 +13,8 @@
             <x-nav-link :href="route('products.new-arrivals')" name="Nouveaux Arrivages"
                         :isActive="request()->routeIs('products.new-arrivals')"/>
 
-            @auth
-                <x-nav-link :href="route('account.index')" name="Mon compte"
-                            :isActive="request()->routeIs('store.index')"/>
-            @endauth
+            <x-nav-link :href="route('products.new-arrivals')" name="Tendances"
+                        :isActive="request()->routeIs('products.new-arrivals')"/>
 
             @guest
                 <x-nav-link href="{{ route('login') }}" name="Se connecter" :isActive="false"/>

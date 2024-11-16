@@ -14,7 +14,7 @@ class EloquentCategoryRepository implements CategoryRepository
 
     public function getCategories(): Collection
     {
-        return Category::with("category")->get();
+        return Category::with("categories")->get();
     }
 
     public function getCategory(int $categoryId): Category

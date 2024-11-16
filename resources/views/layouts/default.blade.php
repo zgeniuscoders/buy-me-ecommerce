@@ -16,7 +16,7 @@
 
 </head>
 
-<body id="app-client" class="bg-background">
+<body id="app-client" class="bg-gray-50 dark:bg-gray-900">
 
     @include('partials.headers.header')
 
