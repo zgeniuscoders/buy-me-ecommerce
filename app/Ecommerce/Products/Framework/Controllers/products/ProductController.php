@@ -23,14 +23,21 @@ class ProductController extends Controller
 
         $user = auth()->user();
 
-        $category = null;
+        $breadcrumbs = [
+            route('home') => 'Accueil',
+            route("products.index") => "Tout",
+            route("admin") => "Articles",
+        ];
+
+
+        $category = "Tout";
         if ($request->has("category")) {
             $category = $request->input("category");
         }
 
         $products = $this->productInteractor->getProducts->run($user, $category);
 
-        return response()->view("products.index", compact("products"));
+        return response()->view("products.index", compact("products", "breadcrumbs", "category"));
     }
 
 

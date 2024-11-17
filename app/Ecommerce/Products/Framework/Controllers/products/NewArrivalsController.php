@@ -15,7 +15,15 @@ class NewArrivalsController
     {
         $user = auth()->user();
 
+        $breadcrumbs = [
+            route('home') => 'Accueil',
+            route("products.index") => "Tout",
+            route("admin") => "Articles",
+        ];
+
+        $category = "Tout";
+
         $products = $productInteractor->getNewArrivals->run($user, null);
-        return response()->view("products.index", compact("products"));
+        return response()->view("products.index", compact("products", "breadcrumbs", "category"));
     }
 }
