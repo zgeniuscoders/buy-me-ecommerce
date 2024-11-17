@@ -1,42 +1,56 @@
-<template>
-    <div style="--sidebar-width:16rem;--sidebar-width-icon:3rem"
-         class="group/sidebar-wrapper has-[[data-variant=inset]]:bg-sidebar flex min-h-svh w-full">
-        <div class="flex h-screen grow">
-
-            <sidebar>
-                <template v-slot:dashboard>
-                    <dashboard/>
-                </template>
-<!--                <template v-slot:apps>-->
-<!--                    <apps/>-->
-<!--                </template>-->
-                <template v-slot:pages>
-                    <pages/>
-                </template>
-            </sidebar>
-
-            <div class="w-full">
-                <top-bar/>
-                <main class="min-h-full p-4">
-                    <div class="space-y-4">
-                        <slot/>
-                    </div>
-                </main>
-            </div>
-        </div>
-    </div>
-</template>
-
 <script setup>
 
-import {ref} from 'vue';
 import TopBar from "@/pages/partials/top-bar.vue";
-import Sidebar from "@/pages/partials/sidebar.vue";
 import Dashboard from "./menu/dashboard.vue";
-import Apps from "./menu/apps.vue";
 import Pages from "./menu/pages.vue";
+import Default from "@/pages/layouts/default.vue";
+import {ref} from "vue";
+import {MenuItem} from "@/models/MenuItem.js";
+import {Home, Users} from "lucide-vue-next";
+import GroupSidebarItems from "@/pages/partials/group-sidebar-items.vue";
+import SidebarItems from "@/pages/partials/sidebar-items.vue";
+
+const items = ref<{items: MenuItem[]}>({
+    items: [
+        {
+            title: "Accueil",
+            icon: Home,
+            link: "/ma-boutique",
+            submenus: null
+        }, {
+            title: "Articles",
+            icon: Users,
+            link: "/ma-boutique/articles",
+            submenus: null
+        },{
+            title: "Commandes",
+            icon: Users,
+            link: "/ma-boutique/commandes",
+            submenus: null
+        },
+
+    ]
+})
+
 
 </script>
+<template>
+    <default>
+        <template v-slot:sidebar>
+            <group-sidebar-items name="Dashboard">
+                <sidebar-items :items="items.items"/>
+            </group-sidebar-items>
+            <pages/>
+        </template>
+        <template v-slot:topbar>
+            <top-bar/>
+        </template>
+        <template v-slot:page>
+            <slot/>
+        </template>
+    </default>
+
+</template>
 
 <style scoped>
 #nprogress {

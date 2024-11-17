@@ -1,17 +1,22 @@
 <script setup lang="ts">
-// import { Button } from '@/lib/registry/default/ui/button'
+
 import Button from '@/components/ui/button/Button.vue';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Shop } from '@/models/Shop';
-import { MoreHorizontal } from 'lucide-vue-next'
-import { useForm,Link } from '@inertiajs/vue3';
-import { createToaster } from "@meforma/vue-toaster";
-import { Category } from '@/models/ProductType';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
+import {MoreHorizontal} from 'lucide-vue-next'
+import {useForm, Link} from '@inertiajs/vue3';
+import {createToaster} from "@meforma/vue-toaster";
+import {Category} from '@/models/ProductType';
 
 
 const toaster = createToaster()
 
-const { category } = defineProps<{
+const {category} = defineProps<{
     category: Category
 }>()
 
@@ -43,7 +48,7 @@ function copy(id: string) {
         <DropdownMenuTrigger as-child>
             <Button variant="ghost" class="h-8 w-8 p-0">
                 <span class="sr-only">Open menu</span>
-                <MoreHorizontal class="h-4 w-4" />
+                <MoreHorizontal class="h-4 w-4"/>
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">

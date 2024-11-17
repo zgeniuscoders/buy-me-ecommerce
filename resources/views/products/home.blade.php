@@ -30,7 +30,6 @@
 
                         <ul class="sidebar-menu-category-list">
                             <category-dropdown :categories="{{$categories}}"/>
-
                         </ul>
 
                     </div>

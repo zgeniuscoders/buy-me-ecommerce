@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('title')
-    Connexion
+    Connectez-vous à votre compte
 @endsection
 
 @section('text')
@@ -15,7 +15,7 @@
         <div class="w-full h-100">
 
 
-            <h1 class="text-xl md:text-2xl font-bold leading-tight mt-12">Log in to your account</h1>
+            <h1 class="text-xl md:text-2xl font-bold leading-tight mt-12">Connectez-vous à votre compte</h1>
 
             <form class="mt-6" action="{{route("login")}}" method="POST">
 

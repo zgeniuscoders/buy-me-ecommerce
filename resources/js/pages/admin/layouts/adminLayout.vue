@@ -1,51 +1,35 @@
 <script setup>
 
-import sidebar from '@/pages/partials/sidebar.vue';
-
-import {ref} from 'vue';
-import Sidebar from "@/pages/partials/sidebar.vue";
 import TopBar from "@/pages/partials/top-bar.vue";
 import Dashboard from "@/pages/admin/layouts/menu/dashboard.vue";
 import Apps from "@/pages/admin/layouts/menu/apps.vue";
 import Pages from "@/pages/admin/layouts/menu/pages.vue";
-import Others from "@/pages/admin/layouts/menu/others.vue";
 import ProfileDropdown from "@/pages/admin/layouts/profile-dropdown.vue";
-
+import Default from "@/pages/layouts/default.vue";
 
 </script>
 
 <template>
-    <div style="--sidebar-width:16rem;--sidebar-width-icon:3rem"
-         class="group/sidebar-wrapper has-[[data-variant=inset]]:bg-sidebar flex min-h-svh w-full">
-        <div class="flex h-screen grow">
-            <sidebar>
-                <template v-slot:dashboard>
-                    <dashboard/>
+
+    <default>
+        <template v-slot:sidebar>
+            <dashboard/>
+            <apps/>
+            <pages/>
+        </template>
+        <template v-slot:topbar>
+            <top-bar>
+                <template v-slot:profile-dropdown>
+                    <profile-dropdown/>
                 </template>
-                <template v-slot:apps>
-                   <apps/>
-                </template>
-                <template v-slot:pages>
-                    <pages/>
-                </template>
-                <template v-slot:others>
-                    <others/>
-                </template>
-            </sidebar>
-            <div class="w-full">
-                <top-bar>
-                    <template v-slot:profile-dropdown>
-                        <profile-dropdown/>
-                    </template>
-                </top-bar>
-                <main class="min-h-full p-4">
-                    <div class="space-y-4">
-                        <slot/>
-                    </div>
-                </main>
-            </div>
-        </div>
-    </div>
+            </top-bar>
+        </template>
+        <template v-slot:page>
+            <slot/>
+        </template>
+    </default>
+
+
 </template>
 
 

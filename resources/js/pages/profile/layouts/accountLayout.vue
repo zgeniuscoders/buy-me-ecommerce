@@ -1,33 +1,26 @@
 <script lang="ts" setup>
-import sidebar from '@/pages/partials/sidebar.vue';
+
 import TopBar from "@/pages/partials/top-bar.vue";
 import Dashboard from "@/pages/profile/layouts/menu/dashboard.vue";
 import Pages from "@/pages/profile/layouts/menu/pages.vue";
+import Default from "@/pages/layouts/default.vue";
 
 </script>
 
 <template>
-    <div style="--sidebar-width:16rem;--sidebar-width-icon:3rem"
-         class="group/sidebar-wrapper has-[[data-variant=inset]]:bg-sidebar flex min-h-svh w-full">
-        <div class="flex h-screen grow">
-            <sidebar>
-                <template v-slot:dashboard>
-                    <dashboard/>
-                </template>
-                <template v-slot:pages>
-                    <pages/>
-                </template>
-            </sidebar>
-            <div class="w-full">
-                <top-bar/>
-                <main class="min-h-full p-4">
-                    <div class="space-y-4">
-                        <slot/>
-                    </div>
-                </main>
-            </div>
-        </div>
-    </div>
+
+    <default>
+        <template v-slot:sidebar>
+            <dashboard/>
+            <pages/>
+        </template>
+        <template v-slot:topbar>
+            <top-bar/>
+        </template>
+        <template v-slot:page>
+            <slot/>
+        </template>
+    </default>
 
 </template>
 

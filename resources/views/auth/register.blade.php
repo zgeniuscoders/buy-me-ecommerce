@@ -12,31 +12,30 @@
         <div class="w-full h-100">
 
 
-            <h1 class="text-xl md:text-2xl font-bold leading-tight mt-12">Create an account</h1>
+            <h1 class="text-xl md:text-2xl font-bold leading-tight mt-12">Créer un compte.</h1>
 
             <form class="mt-6" action="{{ route('register') }}" method="POST">
 
                 @csrf
-                <x-input-component name="email" placeholder="zgeniuscoders@exmeple.com" title="Email" type="email"
+                <x-input-component name="email" placeholder="exemple@domain.com" title="Adresse email" type="email"
                     value="{{ old('email') }}" />
-                <x-input-component name="name" placeholder="zgeniuscoders" title="Username" type="text"
+                <x-input-component name="name" placeholder="john doe" title="Nom d'utilisateur" type="name"
                     value="{{ old('password') }}" />
-                <x-input-component name="password" placeholder="Enter Your password" title="Password" type="password"
+                <x-input-component name="password" placeholder="Enter Your password" title="Mot de passe" type="password"
                     value="{{ old('password') }}" />
-                <x-input-component name="password_confirmation" type="password" placeholder="zgeniuscoders"
-                    title="Confirm password" value="{{ old('password_confirmation') }}" />
+                <x-input-component name="password_confirmation" type="password" placeholder="Confirmer le mot de passe"
+                    title="Confirmer le mot de passe" value="{{ old('password_confirmation') }}" />
 
 
                 <button type="submit"
-                    class="w-full block bg-primary dark:bg-primary-dark hover:bg-blue-400 focus:bg-primaryContainer text-white font-semibold rounded-lg px-4 py-3 mt-6">Sign
-                    up
+                    class="w-full block bg-primary focus:bg-gray-400 text-white font-semibold rounded-lg px-4 py-3 mt-6">Créer mon compte
                 </button>
             </form>
 
             <hr class="my-6 border-gray-300 w-full">
 
-            <p class="mt-8">Have an account? <a href="{{ route('login') }}"
-                    class="text-primary hover:text-primaryContainer font-semibold">Sign in</a></p>
+            <p class="mt-8">Vous avez un compte ? <a href="{{ route('login') }}"
+                    class="text-primary hover:text-primaryContainer font-semibold">Connectez-vous</a></p>
 
 
         </div>
