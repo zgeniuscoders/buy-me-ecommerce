@@ -1,11 +1,35 @@
 <script setup>
 
 import TopBar from "@/pages/partials/top-bar.vue";
-import Dashboard from "@/pages/admin/layouts/menu/dashboard.vue";
 import Apps from "@/pages/admin/layouts/menu/apps.vue";
 import Pages from "@/pages/admin/layouts/menu/pages.vue";
 import ProfileDropdown from "@/pages/admin/layouts/profile-dropdown.vue";
 import Default from "@/pages/layouts/default.vue";
+import {CommandGroup, CommandItem, CommandSeparator} from "@/components/ui/command";
+import {ref} from "vue";
+import {Home, Users} from "lucide-vue-next";
+import GroupSidebarItems from "@/pages/partials/group-sidebar-items.vue";
+import SidebarItems from "@/pages/partials/sidebar-items.vue";
+import {Link} from "@inertiajs/vue3";
+
+
+const dashboardItems = ref({
+    items: [
+        {
+            title: "Accueil",
+            icon: Home,
+            link: "/admin",
+            submenus: null
+        }, {
+            title: "Clients",
+            icon: Users,
+            link: "/admin/clients",
+            submenus: null
+        },
+
+    ]
+})
+
 
 </script>
 
@@ -13,7 +37,9 @@ import Default from "@/pages/layouts/default.vue";
 
     <default>
         <template v-slot:sidebar>
-            <dashboard/>
+            <group-sidebar-items name="Dashboard">
+                <sidebar-items :items="dashboardItems.items"/>
+            </group-sidebar-items>
             <apps/>
             <pages/>
         </template>
@@ -21,6 +47,27 @@ import Default from "@/pages/layouts/default.vue";
             <top-bar>
                 <template v-slot:profile-dropdown>
                     <profile-dropdown/>
+                </template>
+                <template v-slot:command>
+                    <CommandGroup heading="Suggestions">
+                        <CommandItem value="calendar">
+                            Calendar
+                        </CommandItem>
+                        <CommandItem value="search-emoji">
+                            Search Emoji
+                        </CommandItem>
+                        <CommandItem value="calculator">
+                            Calculator
+                        </CommandItem>
+                    </CommandGroup>
+                    <CommandSeparator/>
+                    <CommandGroup heading="Dashboard">
+                        <template v-for="dashboardItem in dashboardItems.items" :key="dashboardItem">
+                            <CommandItem :value="dashboardItem.title">
+                                <Link :href="dashboardItem.link">{{ dashboardItem.title}}</Link>
+                            </CommandItem>
+                        </template>
+                    </CommandGroup>
                 </template>
             </top-bar>
         </template>

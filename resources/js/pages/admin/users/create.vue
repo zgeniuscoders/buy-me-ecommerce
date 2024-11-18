@@ -7,10 +7,20 @@ import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Input} from "@/components/ui/input"
 import {Label} from "@/components/ui/label";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
+import MultipleSelect from "@/components/MultipleSelect.vue";
+import {Cat, Dog, Fish, Rabbit, Turtle} from "lucide-vue-next";
 
 const toaster = createToaster();
 
-const {createUserRoute,roles,status} = usePage().props
+const frameworksList = [
+    {value: "react", label: "React", icon: Turtle},
+    {value: "angular", label: "Angular", icon: Cat},
+    {value: "vue", label: "Vue", icon: Dog},
+    {value: "svelte", label: "Svelte", icon: Rabbit},
+    {value: "ember", label: "Ember", icon: Fish},
+];
+
+const {createUserRoute, roles, status} = usePage().props
 const userForm = useForm({
     name: "",
     email: "",
@@ -58,14 +68,16 @@ const addUser = () => {
 
                                     <div class="space-y-4">
                                         <Label for="name">Nom d'utilisateur</Label>
-                                        <Input placeholder="Nom de l'article" v-model="userForm.name" id="name" type="text"/>
+                                        <Input placeholder="Nom de l'article" v-model="userForm.name" id="name"
+                                               type="text"/>
                                         <span v-if="userForm.errors.name" class="text-red-400 text-sm">{{
                                                 userForm.errors.name
                                             }}</span>
                                     </div>
                                     <div class="space-y-4">
                                         <Label for="email">Adresse email</Label>
-                                        <Input placeholder="Nom de l'article" v-model="userForm.email" id="email" type="email" autocomplete="new-password"/>
+                                        <Input placeholder="Nom de l'article" v-model="userForm.email" id="email"
+                                               type="email" autocomplete="new-password"/>
                                         <span v-if="userForm.errors.email" class="text-red-400 text-sm">{{
                                                 userForm.errors.email
                                             }}</span>
@@ -124,6 +136,15 @@ const addUser = () => {
                                                 </template>
                                             </SelectContent>
                                         </Select>
+
+                                        <MultipleSelect
+                                            :options="frameworksList"
+                                            :onValueChange="(a) => {console.log(a)}"
+                                            placeholder="Select frameworks"
+                                            variant="inverted"
+                                            :animation="2"
+                                            :maxCount="3"
+                                        />
                                         <span v-if="userForm.errors.status" class="text-red-400 text-sm">{{
                                                 userForm.errors.status
                                             }}</span>
