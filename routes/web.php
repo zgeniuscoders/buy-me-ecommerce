@@ -10,6 +10,7 @@ use App\Ecommerce\Products\Framework\Controllers\products\ProductController;
 use App\Ecommerce\Search\Framework\Controllers\SearchController;
 use App\Ecommerce\Seller\Framework\Controllers\ShopDisabledController;
 use App\Ecommerce\Shop\Framework\Controllers\StoreController as ControllersStoreController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');

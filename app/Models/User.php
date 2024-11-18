@@ -82,4 +82,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Address::class);
     }
+
+    public function conversation(): BelongsToMany
+    {
+        return $this->belongsToMany(Conversation::class, 'conversation_participants');
+    }
+
+    public function messages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
 }

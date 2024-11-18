@@ -2,11 +2,10 @@
 
 namespace App\Providers;
 
-use App\Ecommerce\Chat\Domain\Repository\ChatListRepository;
-use App\Ecommerce\Chat\Domain\Repository\ChatRepository;
-use App\Ecommerce\Chat\Domain\Usecases\ChatInteractor;
-use App\Ecommerce\Chat\Domain\Usecases\ChatListInteractor;
-use App\Ecommerce\Chat\Framework\Repository\EloquentChatListRepository;
+
+use App\Chat\Domain\Repository\ChatRepository;
+use App\Chat\Domain\Usecases\ChatInteractor;
+use App\Chat\Framework\Repository\EloquentChatRepository;
 use Illuminate\Support\ServiceProvider;
 
 class ChatServiceProvider extends ServiceProvider
@@ -17,7 +16,7 @@ class ChatServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(ChatRepository::class, function ($app) {
-            return new EloquentChatListRepository();
+            return new EloquentChatRepository();
         });
 
         $this->app->singleton(ChatInteractor::class, function ($app) {

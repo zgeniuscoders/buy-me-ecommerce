@@ -1,7 +1,5 @@
 <?php
 
-use App\Ecommerce\Shop\Domain\Models\Store;
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,16 +10,24 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('chats', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("sender_id");
-            $table->foreignId("receiver_id");
-            $table->text("message")->nullable();
+
+            $table->foreignIdFor(\App\Models\Conversation::class)
+                ->constrained()
+                ->cascadeOnDelete();
+
+            $table->foreignId("sender_id")
+                ->constrained('users')
+                ->onDelete('cascade');
+
+            $table->text("message")->default("");
             $table->string("file")->nullable();
             $table->string("filetype")->nullable();
             $table->date("edited_at")->nullable();
             $table->date("deleted_at")->nullable();
             $table->boolean("is_read")->default(false);
+
             $table->timestamps();
         });
     }
@@ -31,6 +37,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('chats');
+        Schema::dropIfExists('messages');
     }
 };
