@@ -83,7 +83,7 @@ class User extends Authenticatable
         return $this->hasOne(Address::class);
     }
 
-    public function conversation(): BelongsToMany
+    public function conversations(): BelongsToMany
     {
         return $this->belongsToMany(Conversation::class, 'conversation_participants');
     }

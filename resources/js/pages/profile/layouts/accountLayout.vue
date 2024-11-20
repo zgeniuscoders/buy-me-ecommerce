@@ -4,6 +4,24 @@ import TopBar from "@/pages/partials/top-bar.vue";
 import Dashboard from "@/pages/profile/layouts/menu/dashboard.vue";
 import Pages from "@/pages/profile/layouts/menu/pages.vue";
 import Default from "@/pages/layouts/default.vue";
+import GroupSidebarItems from "@/pages/partials/group-sidebar-items.vue";
+import SidebarItems from "@/pages/partials/sidebar-items.vue";
+import {ref} from "vue";
+import {MenuItem} from "@/models/MenuItem.ts";
+import {MessageCircle} from "lucide-vue-next";
+
+const menus = ref<{
+    apps: MenuItem[]
+}>({
+    apps: [
+        {
+            icon:MessageCircle,
+            title: "chat",
+            link: "/chat",
+            submenus: null
+        }
+    ]
+})
 
 </script>
 
@@ -12,6 +30,9 @@ import Default from "@/pages/layouts/default.vue";
     <default>
         <template v-slot:sidebar>
             <dashboard/>
+            <group-sidebar-items name="Application">
+                <sidebar-items :items="menus.apps"/>
+            </group-sidebar-items>
             <pages/>
         </template>
         <template v-slot:topbar>

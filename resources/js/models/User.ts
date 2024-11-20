@@ -1,6 +1,6 @@
 import {Role} from "@/models/Role.ts";
 
-export type User = {
+export interface User{
     id: number,
     name: string,
     email: string,

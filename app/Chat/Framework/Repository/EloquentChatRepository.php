@@ -51,12 +51,21 @@ class EloquentChatRepository implements ChatRepository
             $query->where('user_id', $customerId);
         })->pluck('id');
 
+
         return User::whereHas('conversations', function ($query) use ($conversations) {
             $query->whereIn('conversations.id', $conversations);
         })
             ->where('id', '!=', $customerId) // Exclude the current user
-            ->distinct()
+            ->with(['messages' => function ($query) use ($customerId) {
+                $query->where(function ($q) use ($customerId) {
+                    $q->where('sender_id', $customerId)
+                        ->orWhere('sender_id', '!=', $customerId);
+                })
+                    ->latest('created_at')
+                    ->take(1); // Only fetch the latest message
+            }])
             ->get();
+
     }
 
     public function getMessages(int $senderId, int $receiverId): Collection

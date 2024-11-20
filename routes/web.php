@@ -1,5 +1,7 @@
 <?php
 
+use App\Chat\Framework\Controllers\SendMessageController;
+use App\Chat\Framework\Controllers\ViewMessageController;
 use App\Core\Framework\Controllers\HomeController;
 use App\Ecommerce\Checkout\Framework\Controllers\CheckoutController;
 use App\Ecommerce\Products\Framework\Controllers\cart\CartController;
@@ -10,6 +12,7 @@ use App\Ecommerce\Products\Framework\Controllers\products\ProductController;
 use App\Ecommerce\Search\Framework\Controllers\SearchController;
 use App\Ecommerce\Seller\Framework\Controllers\ShopDisabledController;
 use App\Ecommerce\Shop\Framework\Controllers\StoreController as ControllersStoreController;
+use App\Http\Controllers\GetMessageController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +38,10 @@ Route::middleware("auth")->group(function () {
     Route::get('/user', function () {
         return request()->user();
     });
+
+    Route::get('/messages/{receiverId}', GetMessageController::class);
+    Route::post('/messages', SendMessageController::class);
+    Route::get("/chat", ViewMessageController::class);
 
     Route::get("/disabled", ShopDisabledController::class)->name("disabled");
 

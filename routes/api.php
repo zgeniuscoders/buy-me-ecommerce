@@ -1,6 +1,7 @@
 <?php
 
 use App\Authentication\Framework\Controllers\api\AuthenticationController;
+use App\Chat\Framework\Controllers\api\ApiMessageController;
 use App\Ecommerce\Category\Framework\Controllers\api\CategoryApiController;
 use App\Ecommerce\Checkout\Framework\Controllers\api\ProceedToCheckoutController;
 use App\Ecommerce\Products\Framework\Controllers\api\order\OrderProductController;
@@ -33,6 +34,11 @@ Route::prefix("v1")->group(function () {
     Route::post("/register", [AuthenticationController::class, "register"]);
 
     Route::middleware("auth:sanctum")->group(function () {
+
+//        messages
+        Route::apiResource("/messages", ApiMessageController::class);
+
+//        auth
         Route::delete("/logout", [AuthenticationController::class, "logout"]);
 
         // posts
@@ -42,10 +48,10 @@ Route::prefix("v1")->group(function () {
 
         // Shop
         Route::apiResource("Shop", ShopController::class);
-        Route::post("Shop/subscribe", SubscribeToShopController::class);
+        Route::post("shop/subscribe", SubscribeToShopController::class);
 
         // productd
-        Route::apiResource("Products", ApiProductController::class);
+        Route::apiResource("products", ApiProductController::class);
         Route::apiResource("categories", CategoryApiController::class)->except(["store", "destroy", "update", "edit"]);
         Route::apiResource("product/favorite", ProductFavoriteController::class)->except(["destroy", "update", "show"]);
         Route::get("count", TotalProductCount::class);
