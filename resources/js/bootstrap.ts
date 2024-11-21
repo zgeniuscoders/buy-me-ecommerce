@@ -7,3 +7,5 @@ declare global {
 }
 
 window.axios = axios;
+
+import './echo';

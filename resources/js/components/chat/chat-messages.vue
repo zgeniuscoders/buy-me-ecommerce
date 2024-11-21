@@ -14,8 +14,8 @@ const props = defineProps<{
 }>()
 
 
-watch(() => props.user, (newUser: ChatList,oldUser: ChatList) => {
-    if (newUser?.id !== oldUser?.id){
+watch(() => props.user, (newUser: ChatList, oldUser: ChatList) => {
+    if (newUser?.id !== oldUser?.id) {
         getMessages(newUser.id)
     }
 })
@@ -23,6 +23,12 @@ watch(() => props.user, (newUser: ChatList,oldUser: ChatList) => {
 onMounted(() => {
     getMessages(props.user.id)
 })
+
+const id = 4
+Echo.private(`messages.${id}`)
+    .listen('MessageSentEvent', (newMessage) => {
+        console.log(newMessage)
+    })
 
 </script>
 

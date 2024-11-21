@@ -114,17 +114,15 @@ const {chatList} = defineProps<{
                                 <div class="min-w-0 flex-grow">
                                     <div class="flex justify-between">
                                         <span class="font-semibold capitalize">{{ user.name }}</span>
-                                        <span class="text-sm text-muted-foreground">{{
-                                                timeAgo(user.messages[0].created_at)
-                                            }}</span>
+                                        <span class="text-sm text-muted-foreground">{{timeAgo(user.messages[0]?.created_at) }}</span>
                                     </div>
                                     <div class="flex items-center gap-2">
 
-                                        <span v-if="user.messages[0].is_read">vu</span>
+                                        <span v-if="user.messages[0]?.is_read">vu</span>
                                         <LucideCheck class="h-4 w-4 flex-shrink-0 text-muted-foreground" v-else/>
 
                                         <span class="truncate text-start text-muted-foreground">{{
-                                                user.messages[0].message
+                                                user.messages[0]?.message
                                             }}</span>
                                         <Badge variant="destructive">
                                             8

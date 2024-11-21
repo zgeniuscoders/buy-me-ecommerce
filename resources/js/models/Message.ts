@@ -7,5 +7,6 @@ export interface Message {
     deleted_at: string | null,
     edited_at: string | null,
     file: string | null,
-    filetype: string | null
+    filetype: string | null,
+    conversation_id: number
 }

@@ -3,6 +3,7 @@
 namespace App\Chat\Framework\Controllers;
 
 use App\Chat\Domain\Usecases\ChatInteractor;
+use App\Events\MessageSentEvent;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -13,11 +14,13 @@ class SendMessageController
     {
         $userId = auth()->user()->id;
         $conversation = $chatInteractor->createConversation->run($userId, $request->receiverId);
-        $chatInteractor->sendMessage->run([
+        $message = $chatInteractor->sendMessage->run([
             "conversation_id" => $conversation->id,
             "message" => $request->message,
             "sender_id" => $userId
         ]);
+
+        broadcast(new MessageSentEvent($message));
 
     }
 }
