@@ -14,6 +14,8 @@ use App\Ecommerce\Seller\Framework\Controllers\ShopDisabledController;
 use App\Ecommerce\Shop\Framework\Controllers\StoreController as ControllersStoreController;
 use App\Http\Controllers\GetMessageController;
 use App\Models\User;
+use App\Profile\Framework\Controllers\ChangeEmailOrNameController;
+use App\Profile\Framework\Controllers\ChangePasswordController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -42,6 +44,12 @@ Route::middleware("auth")->group(function () {
     Route::get('/messages/{receiverId}', GetMessageController::class);
     Route::post('/messages', SendMessageController::class);
     Route::get("/chat", ViewMessageController::class);
+
+    Route::put("/changer-mot-de-passe", ChangePasswordController::class)
+        ->name("account.changePassword");
+
+    Route::put("/changer-mon-nom-ou-adresse-email", ChangeEmailOrNameController::class)
+        ->name("account.changeEmail");
 
     Route::get("/disabled", ShopDisabledController::class)->name("disabled");
 

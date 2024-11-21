@@ -1,6 +1,7 @@
 <?php
 
 return [
+    App\Providers\AccountServiceProvider::class,
     App\Providers\AddressServiceProvider::class,
     App\Providers\AdsServiceProvider::class,
     App\Providers\AppServiceProvider::class,

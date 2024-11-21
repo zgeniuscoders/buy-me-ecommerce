@@ -1,8 +1,5 @@
-<script setup>
+<script setup lang="ts">
 
-import TopBar from "@/pages/partials/top-bar.vue";
-import Dashboard from "./menu/dashboard.vue";
-import Pages from "./menu/pages.vue";
 import Default from "@/pages/layouts/default.vue";
 import {ref} from "vue";
 import {MenuItem} from "@/models/MenuItem.js";
@@ -10,27 +7,25 @@ import {Home, Users} from "lucide-vue-next";
 import GroupSidebarItems from "@/pages/partials/group-sidebar-items.vue";
 import SidebarItems from "@/pages/partials/sidebar-items.vue";
 
-const items = ref<{items: MenuItem[]}>({
-    items: [
-        {
-            title: "Accueil",
-            icon: Home,
-            link: "/ma-boutique",
-            submenus: null
-        }, {
-            title: "Articles",
-            icon: Users,
-            link: "/ma-boutique/articles",
-            submenus: null
-        },{
-            title: "Commandes",
-            icon: Users,
-            link: "/ma-boutique/commandes",
-            submenus: null
-        },
+const dashboardMenu = ref<MenuItem[]>([
+    {
+        title: "Accueil",
+        icon: Home,
+        link: "/ma-boutique",
+        submenus: null
+    }, {
+        title: "Articles",
+        icon: Users,
+        link: "/ma-boutique/articles",
+        submenus: null
+    }, {
+        title: "Commandes",
+        icon: Users,
+        link: "/ma-boutique/commandes",
+        submenus: null
+    },
 
-    ]
-})
+])
 
 
 </script>
@@ -38,12 +33,8 @@ const items = ref<{items: MenuItem[]}>({
     <default>
         <template v-slot:sidebar>
             <group-sidebar-items name="Dashboard">
-                <sidebar-items :items="items.items"/>
+                <sidebar-items :items="dashboardMenu"/>
             </group-sidebar-items>
-            <pages/>
-        </template>
-        <template v-slot:topbar>
-            <top-bar/>
         </template>
         <template v-slot:page>
             <slot/>

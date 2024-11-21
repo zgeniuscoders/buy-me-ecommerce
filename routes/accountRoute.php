@@ -28,12 +28,6 @@ Route::prefix("/mon-compte")->group(function () {
         ->names("account.address")
         ->except(["index", "edit", "show"]);
 
-    Route::put("/changer-mot-de-passe", ChangePasswordController::class)
-        ->name("account.changePassword");
-
-    Route::put("/changer-mon-nom-ou-adresse-email", ChangeEmailOrNameController::class)
-        ->name("account.changeEmail");
-
     Route::resource("/articles-favorite", AccountFavoriteController::class)
         ->names("account.favorite")
         ->except(["edit", "update", "show", "create"]);

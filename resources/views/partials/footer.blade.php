@@ -79,7 +79,7 @@
                             </li>
 
                             <li>
-                                <a href="{{ route('Shop.index') }}"
+                                <a href="{{ route('shop.index') }}"
                                    class="text-base text-gray-500 hover:text-primary dark:hover:text-primary-dark">Nos
                                     boutiques</a>
                             </li>

@@ -12,6 +12,7 @@ use App\Ecommerce\Products\Framework\Controllers\api\products\ProductFavoriteCon
 use App\Ecommerce\Products\Framework\Controllers\api\products\TotalProductCount;
 use App\Ecommerce\Seller\Framework\Controllers\api\ShopController;
 use App\Ecommerce\Shop\Framework\Controllers\api\SubscribeToShopController;
+use App\Http\Controllers\ApiGetAdsController;
 use App\Post\Framework\Controllers\api\CommentController;
 use App\Post\Framework\Controllers\api\PostController;
 use App\Post\Framework\Controllers\api\PostLikeController;
@@ -30,15 +31,18 @@ Route::get('/user', function (Request $request) {
 
 Route::prefix("v1")->group(function () {
 
+    Route::apiResource("products", ApiProductController::class);
+    Route::get('/ads', ApiGetAdsController::class);
+
     Route::post("/login", [AuthenticationController::class, "login"]);
     Route::post("/register", [AuthenticationController::class, "register"]);
 
     Route::middleware("auth:sanctum")->group(function () {
 
-//        messages
+        //        messages
         Route::apiResource("/messages", ApiMessageController::class);
 
-//        auth
+        //        auth
         Route::delete("/logout", [AuthenticationController::class, "logout"]);
 
         // posts
@@ -47,11 +51,11 @@ Route::prefix("v1")->group(function () {
         Route::post("post/comment", [CommentController::class, "store"]);
 
         // Shop
-        Route::apiResource("Shop", ShopController::class);
+        Route::apiResource("shop", ShopController::class);
         Route::post("shop/subscribe", SubscribeToShopController::class);
 
         // productd
-        Route::apiResource("products", ApiProductController::class);
+        //        Route::apiResource("products", ApiProductController::class);
         Route::apiResource("categories", CategoryApiController::class)->except(["store", "destroy", "update", "edit"]);
         Route::apiResource("product/favorite", ProductFavoriteController::class)->except(["destroy", "update", "show"]);
         Route::get("count", TotalProductCount::class);
@@ -61,7 +65,5 @@ Route::prefix("v1")->group(function () {
         Route::get("user/orders", OrderUserController::class);
         Route::get("orders-count", TotalOrderCountController::class);
         Route::post("product/orders", OrderProductController::class);
-
-
     });
 });

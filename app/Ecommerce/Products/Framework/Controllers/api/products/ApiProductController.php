@@ -14,7 +14,7 @@ class ApiProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $perPage = $request->input("per_page") ?: 2;
         $products = Product::with(["Category", "store", "favoriteProductUser"])
@@ -66,7 +66,11 @@ class ApiProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::query()
+            ->where("slug", $id)
+            ->firstOrFail();
+
+        return new ProductResource($product);
     }
 
     /**

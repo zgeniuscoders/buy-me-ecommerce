@@ -20,11 +20,16 @@ class ProductResource extends JsonResource
             'image' => $this->image,
             'images' => $this->images,
             'price' => $this->price,
-            'discount' => $this->discount,
             'description' => $this->description,
-            "is_favorite" => $this->favoriteProductUser()->where("user_id", $request->user()->id)->exists(),
-            'Category' => new CategoryResource($this->whenLoaded("Category")),
-            'store' => new ShopResource($this->whenLoaded("store"))
+            'slug' => $this->slug,
+            'qty' => $this->qty,
+            'categoryId' => $this->category_id,
+            'storeId' => $this->store_id,
+            'has_delivered' => $this->has_delivered,
+            'inStock' => $this->in_stock,
+//            "is_favorite" => $this->favoriteProductUser()->where("user_id", $request->user()->id ?: null)->exists(),
+//            'category' => new CategoryResource($this->whenLoaded("category")),
+//            'store' => new ShopResource($this->whenLoaded("store"))
         ];
     }
 }

@@ -5,6 +5,7 @@ use App\Admin\Framework\Controllers\Ads\AdsController;
 use App\Admin\Framework\Controllers\Category\CategoryController;
 use App\Admin\Framework\Controllers\Customer\CustomerController;
 use App\Admin\Framework\Controllers\Permission\PermissionController;
+use App\Admin\Framework\Controllers\Profile\AdminProfileController;
 use App\Admin\Framework\Controllers\Role\RoleController;
 use App\Admin\Framework\Controllers\shop\DisabledShopController;
 use App\Admin\Framework\Controllers\shop\EnableShopController;
@@ -46,6 +47,8 @@ Route::prefix("/admin")
         Route::get("/clients", CustomerController::class)
             ->name("admin.customer");
 
+        Route::get("profile", AdminProfileController::class);
+
 
         Route::resource("/utilisateurs", UserController::class)
             ->middleware("can:super-admin-cards.*")
@@ -61,4 +64,5 @@ Route::prefix("/admin")
             ->middleware("can:super-admin-cards.*")
             ->names("admin.permissions")
             ->except(["show"]);
+
     });

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useForm } from '@inertiajs/vue3';
 import { createToaster } from "@meforma/vue-toaster";
-import Button from '@/components/ui/button/Button.vue';
+import Button from '../ui/button/Button.vue';
 import {
     Card,
     CardContent,

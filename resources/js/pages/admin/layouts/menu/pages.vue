@@ -5,7 +5,7 @@ import GroupSidebarItems from "@/pages/partials/group-sidebar-items.vue";
 import SidebarItemsDropdown from "@/pages/partials/sidebar-items-dropdown.vue";
 import {MenuItem} from "@/models/MenuItem.ts";
 
-import {Users,Rss,Settings,PackageSearch} from "lucide-vue-next";
+import {Users, Rss, Settings, PackageSearch} from "lucide-vue-next";
 
 const state = ref<{
     settingsMenu: boolean
@@ -93,7 +93,7 @@ const items = ref<{
             {
                 icon: Users,
                 title: "Profile",
-                link: "",
+                link: "/admin/profile",
                 submenus: null
             },
         ]

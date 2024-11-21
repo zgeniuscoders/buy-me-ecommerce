@@ -12,6 +12,11 @@ const {receiverId} = defineProps<{
     receiverId: number
 }>()
 
+const handleSendMessage = () => {
+    sendMessage({message: message.value,receiverId: receiverId})
+    message.value = ""
+}
+
 </script>
 
 <template>
@@ -36,7 +41,7 @@ const {receiverId} = defineProps<{
                     </Button>
                 </div>
                 <Button variant="outline"
-                        @click="sendMessage({message: message,receiverId: receiverId})"
+                        @click="handleSendMessage"
                         class="hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 ms-3">
                     Envoyer
                 </Button>

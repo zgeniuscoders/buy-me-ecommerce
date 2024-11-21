@@ -1,6 +1,6 @@
 <div class="bg-primary text-white w-full text-center py-2 text-sm">
     <span class="capitalize w-full">Achetez aujourd'hui et faites-vous livrer aujourd'hui ! <span><a
-                href="{{ route('Products.index') }}">Achetez-maitenant</a></span> </span>
+                href="{{ route('products.index') }}">Achetez-maitenant</a></span> </span>
 </div>
 
 <header>
