@@ -33,7 +33,7 @@ Route::resource("store", ControllersStoreController::class)
     ->only(["show"]);
 
 
-Route::middleware("auth")->group(function () {
+Route::middleware(["auth", "verified"])->group(function () {
 
     include "adminRoute.php";
 

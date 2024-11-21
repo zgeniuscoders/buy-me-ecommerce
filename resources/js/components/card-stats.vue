@@ -1,9 +1,9 @@
 <template>
-    <article class="p-4 shadow-md bg-white rounded-md">
+    <Card class="p-4">
         <div class="flex items-center">
 
             <div class="p-2 rounded-md flex items-center justify-center h-[50px] w-[50px] mr-4 text-white" :class="bgColor">
-                <ion-icon :name="icon"></ion-icon>
+                <slot/>
             </div>
 
             <div>
@@ -18,16 +18,17 @@
             <h4 class="text-emerald-600 text-sm">2,67</h4>
         </div> -->
 
-    </article>
+    </Card>
 </template>
 
 <script lang="ts" setup>
 
-const {bgColor,text,count,icon} = defineProps<{
+import {Card} from "@/components/ui/card";
+
+const {bgColor,text,count} = defineProps<{
     bgColor: string,
     text: string,
     count: string,
-    icon: string
 }>()
 
 </script>
