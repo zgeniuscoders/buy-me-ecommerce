@@ -6,6 +6,7 @@ import {MenuItem} from "@/models/MenuItem.js";
 import {Home, Users} from "lucide-vue-next";
 import GroupSidebarItems from "@/pages/partials/group-sidebar-items.vue";
 import SidebarItems from "@/pages/partials/sidebar-items.vue";
+import TopBar from "@/pages/partials/top-bar.vue";
 
 const dashboardMenu = ref<MenuItem[]>([
     {
@@ -35,6 +36,9 @@ const dashboardMenu = ref<MenuItem[]>([
             <group-sidebar-items name="Dashboard">
                 <sidebar-items :items="dashboardMenu"/>
             </group-sidebar-items>
+        </template>
+        <template v-slot:topbar>
+            <top-bar/>
         </template>
         <template v-slot:page>
             <slot/>

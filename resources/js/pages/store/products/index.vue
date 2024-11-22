@@ -114,10 +114,11 @@ const columns = [
                 <h3 class="text-2xl font-medium">Mes articles</h3>
 
 
-                <Link href="/ma-boutique/articles/create"
-                    class="bg-gray-800 py-2 px-4 rounded-md text-white mt-4 hover:bg-gray-900">
-                Ajoutez un produit
-                </Link>
+                <Button>
+                    <Link href="/ma-boutique/articles/create">
+                        Ajoutez un produit
+                    </Link>
+                </Button>
 
             </div>
 

@@ -3,11 +3,12 @@
 namespace App\Chat\Framework\Controllers;
 
 use App\Chat\Domain\Usecases\ChatInteractor;
+use App\Core\Framework\Controllers\Controller;
 use App\Events\MessageSentEvent;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class SendMessageController
+class SendMessageController extends Controller
 {
 
     public function __invoke(Request $request, ChatInteractor $chatInteractor): void
@@ -20,7 +21,7 @@ class SendMessageController
             "sender_id" => $userId
         ]);
 
-        broadcast(new MessageSentEvent($message));
+        MessageSentEvent::dispatch($message);
 
     }
 }

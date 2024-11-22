@@ -16,6 +16,7 @@ import {
     CardContent,
     CardHeader,
     CardTitle,
+    CardFooter
 } from "@/components/ui/card"
 
 import {
@@ -25,6 +26,7 @@ import {
     SelectTrigger, SelectValue,
 } from "@/components/ui/select"
 import {Button} from "@/components/ui/button";
+import ProductVariant from "@/pages/store/products/components/productVariant.vue";
 
 const toaster = createToaster();
 
@@ -195,6 +197,7 @@ const submit = () => {
 
                             </card>
 
+                            <product-variant/>
                         </div>
 
                         <div class="md:col-span-2 space-y-4">
